@@ -55,7 +55,7 @@
   .cv-en{ font-size:14px; color:var(--label-normal); margin-bottom:12px; }
   .cv-kr{ font-size:13.5px; color:var(--label-neutral); line-height:1.9; }
 
-  .menu-list{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-top:24px; max-width:900px; }
+  .menu-list{ display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-top:24px; max-width:900px; }
   .explore-heading{ font-size:28px; font-weight:700; color:var(--label-heavy); margin-top:64px; padding-top:48px; border-top:1px solid var(--line-normal); max-width:900px; }
   .menu-item{ display:block; background:var(--surface-1); border:1px solid var(--line-normal); border-radius:var(--radius-l); padding:22px; text-decoration:none; transition:border-color .15s, background .15s; }
   .menu-item:hover{ border-color:var(--label-assistive); background:var(--surface-2); }
@@ -217,6 +217,10 @@
       <a class="nav-link" href="#brand">Brand</a>
     </div>
     <div class="nav-group">
+      <div class="nav-label">UX Writing</div>
+      <a class="nav-link" href="#ux-writing">UX Writing</a>
+    </div>
+    <div class="nav-group">
       <div class="nav-label">Foundation</div>
       <a class="nav-link" href="#primitive">Primitive Color</a>
       <a class="nav-link" href="#semantic">Semantic Color</a>
@@ -227,10 +231,6 @@
     <div class="nav-group">
       <div class="nav-label">Component</div>
       <a class="nav-link" href="#component">Component</a>
-    </div>
-    <div class="nav-group">
-      <div class="nav-label">UX Writing</div>
-      <a class="nav-link" href="#ux-writing">UX Writing</a>
     </div>
     <div class="nav-group">
       <div class="nav-label">동기화</div>
@@ -276,6 +276,13 @@
           </div>
           <p class="menu-item-desc">브랜드 아이덴티티, 톤앤매너, 로고 사용 가이드</p>
         </a>
+        <a class="menu-item" href="#ux-writing">
+          <div class="menu-item-top">
+            <span class="menu-item-title">UX Writing</span>
+            <span class="menu-item-badge tbd">TBD</span>
+          </div>
+          <p class="menu-item-desc">화면 문구, 톤앤매너, 라이팅 가이드</p>
+        </a>
         <a class="menu-item" href="#primitive">
           <div class="menu-item-top">
             <span class="menu-item-title">Foundation</span>
@@ -289,13 +296,6 @@
             <span class="menu-item-badge tbd">TBD</span>
           </div>
           <p class="menu-item-desc">버튼, 인풋 등 UI 컴포넌트 가이드</p>
-        </a>
-        <a class="menu-item" href="#ux-writing">
-          <div class="menu-item-top">
-            <span class="menu-item-title">UX Writing</span>
-            <span class="menu-item-badge tbd">TBD</span>
-          </div>
-          <p class="menu-item-desc">화면 문구, 톤앤매너, 라이팅 가이드</p>
         </a>
       </div>
     </section>
