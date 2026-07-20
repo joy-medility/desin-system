@@ -57,9 +57,10 @@
 
   .menu-list{ display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-top:24px; max-width:900px; }
   .explore-heading{ font-size:28px; font-weight:700; color:var(--label-heavy); margin-top:64px; padding-top:48px; border-top:1px solid var(--line-normal); max-width:900px; }
-  .menu-item{ position:relative; display:flex; flex-direction:column; justify-content:flex-end; aspect-ratio:6/4; background:var(--surface-1); border:1px solid var(--line-normal); border-radius:var(--radius-l); padding:28px; text-decoration:none; transition:border-color .15s, background .15s; overflow:hidden; }
+  .menu-item{ position:relative; display:flex; flex-direction:column; justify-content:space-between; aspect-ratio:6/4; background:var(--surface-1); border:1px solid var(--line-normal); border-radius:var(--radius-l); padding:28px; text-decoration:none; transition:border-color .15s, background .15s; overflow:hidden; }
   .menu-item:hover{ border-color:var(--label-assistive); background:var(--surface-2); }
-  .menu-item-mark{ font-family:'SF Mono', monospace; font-size:56px; font-weight:700; color:var(--surface-3); line-height:1; }
+  .menu-item-mark{ color:var(--label-assistive); }
+  .menu-item-mark svg{ display:block; }
   .menu-item-bottom{ position:relative; z-index:1; }
   .menu-item-title{ font-size:22px; font-weight:700; color:var(--label-heavy); display:block; margin-bottom:8px; }
   .menu-item-badge{ position:absolute; top:24px; right:24px; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; padding:4px 10px; border-radius:999px; z-index:2; }
@@ -276,6 +277,9 @@
       <div class="menu-list">
         <a class="menu-item" href="#brand">
           <span class="menu-item-badge tbd">TBD</span>
+          <div class="menu-item-mark">
+            <svg viewBox="0 0 24 24" width="44" height="44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L14.4 8.4L21 9L16 13.6L17.5 20.2L12 16.8L6.5 20.2L8 13.6L3 9L9.6 8.4L12 2Z" fill="currentColor"/></svg>
+          </div>
           <div class="menu-item-bottom">
             <span class="menu-item-title">Brand</span>
             <p class="menu-item-desc">브랜드 아이덴티티, 톤앤매너, 로고 사용 가이드</p>
@@ -283,6 +287,9 @@
         </a>
         <a class="menu-item" href="#ux-writing">
           <span class="menu-item-badge tbd">TBD</span>
+          <div class="menu-item-mark">
+            <svg viewBox="0 0 24 24" width="44" height="44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 20h4L18.4 9.6a2.1 2.1 0 0 0-3-3L5.4 16.6 4 20Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M13.6 7.4L16.6 10.4" stroke="currentColor" stroke-width="1.8"/></svg>
+          </div>
           <div class="menu-item-bottom">
             <span class="menu-item-title">UX Writing</span>
             <p class="menu-item-desc">화면 문구, 톤앤매너, 라이팅 가이드</p>
@@ -290,6 +297,9 @@
         </a>
         <a class="menu-item" href="#primitive">
           <span class="menu-item-badge ready">진행 중</span>
+          <div class="menu-item-mark">
+            <svg viewBox="0 0 24 24" width="44" height="44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7.5L12 13L22 7.5L12 2Z" fill="currentColor"/><path d="M2 12.5L12 18L22 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17.5L12 23L22 17.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
           <div class="menu-item-bottom">
             <span class="menu-item-title">Foundation</span>
             <p class="menu-item-desc">컬러, 타이포그래피, Radius 등 디자인 토큰</p>
@@ -297,6 +307,9 @@
         </a>
         <a class="menu-item" href="#component">
           <span class="menu-item-badge tbd">TBD</span>
+          <div class="menu-item-mark">
+            <svg viewBox="0 0 24 24" width="44" height="44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="8" height="8" rx="1.6" fill="currentColor"/><rect x="13" y="3" width="8" height="8" rx="1.6" fill="currentColor" opacity="0.45"/><rect x="3" y="13" width="8" height="8" rx="1.6" fill="currentColor" opacity="0.45"/><rect x="13" y="13" width="8" height="8" rx="1.6" fill="currentColor"/></svg>
+          </div>
           <div class="menu-item-bottom">
             <span class="menu-item-title">Component</span>
             <p class="menu-item-desc">버튼, 인풋 등 UI 컴포넌트 가이드</p>
