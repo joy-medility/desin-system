@@ -189,10 +189,6 @@
       <a class="nav-link" href="#typography">Typography</a>
       <a class="nav-link" href="#radius">Radius</a>
     </div>
-    <div class="nav-group">
-      <div class="nav-label">Components</div>
-      <a class="nav-link" href="#components">Button</a>
-    </div>
   </nav>
 
   <main class="main">
@@ -324,46 +320,6 @@
           <li>Radius를 0으로 쓰지 않습니다. 최소 corner-radius-XS(4px) 이상을 사용해요. Radius 0은 토큰에 정의되지 않은 값입니다.</li>
           <li>토큰에 없는 임의의 Radius 값을 쓰지 않습니다. 반드시 정의된 토큰 중에서 선택합니다.</li>
         </ul>
-      </div>
-    </section>
-
-    <section class="section" id="components">
-      <div class="section-header">
-        <div class="eyebrow">Components</div>
-        <h2 class="section-title">Button</h2>
-        <p class="section-desc">상태(State)와 크기(Size), 아이콘 유무에 따라 실제 컴포넌트가 어떻게 바뀌는지 직접 조작해서 확인해보세요.</p>
-      </div>
-      <div class="playground">
-        <div class="pg-preview">
-          <button class="pg-button size-L state-default" id="pgButton">
-            <span class="pg-icon" id="pgIconLeftEl" style="display:none;"></span>
-            <span id="pgButtonLabel">레이블</span>
-            <span class="pg-icon" id="pgIconRightEl" style="display:none;"></span>
-          </button>
-        </div>
-        <div class="pg-controls">
-          <h4>Control</h4>
-          <div class="pg-group">
-            <div class="pg-group-label">State</div>
-            <label class="pg-radio"><input type="radio" name="pgState" value="default" checked> default</label>
-            <label class="pg-radio"><input type="radio" name="pgState" value="hover"> hover</label>
-            <label class="pg-radio"><input type="radio" name="pgState" value="disabled"> disabled</label>
-          </div>
-          <div class="pg-group">
-            <div class="pg-group-label">Size</div>
-            <label class="pg-radio"><input type="radio" name="pgSize" value="L" checked> L</label>
-            <label class="pg-radio"><input type="radio" name="pgSize" value="M"> M</label>
-            <label class="pg-radio"><input type="radio" name="pgSize" value="S"> S</label>
-          </div>
-          <div class="pg-toggle-row">
-            <span>Icon-left</span>
-            <label class="pg-switch"><input type="checkbox" id="pgIconLeft"><span class="slider"></span></label>
-          </div>
-          <div class="pg-toggle-row">
-            <span>Icon-right</span>
-            <label class="pg-switch"><input type="checkbox" id="pgIconRight"><span class="slider"></span></label>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -563,21 +519,6 @@ const SEMANTIC_GROUPS = [
 ];
 
 function renderDisabledVisual(){
-  const pairs = [
-    ['color-semantic-fill-00 / gray_950','color-semantic-btn-all-disabled-onfill-00-bg'],
-    ['color-semantic-fill-01 / gray_900','color-semantic-btn-all-disabled-onfill-01-bg'],
-    ['color-semantic-fill-02 / gray_800','color-semantic-btn-all-disabled-onfill-02-bg'],
-    ['color-semantic-fill-03 / gray_700','color-semantic-btn-all-disabled-onfill-03-bg']
-  ];
-  const cards = pairs.map(([surfaceTok, btnTok])=>`
-    <div class="disabled-card">
-      <div class="dc-label">바탕 surface :</div>
-      <div class="dc-chip">${surfaceTok}</div>
-      <div class="dc-btn">button</div>
-      <div class="dc-arrow">↓</div>
-      <div class="dc-label">버튼 surface :</div>
-      <div class="dc-chip">${btnTok}</div>
-    </div>`).join('');
   return `<div class="rule-box">
     <h4>핵심규칙</h4>
     <ol>
@@ -586,8 +527,67 @@ function renderDisabledVisual(){
       <li>버튼 텍스트는 <strong>무관하게 공통 컬러값</strong>(gray/100, opacity 20%)을 사용합니다.</li>
     </ol>
   </div>
-  <div class="disabled-grid-title">Fill 단계별 Disabled 버튼 컬러</div>
-  <div class="disabled-grid">${cards}</div>`;
+  <div class="disabled-grid-title">Fill 단계별 Disabled 버튼 컬러 — 직접 조작해보기</div>
+  <div class="playground">
+    <div class="pg-preview" id="pgDisabledPreview" style="background:#111214;">
+      <button class="pg-button size-L state-default" id="pgDisabledButton">
+        <span>레이블</span>
+      </button>
+    </div>
+    <div class="pg-controls">
+      <h4>Control</h4>
+      <div class="pg-group">
+        <div class="pg-group-label">Background (바탕 surface)</div>
+        <label class="pg-radio"><input type="radio" name="pgDisabledBg" value="00" checked> fill-00 / gray_950</label>
+        <label class="pg-radio"><input type="radio" name="pgDisabledBg" value="01"> fill-01 / gray_900</label>
+        <label class="pg-radio"><input type="radio" name="pgDisabledBg" value="02"> fill-02 / gray_800</label>
+        <label class="pg-radio"><input type="radio" name="pgDisabledBg" value="03"> fill-03 / gray_700</label>
+      </div>
+      <div class="pg-group">
+        <div class="pg-group-label">State</div>
+        <label class="pg-radio"><input type="radio" name="pgDisabledState" value="default" checked> default</label>
+        <label class="pg-radio"><input type="radio" name="pgDisabledState" value="hover"> hover</label>
+        <label class="pg-radio"><input type="radio" name="pgDisabledState" value="disabled"> disabled</label>
+      </div>
+      <div class="pg-group">
+        <div class="pg-group-label">Size</div>
+        <label class="pg-radio"><input type="radio" name="pgDisabledSize" value="L" checked> L</label>
+        <label class="pg-radio"><input type="radio" name="pgDisabledSize" value="M"> M</label>
+        <label class="pg-radio"><input type="radio" name="pgDisabledSize" value="S"> S</label>
+      </div>
+    </div>
+  </div>`;
+}
+
+const DISABLED_SURFACE_MAP = {
+  '00': { surface:'#111214', onfill:'#1E1E22' },
+  '01': { surface:'#1E1E22', onfill:'#2C2C31' },
+  '02': { surface:'#2C2C31', onfill:'#3B3B44' },
+  '03': { surface:'#3B3B44', onfill:'#4A4A54' }
+};
+
+function initDisabledPlayground(){
+  const preview = document.getElementById('pgDisabledPreview');
+  const btn = document.getElementById('pgDisabledButton');
+  if(!preview || !btn) return;
+  function update(){
+    const bg = document.querySelector('input[name="pgDisabledBg"]:checked').value;
+    const state = document.querySelector('input[name="pgDisabledState"]:checked').value;
+    const size = document.querySelector('input[name="pgDisabledSize"]:checked').value;
+    const map = DISABLED_SURFACE_MAP[bg];
+    preview.style.background = map.surface;
+    btn.className = 'pg-button size-' + size + ' state-' + state;
+    btn.disabled = (state === 'disabled');
+    if(state === 'disabled'){
+      btn.style.background = map.onfill;
+      btn.style.color = 'rgba(232,232,234,0.2)';
+    } else {
+      btn.style.background = '';
+      btn.style.color = '';
+    }
+  }
+  document.querySelectorAll('input[name="pgDisabledBg"], input[name="pgDisabledState"], input[name="pgDisabledSize"]').forEach(el => el.addEventListener('change', update));
+  update();
 }
 
 function renderSemanticGroups(data){
@@ -605,6 +605,7 @@ function renderSemanticGroups(data){
     return out;
   }).join('');
   document.getElementById('semantic-groups').innerHTML = html;
+  initDisabledPlayground();
 }
 
 function typeRow(name, sizePx, leadingPct, weight, tracking, sample){
@@ -651,30 +652,6 @@ function renderAll(data){
 }
 
 renderAll(DEFAULT_DATA);
-
-// ---------- Button component playground ----------
-function initButtonPlayground(){
-  const btn = document.getElementById('pgButton');
-  if(!btn) return;
-  const iconLeft = document.getElementById('pgIconLeft');
-  const iconRight = document.getElementById('pgIconRight');
-  const iconLeftEl = document.getElementById('pgIconLeftEl');
-  const iconRightEl = document.getElementById('pgIconRightEl');
-
-  function update(){
-    const state = document.querySelector('input[name="pgState"]:checked').value;
-    const size = document.querySelector('input[name="pgSize"]:checked').value;
-    btn.className = 'pg-button size-' + size + ' state-' + state;
-    btn.disabled = (state === 'disabled');
-    iconLeftEl.style.display = iconLeft.checked ? 'inline-block' : 'none';
-    iconRightEl.style.display = iconRight.checked ? 'inline-block' : 'none';
-  }
-  document.querySelectorAll('input[name="pgState"], input[name="pgSize"]').forEach(el => el.addEventListener('change', update));
-  iconLeft.addEventListener('change', update);
-  iconRight.addEventListener('change', update);
-  update();
-}
-initButtonPlayground();
 
 // ---------- Sidebar active state on scroll ----------
 const links = document.querySelectorAll('.nav-link');
