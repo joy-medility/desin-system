@@ -146,10 +146,12 @@
   .status-tag{ font-size:12px; padding:4px 12px; border-radius:var(--radius-circle); border:1px solid var(--line-normal); color:var(--label-neutral); }
   .status-desc{ font-size:13px; color:var(--label-neutral); margin:12px 0 20px; line-height:1.6; max-width:640px;}
   .color-detail{ display:flex; gap:32px; margin-bottom:24px; flex-wrap:wrap; }
-  .color-detail-swatch{ width:180px; height:150px; border-radius:20px; flex-shrink:0; }
+  .color-detail-swatch{ width:110px; height:90px; border-radius:14px; flex-shrink:0; }
   .color-detail-info{ flex:1; min-width:280px; }
-  .color-detail-title-row{ display:flex; align-items:center; gap:14px; margin-bottom:14px; flex-wrap:wrap; }
-  .color-detail-title{ font-size:32px; font-weight:700; color:var(--label-heavy); }
+  .color-detail-title-row{ display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap; }
+  .color-detail-title{ font-size:20px; font-weight:700; color:var(--label-heavy); }
+  .status-key{ font-family:'SF Mono', monospace; font-size:10.5px; font-weight:700; color:var(--label-assistive); text-transform:uppercase; letter-spacing:0.05em; border:1px solid var(--line-normal); padding:3px 9px; border-radius:6px; }
+  #status .section-title{ font-size:24px; }
   .color-detail-tag{ font-size:13px; font-weight:600; padding:6px 16px; border-radius:999px; white-space:nowrap; }
   .color-detail-desc{ font-size:14px; color:var(--label-neutral); line-height:1.6; margin-bottom:24px; max-width:640px; }
   .color-detail-meta{ display:flex; gap:48px; flex-wrap:wrap; }
@@ -246,7 +248,7 @@
           <div class="color-detail-swatch" style="background:var(--green-500)"></div>
           <div class="color-detail-info">
             <div class="color-detail-title-row">
-              <span class="color-detail-title">Green</span>
+              <span class="color-detail-title">Green</span><span class="status-key">positive</span>
               <span class="color-detail-tag" style="background:rgba(0,195,107,0.12); color:var(--green-500);">강조 / 정상 완료 / 확인됨 / 카운팅 성공</span>
             </div>
             <p class="color-detail-desc">특정 행동을 유도할 때 사용합니다. 또는 이 상태로 다음 스텝을 진행해도 시스템이 정상 작동하는 케이스에 사용합니다.</p>
@@ -269,7 +271,7 @@
           <div class="color-detail-swatch" style="background:var(--red-500)"></div>
           <div class="color-detail-info">
             <div class="color-detail-title-row">
-              <span class="color-detail-title">Red</span>
+              <span class="color-detail-title">Red</span><span class="status-key">negative</span>
               <span class="color-detail-tag" style="background:rgba(249,52,70,0.12); color:var(--red-500);">오류 / 필수 누락 / 즉각 조치 필요</span>
             </div>
             <p class="color-detail-desc">오류 상태, 실패한 작업, 되돌릴 수 없는 파괴적 액션을 나타냅니다. 사용자에게 즉각적인 주의를 요구하는 상황에 사용합니다.</p>
@@ -292,7 +294,7 @@
           <div class="color-detail-swatch" style="background:var(--yellow-500)"></div>
           <div class="color-detail-info">
             <div class="color-detail-title-row">
-              <span class="color-detail-title">Yellow</span>
+              <span class="color-detail-title">Yellow</span><span class="status-key">cautionary</span>
               <span class="color-detail-tag" style="background:rgba(248,186,0,0.12); color:var(--yellow-500);">주의 필요 / 진행 중 / 사용자 액션 대기</span>
             </div>
             <p class="color-detail-desc">완료는 됐지만 주의가 필요한 상태나, 선택적으로 확인이 필요한 상황을 나타냅니다.</p>
@@ -313,7 +315,7 @@
           <div class="color-detail-swatch" style="background:var(--blue-500)"></div>
           <div class="color-detail-info">
             <div class="color-detail-title-row">
-              <span class="color-detail-title">Blue</span>
+              <span class="color-detail-title">Blue</span><span class="status-key">info</span>
               <span class="color-detail-tag" style="background:rgba(0,115,255,0.12); color:var(--blue-500);">정보 / 링크 (Info / Link)</span>
             </div>
             <p class="color-detail-desc">정보성 메시지, 링크, 외부 연결을 나타냅니다. 사용자에게 추가 정보나 탐색 가능한 요소를 안내할 때 사용합니다.</p>
