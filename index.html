@@ -519,15 +519,7 @@ const SEMANTIC_GROUPS = [
 ];
 
 function renderDisabledVisual(){
-  return `<div class="rule-box">
-    <h4>핵심규칙</h4>
-    <ol>
-      <li>버튼 disabled 배경색 = 바탕 surface 보다 <strong>한 단계 위 컬러</strong>를 사용합니다.</li>
-      <li>바탕 surface가 어두울수록 버튼도 한 단계씩 어두워져 배경과의 대비가 일정하게 유지됩니다.</li>
-      <li>버튼 텍스트는 <strong>무관하게 공통 컬러값</strong>(gray/100, opacity 20%)을 사용합니다.</li>
-    </ol>
-  </div>
-  <div class="disabled-grid-title">Fill 단계별 Disabled 버튼 컬러 — 직접 조작해보기</div>
+  return `<div class="disabled-grid-title">Fill 단계별 Disabled 버튼 컬러 — 직접 조작해보기</div>
   <div class="playground">
     <div class="pg-preview" id="pgDisabledPreview" style="background:#111214;">
       <button class="pg-button size-L state-default" id="pgDisabledButton">
@@ -556,6 +548,14 @@ function renderDisabledVisual(){
         <label class="pg-radio"><input type="radio" name="pgDisabledSize" value="S"> S</label>
       </div>
     </div>
+  </div>
+  <div class="rule-box">
+    <h4>핵심규칙</h4>
+    <ol>
+      <li>버튼 disabled 배경색 = 바탕 surface 보다 <strong>한 단계 위 컬러</strong>를 사용합니다.</li>
+      <li>바탕 surface가 어두울수록 버튼도 한 단계씩 어두워져 배경과의 대비가 일정하게 유지됩니다.</li>
+      <li>버튼 텍스트는 <strong>무관하게 공통 컬러값</strong>(gray/100, opacity 20%)을 사용합니다.</li>
+    </ol>
   </div>`;
 }
 
@@ -600,8 +600,8 @@ function renderSemanticGroups(data){
     const rows = (data.semantic && data.semantic[g.key]) || [];
     let out = `<div class="cat-subtitle">${g.title}</div>`;
     if(g.desc) out += `<p class="cat-text">${g.desc}</p>`;
-    if(g.special === 'disabledVisual') out += renderDisabledVisual();
     out += `<div class="token-rows">${header}${rows.map(r=>tokenRow(...r)).join('')}</div>`;
+    if(g.special === 'disabledVisual') out += renderDisabledVisual();
     return out;
   }).join('');
   document.getElementById('semantic-groups').innerHTML = html;
