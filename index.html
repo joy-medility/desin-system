@@ -674,7 +674,7 @@ function typeRow(name, sizePx, leadingPct, weight, tracking, sample){
       <div class="name">${name}</div>
       <div class="spec">${sizePx}px · ${leadingPct} leading · ${weight} · tracking ${tracking}</div>
     </div>
-    <div class="type-sample" style="font-size:${Math.min(sizePx,64)}px; font-weight:${weightNum}; line-height:${leadingPct}; letter-spacing:${tracking==='3%'?'0.03em':'0'};">${sample}</div>
+    <div class="type-sample" style="font-size:${sizePx}px; font-weight:${weightNum}; line-height:${leadingPct}; letter-spacing:${tracking==='3%'?'0.03em':'0'};">${sample}</div>
   </div>`;
 }
 function renderTypeGroup(id, rows, samples){
