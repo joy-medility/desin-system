@@ -677,17 +677,17 @@ function renderTypeGroup(id, rows, samples){
 }
 
 function renderRadius(rows){
-  const header = `<div class="trow thead-row">
-    <div class="tcell-name">Token</div>
-    <div class="tcell-ref">Size</div>
-    <div class="tcell-hex" style="flex:2;">Description</div>
+  const header = `<div class="trow thead-row" style="padding:10px 16px;">
+    <div class="tcell-name" style="flex:0 0 220px;">Token</div>
+    <div class="tcell-ref" style="flex:0 0 90px;">Size</div>
+    <div class="tcell-hex" style="flex:1;">Description</div>
   </div>`;
   const body = rows.map(([name,px,desc])=>{
     const boxRadius = px > 60 ? '50%' : px+'px';
-    return `<div class="trow">
-      <div class="tcell-name"><span class="radius-swatch" style="border-radius:${boxRadius}"></span><span class="token-name">${name}</span></div>
-      <div class="tcell-ref token-hex">${px}px</div>
-      <div class="tcell-hex token-hex" style="flex:2;">${desc}</div>
+    return `<div class="trow" style="padding:10px 16px;">
+      <div class="tcell-name" style="flex:0 0 220px;"><span class="radius-swatch" style="border-radius:${boxRadius}"></span><span class="token-name">${name}</span></div>
+      <div class="tcell-ref token-hex" style="flex:0 0 90px;">${px}px</div>
+      <div class="tcell-hex token-hex" style="flex:1;">${desc}</div>
     </div>`;
   }).join('');
   document.getElementById('radius-grid').innerHTML = `<div class="token-rows">${header}${body}</div>`;
