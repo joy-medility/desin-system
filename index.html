@@ -105,6 +105,31 @@
   .radius-card .name{ font-family:'SF Mono', monospace; font-size:12.5px; color:var(--label-heavy); margin-bottom:2px;}
   .radius-card .px{ font-size:12px; color:var(--label-assistive); margin-bottom:8px; }
   .radius-card .desc{ font-size:12px; color:var(--label-neutral); line-height:1.5;}
+
+  .playground{ display:flex; border:1px solid var(--line-normal); border-radius:var(--radius-l); overflow:hidden; margin-bottom:24px; flex-wrap:wrap; }
+  .pg-preview{ flex:1 1 400px; background:var(--surface-1); display:flex; align-items:center; justify-content:center; min-height:360px; padding:40px; }
+  .pg-controls{ width:280px; flex-shrink:0; background:var(--surface-2); border-left:1px solid var(--line-normal); padding:24px; }
+  .pg-controls h4{ font-size:16px; font-weight:700; color:var(--label-heavy); margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid var(--line-normal); }
+  .pg-group{ margin-bottom:24px; }
+  .pg-group-label{ font-size:11px; font-weight:600; color:var(--label-assistive); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.05em; }
+  .pg-radio{ display:flex; align-items:center; gap:10px; font-size:14px; color:var(--label-normal); margin-bottom:10px; cursor:pointer; }
+  .pg-radio input{ accent-color:var(--green-500); width:16px; height:16px; cursor:pointer; }
+  .pg-toggle-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; font-size:14px; color:var(--label-normal); }
+  .pg-switch{ position:relative; width:36px; height:20px; display:inline-block; flex-shrink:0; }
+  .pg-switch input{ opacity:0; width:0; height:0; position:absolute; }
+  .pg-switch .slider{ position:absolute; inset:0; background:var(--surface-3); border-radius:999px; transition:background .2s; cursor:pointer; }
+  .pg-switch .slider::before{ content:''; position:absolute; width:14px; height:14px; left:3px; top:3px; background:var(--label-heavy); border-radius:50%; transition:transform .2s; }
+  .pg-switch input:checked + .slider{ background:var(--green-500); }
+  .pg-switch input:checked + .slider::before{ transform:translateX(16px); }
+
+  .pg-button{ font-family:'Pretendard', sans-serif; border:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:700; background:var(--green-500); color:#04140c; transition:background .15s, opacity .15s; }
+  .pg-button.size-L{ padding:16px 28px; font-size:18px; border-radius:var(--radius-m); }
+  .pg-button.size-M{ padding:12px 22px; font-size:16px; border-radius:var(--radius-s); }
+  .pg-button.size-S{ padding:8px 16px; font-size:14px; border-radius:var(--radius-xs); }
+  .pg-button.state-hover{ background:var(--green-600); }
+  .pg-button.state-disabled{ background:var(--surface-3); color:rgba(232,232,234,0.35); cursor:not-allowed; }
+  .pg-icon{ width:16px; height:16px; border-radius:50%; background:currentColor; opacity:0.85; flex-shrink:0; }
+  @media (max-width:700px){ .pg-controls{ width:100%; border-left:none; border-top:1px solid var(--line-normal); } }
   .callout{ border:1px solid var(--line-normal); border-radius:var(--radius-l); padding:32px 40px; margin-top:24px;}
   .callout.dont{ border-color:rgba(249,52,70,0.3); background:rgba(249,52,70,0.04);}
   .callout h3{ font-size:18px; font-weight:700; color:var(--red-500); margin-bottom:16px;}
@@ -160,6 +185,10 @@
       <a class="nav-link" href="#status">Status Color</a>
       <a class="nav-link" href="#typography">Typography</a>
       <a class="nav-link" href="#radius">Radius</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Components</div>
+      <a class="nav-link" href="#components">Button</a>
     </div>
   </nav>
 
@@ -292,6 +321,46 @@
           <li>Radius를 0으로 쓰지 않습니다. 최소 corner-radius-XS(4px) 이상을 사용해요. Radius 0은 토큰에 정의되지 않은 값입니다.</li>
           <li>토큰에 없는 임의의 Radius 값을 쓰지 않습니다. 반드시 정의된 토큰 중에서 선택합니다.</li>
         </ul>
+      </div>
+    </section>
+
+    <section class="section" id="components">
+      <div class="section-header">
+        <div class="eyebrow">Components</div>
+        <h2 class="section-title">Button</h2>
+        <p class="section-desc">상태(State)와 크기(Size), 아이콘 유무에 따라 실제 컴포넌트가 어떻게 바뀌는지 직접 조작해서 확인해보세요.</p>
+      </div>
+      <div class="playground">
+        <div class="pg-preview">
+          <button class="pg-button size-L state-default" id="pgButton">
+            <span class="pg-icon" id="pgIconLeftEl" style="display:none;"></span>
+            <span id="pgButtonLabel">레이블</span>
+            <span class="pg-icon" id="pgIconRightEl" style="display:none;"></span>
+          </button>
+        </div>
+        <div class="pg-controls">
+          <h4>Control</h4>
+          <div class="pg-group">
+            <div class="pg-group-label">State</div>
+            <label class="pg-radio"><input type="radio" name="pgState" value="default" checked> default</label>
+            <label class="pg-radio"><input type="radio" name="pgState" value="hover"> hover</label>
+            <label class="pg-radio"><input type="radio" name="pgState" value="disabled"> disabled</label>
+          </div>
+          <div class="pg-group">
+            <div class="pg-group-label">Size</div>
+            <label class="pg-radio"><input type="radio" name="pgSize" value="L" checked> L</label>
+            <label class="pg-radio"><input type="radio" name="pgSize" value="M"> M</label>
+            <label class="pg-radio"><input type="radio" name="pgSize" value="S"> S</label>
+          </div>
+          <div class="pg-toggle-row">
+            <span>Icon-left</span>
+            <label class="pg-switch"><input type="checkbox" id="pgIconLeft"><span class="slider"></span></label>
+          </div>
+          <div class="pg-toggle-row">
+            <span>Icon-right</span>
+            <label class="pg-switch"><input type="checkbox" id="pgIconRight"><span class="slider"></span></label>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -579,6 +648,30 @@ function renderAll(data){
 }
 
 renderAll(DEFAULT_DATA);
+
+// ---------- Button component playground ----------
+function initButtonPlayground(){
+  const btn = document.getElementById('pgButton');
+  if(!btn) return;
+  const iconLeft = document.getElementById('pgIconLeft');
+  const iconRight = document.getElementById('pgIconRight');
+  const iconLeftEl = document.getElementById('pgIconLeftEl');
+  const iconRightEl = document.getElementById('pgIconRightEl');
+
+  function update(){
+    const state = document.querySelector('input[name="pgState"]:checked').value;
+    const size = document.querySelector('input[name="pgSize"]:checked').value;
+    btn.className = 'pg-button size-' + size + ' state-' + state;
+    btn.disabled = (state === 'disabled');
+    iconLeftEl.style.display = iconLeft.checked ? 'inline-block' : 'none';
+    iconRightEl.style.display = iconRight.checked ? 'inline-block' : 'none';
+  }
+  document.querySelectorAll('input[name="pgState"], input[name="pgSize"]').forEach(el => el.addEventListener('change', update));
+  iconLeft.addEventListener('change', update);
+  iconRight.addEventListener('change', update);
+  update();
+}
+initButtonPlayground();
 
 // ---------- Sidebar active state on scroll ----------
 const links = document.querySelectorAll('.nav-link');
