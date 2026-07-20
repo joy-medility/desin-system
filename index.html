@@ -81,14 +81,17 @@
   .token-swatch{ display:inline-flex; align-items:center; gap:10px; }
   .token-swatch .dot{ width:22px; height:22px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); flex-shrink:0;}
   .token-hex{ font-family:'SF Mono', monospace; color:var(--label-neutral); font-size:12.5px; }
-  .token-name, .tcell-hex .token-hex{ cursor:pointer; position:relative; }
-  .token-name:hover, .tcell-hex .token-hex:hover{ color:var(--label-heavy); }
-  .copy-flash::after{
-    content:'복사됨'; position:absolute; top:-24px; left:0; background:var(--green-500); color:#04140c;
-    font-size:10px; font-weight:700; padding:3px 7px; border-radius:5px; white-space:nowrap; font-family:'Pretendard', sans-serif;
-    animation:copyFade 1s ease forwards;
+  .token-name, .token-hex.copy-token{ cursor:pointer; position:relative; }
+  .token-name:hover, .token-hex.copy-token:hover{ color:var(--label-heavy); }
+  .token-name::after, .token-hex.copy-token::after{
+    content:'복사하기'; position:absolute; top:-26px; left:0; background:var(--surface-3); color:var(--label-heavy);
+    font-size:10px; font-weight:600; padding:4px 8px; border-radius:5px; white-space:nowrap;
+    opacity:0; pointer-events:none; transition:opacity .12s; font-family:'Pretendard', sans-serif; z-index:5;
   }
-  @keyframes copyFade{ 0%{ opacity:0; transform:translateY(2px);} 15%{ opacity:1; transform:translateY(0);} 80%{ opacity:1;} 100%{ opacity:0;} }
+  .token-name:hover::after, .token-hex.copy-token:hover::after{ opacity:1; }
+  .token-name.copy-flash::after, .token-hex.copy-token.copy-flash::after{
+    content:'복사되었습니다'; background:var(--green-500); color:#04140c; opacity:1;
+  }
   .trow{ overflow:visible; }
   .group-title{ font-size:13px; font-weight:600; color:var(--green-500); text-transform:uppercase; letter-spacing:0.05em; margin:32px 0 8px; }
   .type-row{ display:flex; align-items:baseline; gap:24px; padding:20px 0; border-bottom:1px solid var(--surface-2); flex-wrap:wrap;}
@@ -519,9 +522,9 @@ function copyText(el, text){
     return Promise.resolve();
   };
   doCopy().then(()=>{
-    el.classList.remove('copy-flash');
-    void el.offsetWidth;
     el.classList.add('copy-flash');
+    clearTimeout(el._copyTimer);
+    el._copyTimer = setTimeout(()=>{ el.classList.remove('copy-flash'); }, 1200);
   }).catch(()=>{});
 }
 
@@ -529,7 +532,7 @@ function tokenRow(name, hex, ref){
   return `<div class="trow">
     <div class="tcell-name"><span class="dot" style="background:${hex}"></span><span class="token-name" onclick="copyText(this,'${name}')">${name}</span></div>
     <div class="tcell-ref token-hex">${ref}</div>
-    <div class="tcell-hex token-hex" onclick="copyText(this,'${hex}')">${hex}</div>
+    <div class="tcell-hex token-hex copy-token" onclick="copyText(this,'${hex}')">${hex}</div>
   </div>`;
 }
 function fillTable(id, rows){
