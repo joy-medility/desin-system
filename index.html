@@ -167,10 +167,6 @@
   .example-label .tag.do{ color:var(--green-500); }
   .example-label .tag.dont{ color:var(--red-500); }
   .example-label p{ font-size:12.5px; color:var(--label-neutral); line-height:1.6; }
-  .example-chip{ font-family:'Pretendard', sans-serif; font-weight:600; font-size:11px; padding:6px 14px; background:var(--surface-3); color:var(--label-normal); display:inline-block; }
-  .example-modal{ width:140px; height:90px; background:var(--surface-2); border:1px solid var(--line-normal); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:var(--label-neutral); }
-  .example-nest-outer{ width:160px; height:120px; background:var(--surface-2); border:1px solid var(--line-normal); padding:16px; display:flex; }
-  .example-nest-inner{ flex:1; background:var(--surface-3); }
 
   .playground{ display:flex; border:1px solid var(--line-normal); border-radius:var(--radius-l); overflow:hidden; margin-bottom:24px; flex-wrap:wrap; }
   .pg-preview{ flex:1 1 400px; background:var(--surface-1); display:flex; align-items:center; justify-content:center; min-height:360px; padding:40px; }
@@ -532,102 +528,6 @@
           <div class="example-label">
             <div class="tag dont">Don't</div>
             <p>같은 위계의 버튼인데 Radius가 서로 달라 일관성이 깨집니다.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="ux-sublabel">작은 컴포넌트 (칩 · 태그)</div>
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="example-preview">
-            <span class="example-chip" style="border-radius:4px;">Tag</span>
-          </div>
-          <div class="example-bar do"></div>
-          <div class="example-label">
-            <div class="tag do">Do</div>
-            <p>작은 칩/태그는 corner-radius-XS(4px)처럼 크기에 맞는 작은 Radius를 사용합니다.</p>
-          </div>
-        </div>
-        <div class="example-card">
-          <div class="example-preview">
-            <span class="example-chip" style="border-radius:16px;">Tag</span>
-          </div>
-          <div class="example-bar dont"></div>
-          <div class="example-label">
-            <div class="tag dont">Don't</div>
-            <p>작은 컴포넌트에 큰 Radius(16px)를 쓰면 비율이 어색해 보입니다.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="ux-sublabel">모달 · 다이얼로그</div>
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="example-preview">
-            <div class="example-modal" style="border-radius:12px;">Modal</div>
-          </div>
-          <div class="example-bar do"></div>
-          <div class="example-label">
-            <div class="tag do">Do</div>
-            <p>모달/다이얼로그는 corner-radius-L(12px) 이상을 사용합니다.</p>
-          </div>
-        </div>
-        <div class="example-card">
-          <div class="example-preview">
-            <div class="example-modal" style="border-radius:4px;">Modal</div>
-          </div>
-          <div class="example-bar dont"></div>
-          <div class="example-label">
-            <div class="tag dont">Don't</div>
-            <p>모달에 작은 Radius(4px)를 쓰면 딱딱하고 어색해 보입니다.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="ux-sublabel">중첩된 박스</div>
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="example-preview">
-            <div class="example-nest-outer" style="border-radius:16px;"><div class="example-nest-inner" style="border-radius:8px;"></div></div>
-          </div>
-          <div class="example-bar do"></div>
-          <div class="example-label">
-            <div class="tag do">Do</div>
-            <p>바깥 박스(XL·16px)보다 안쪽 박스(M·8px)를 한 단계 작은 Radius로 사용합니다.</p>
-          </div>
-        </div>
-        <div class="example-card">
-          <div class="example-preview">
-            <div class="example-nest-outer" style="border-radius:16px;"><div class="example-nest-inner" style="border-radius:16px;"></div></div>
-          </div>
-          <div class="example-bar dont"></div>
-          <div class="example-label">
-            <div class="tag dont">Don't</div>
-            <p>안쪽과 바깥쪽 Radius가 같으면 층위가 뭉개져 보입니다.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="ux-sublabel">최소 Radius</div>
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="example-preview">
-            <button class="example-btn" style="border-radius:4px;">Button</button>
-          </div>
-          <div class="example-bar do"></div>
-          <div class="example-label">
-            <div class="tag do">Do</div>
-            <p>가장 작은 값도 corner-radius-XS(4px) 이상을 사용합니다.</p>
-          </div>
-        </div>
-        <div class="example-card">
-          <div class="example-preview">
-            <button class="example-btn" style="border-radius:0px;">Button</button>
-          </div>
-          <div class="example-bar dont"></div>
-          <div class="example-label">
-            <div class="tag dont">Don't</div>
-            <p>Radius 0은 토큰에 정의되지 않은 값이라 사용하지 않습니다.</p>
           </div>
         </div>
       </div>
