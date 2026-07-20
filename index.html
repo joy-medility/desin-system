@@ -42,10 +42,12 @@
   .hero p{ font-size:17px; color:var(--label-neutral); max-width:640px; line-height:1.6; }
   .hero-refs{ display:flex; gap:8px; flex-wrap:wrap; margin-top:32px; }
   .hero-refs span{ font-size:12px; color:var(--label-assistive); border:1px solid var(--line-normal); padding:6px 12px; border-radius:var(--radius-circle); }
-  .swatch-row{ display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:1px; background:var(--line-normal); border:1px solid var(--line-normal); border-radius:var(--radius-m); overflow:hidden; margin-bottom:40px;}
-  .swatch{ background:var(--surface-1); padding:24px 16px 16px; display:flex; flex-direction:column; gap:20px; min-height:150px; }
-  .swatch-meta .step{ font-size:20px; font-weight:700; }
-  .swatch-meta .hex{ font-size:12px; color:var(--label-assistive); font-family:'SF Mono', monospace; margin-top:2px;}
+  .ramp-bar{ display:flex; width:100%; height:96px; border-radius:20px; overflow:hidden; margin-bottom:10px; }
+  .ramp-bar .seg{ flex:1; height:100%; }
+  .ramp-labels{ display:flex; width:100%; margin-bottom:36px; }
+  .ramp-labels .lbl{ flex:1; padding-left:2px; }
+  .ramp-labels .lbl .step{ font-size:13px; font-weight:700; color:var(--label-heavy); }
+  .ramp-labels .lbl .hex{ font-size:11px; color:var(--label-assistive); font-family:'SF Mono', monospace; margin-top:2px; }
   .ramp-title{ font-size:14px; font-weight:600; color:var(--label-normal); margin-bottom:16px; display:flex; align-items:center; gap:8px;}
   .ramp-title .dot{ width:10px; height:10px; border-radius:50%; }
   .token-table{ width:100%; border-collapse:collapse; margin-bottom:40px; font-size:13px;}
@@ -142,15 +144,15 @@
         <p class="section-desc">모든 색상 토큰의 기반이 되는 원시 팔레트입니다. Semantic 토큰은 이 값을 참조합니다.</p>
       </div>
       <div class="ramp-title"><span class="dot" style="background:var(--gray-500)"></span>Gray (Neutral)</div>
-      <div class="swatch-row" id="ramp-gray"></div>
+      <div id="ramp-gray"></div>
       <div class="ramp-title"><span class="dot" style="background:var(--green-500)"></span>Green (Primary)</div>
-      <div class="swatch-row" id="ramp-green"></div>
+      <div id="ramp-green"></div>
       <div class="ramp-title"><span class="dot" style="background:var(--yellow-500)"></span>Yellow (Warning)</div>
-      <div class="swatch-row" id="ramp-yellow"></div>
+      <div id="ramp-yellow"></div>
       <div class="ramp-title"><span class="dot" style="background:var(--red-500)"></span>Red (Error)</div>
-      <div class="swatch-row" id="ramp-red"></div>
+      <div id="ramp-red"></div>
       <div class="ramp-title"><span class="dot" style="background:var(--blue-500)"></span>Blue (Info)</div>
-      <div class="swatch-row" id="ramp-blue"></div>
+      <div id="ramp-blue"></div>
     </section>
 
     <section class="section" id="semantic">
@@ -386,15 +388,12 @@ function hexToRgb(hex){ const v = hex.replace('#',''); const num = parseInt(v,16
 function isDark(hex){ try{ const {r,g,b} = hexToRgb(hex); return (r*299+g*587+b*114)/1000 < 150; }catch(e){ return true; } }
 
 function renderRamp(id, steps){
-  document.getElementById(id).innerHTML = steps.map(([step,hex])=>{
-    const textColor = isDark(hex) ? '#FAFAFA' : '#111214';
-    return `<div class="swatch" style="background:${hex}">
-      <div class="swatch-meta" style="color:${textColor}">
-        <div class="step">${step}</div>
-        <div class="hex" style="color:${textColor}; opacity:.7">${hex}</div>
-      </div>
-    </div>`;
-  }).join('');
+  const bar = steps.map(([step,hex])=>`<div class="seg" style="background:${hex}"></div>`).join('');
+  const labels = steps.map(([step,hex])=>`<div class="lbl">
+      <div class="step">${step}</div>
+      <div class="hex">${hex}</div>
+    </div>`).join('');
+  document.getElementById(id).innerHTML = `<div class="ramp-bar">${bar}</div><div class="ramp-labels">${labels}</div>`;
 }
 
 function tokenRow(name, hex, ref){
