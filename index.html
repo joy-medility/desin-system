@@ -59,6 +59,24 @@
   .tcell-ref{ flex:0 0 240px; }
   .tcell-hex{ flex:1; }
   .thead-row{ background:var(--surface-1); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--label-heavy); }
+
+  .cat-subtitle{ font-size:24px; font-weight:700; color:var(--label-heavy); margin:44px 0 10px; letter-spacing:-0.01em; }
+  .cat-subtitle:first-child{ margin-top:0; }
+  .cat-text{ font-size:14px; color:var(--label-neutral); line-height:1.7; margin-bottom:20px; max-width:760px; }
+
+  .rule-box{ background:var(--surface-1); border:1px solid var(--line-normal); border-radius:var(--radius-l); padding:28px 32px; margin:8px 0 28px; }
+  .rule-box h4{ font-size:14px; font-weight:700; color:var(--label-heavy); margin-bottom:14px; }
+  .rule-box ol{ padding-left:20px; margin:0; }
+  .rule-box li{ font-size:13.5px; color:var(--label-neutral); line-height:1.9; }
+  .rule-box strong{ color:var(--yellow-500); font-weight:700; }
+
+  .disabled-grid-title{ font-size:14px; font-weight:700; color:var(--label-heavy); margin:8px 0 16px; }
+  .disabled-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1px; background:var(--line-normal); border:1px solid var(--line-normal); border-radius:var(--radius-m); overflow:hidden; margin-bottom:36px; }
+  .disabled-card{ background:var(--surface-1); padding:20px; display:flex; flex-direction:column; }
+  .disabled-card .dc-label{ font-size:11px; color:var(--label-assistive); margin-bottom:6px; }
+  .disabled-card .dc-chip{ background:var(--surface-2); border-radius:6px; padding:6px 10px; font-family:'SF Mono', monospace; font-size:10.5px; color:var(--label-normal); margin-bottom:16px; display:inline-block; width:fit-content; }
+  .disabled-card .dc-arrow{ text-align:center; color:var(--label-assistive); font-size:14px; margin:-4px 0 12px; }
+  .disabled-card .dc-btn{ width:100%; text-align:center; padding:14px; border-radius:8px; color:var(--label-assistive); font-weight:600; font-size:13px; margin-bottom:16px; }
   .token-name{ font-family:'SF Mono', monospace; color:var(--label-heavy); font-size:12.5px;}
   .token-swatch{ display:inline-flex; align-items:center; gap:10px; }
   .token-swatch .dot{ width:22px; height:22px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); flex-shrink:0;}
@@ -167,18 +185,7 @@
         <h2 class="section-title">Semantic Color Tokens</h2>
         <p class="section-desc">UI 역할 기반의 색상 토큰입니다. Primitive 팔레트를 참조하며 Dark 모드를 지원합니다.</p>
       </div>
-      <div class="group-title">Fill / Overlay</div>
-      <div class="token-rows" id="tbl-fill"></div>
-      <div class="group-title">Button</div>
-      <div class="token-rows" id="tbl-btn"></div>
-      <div class="group-title">Label (Text)</div>
-      <div class="token-rows" id="tbl-label"></div>
-      <div class="group-title">Line (Border)</div>
-      <div class="token-rows" id="tbl-line"></div>
-      <div class="group-title">Primary / Secondary / Status</div>
-      <div class="token-rows" id="tbl-brand"></div>
-      <div class="group-title">Static / Glass Effect</div>
-      <div class="token-rows" id="tbl-etc"></div>
+      <div id="semantic-groups"></div>
     </section>
 
     <section class="section" id="status">
@@ -305,12 +312,17 @@ const DEFAULT_DATA = {
     blue:   [["50","#DBEBFF"],["200","#68ACFF"],["500","#0073FF"],["700","#0052B6"],["900","#001E42"]]
   },
   semantic: {
+    background: [
+      ["color-semantic-background-base","#111214","gray/950"]
+    ],
     fill: [
       ["color-semantic-fill-00","#111214","gray/950"],
       ["color-semantic-fill-01","#1E1E22","gray/900"],
       ["color-semantic-fill-02","#2C2C31","gray/800"],
       ["color-semantic-fill-03","#3B3B44","gray/700"],
-      ["color-semantic-fill-04","#4A4A54","gray/600"],
+      ["color-semantic-fill-04","#4A4A54","gray/600"]
+    ],
+    overlay: [
       ["color-semantic-overlay-normal","#111214","gray/950, opacity 50%"],
       ["color-semantic-overlay-assistive","#3B3B44","gray/700, opacity 50%"]
     ],
@@ -322,7 +334,9 @@ const DEFAULT_DATA = {
       ["color-semantic-btn-tertiary-default-line","#4A4A54","gray/600"],
       ["color-semantic-btn-tertiary-pressed-bg","#2C2C31","gray/800"],
       ["color-semantic-btn-warning-default-bg","#F93446","red/500"],
-      ["color-semantic-btn-warning-pressed-bg","#C2001B","red/700"],
+      ["color-semantic-btn-warning-pressed-bg","#C2001B","red/700"]
+    ],
+    btnDisabled: [
       ["color-semantic-btn-all-disabled-onfill-00-bg","#1E1E22","gray/900"],
       ["color-semantic-btn-all-disabled-onfill-01-bg","#2C2C31","gray/800"],
       ["color-semantic-btn-all-disabled-onfill-02-bg","#3B3B44","gray/700"],
@@ -344,27 +358,39 @@ const DEFAULT_DATA = {
       ["color-semantic-line-neutral","#3B3B44","gray/800"],
       ["color-semantic-line-assistive","#1E1E22","gray/900"]
     ],
-    brand: [
+    primary: [
       ["color-semantic-primary-default","#00C36B","green/500"],
-      ["color-semantic-primary-pressed","#00A85C","green/600"],
+      ["color-semantic-primary-pressed","#00A85C","green/600"]
+    ],
+    secondary: [
       ["color-semantic-secondary-default","#4A4A54","gray/900"],
-      ["color-semantic-secondary-pressed","#3B3B44","gray/700"],
+      ["color-semantic-secondary-pressed","#3B3B44","gray/700"]
+    ],
+    statusPositive: [
       ["color-semantic-positive-background","#002B18","green/950"],
       ["color-semantic-positive-default","#00C36B","green/500"],
-      ["color-semantic-positive-strong","#008C4D","green/700"],
+      ["color-semantic-positive-strong","#008C4D","green/700"]
+    ],
+    statusCautionary: [
       ["color-semantic-cautionary-background","#3F3000","yellow/900"],
       ["color-semantic-cautionary-default","#F8BA00","yellow/500"],
-      ["color-semantic-cautionary-strong","#AA8000","yellow/700"],
+      ["color-semantic-cautionary-strong","#AA8000","yellow/700"]
+    ],
+    statusNegative: [
       ["color-semantic-negative-background","#380005","red/900"],
       ["color-semantic-negative-default","#F93446","red/500"],
-      ["color-semantic-negative-strong","#C2001B","red/700"],
+      ["color-semantic-negative-strong","#C2001B","red/700"]
+    ],
+    statusInfo: [
       ["color-semantic-info-background","#001E42","blue/900"],
       ["color-semantic-info-default","#0073FF","blue/500"],
       ["color-semantic-info-strong","#0052B6","blue/700"]
     ],
-    etc: [
-      ["color-semantic-static-dim","#111214","gray/950, opacity 40%"],
-      ["color-semantic-glass-effect-normal","#3B3B44","gray/700, opacity 40%"]
+    static: [
+      ["color-semantic-static-dim","#111214","gray950, opacity 40%"]
+    ],
+    glassEffect: [
+      ["color-semantic-glass-effect-normal","#3B3B44","gray700, opacity 40%"]
     ]
   },
   typography: {
@@ -418,6 +444,69 @@ function fillTable(id, rows){
   document.getElementById(id).innerHTML = header + rows.map(r=>tokenRow(...r)).join('');
 }
 
+const SEMANTIC_GROUPS = [
+  {key:'background', title:'background', desc:'배경이 되는 가장 기본적인 컬러값입니다. 상태에 따라 dark와 light 모드를 구분합니다.'},
+  {key:'fill', title:'fill', desc:'화면의 레이어 계층이나 UI 배경에 사용합니다. fill/00이 가장 어둡고 숫자가 높을수록 위 레이어를 나타냅니다.'},
+  {key:'overlay', title:'overlay', desc:'레이어에 겹쳐서 계층을 표현하거나 다이얼로그의 뒷 배경으로 사용합니다. 주로 투명 opacity 값을 가집니다.'},
+  {key:'btn', title:'btn', desc:'버튼의 상태(default/pressed)별 배경 및 테두리 컬러입니다.'},
+  {key:'btnDisabled', title:'btn/disabled', desc:'버튼의 비활성화 컬러로 사용합니다. fill 값에 따라서 적용되는 버튼 컬러도 한 단계 위 컬러로 변경됩니다. 텍스트는 fill 값과 무관하게 공통적인 컬러값을 사용합니다.', special:'disabledVisual'},
+  {key:'label', title:'label', desc:'아이콘, 텍스트 등 일반적인 경우에서 사용합니다. heavy → strong → normal → neutral → assistive 순으로 계층을 표현합니다.'},
+  {key:'line', title:'line', desc:'구분선 및 테두리에 사용되는 토큰입니다. Assistive가 가장 미묘하고 Heavy가 가장 강조됩니다.'},
+  {key:'primary', title:'primary', desc:'주요 액션 버튼 및 인터랙티브 요소에 사용되는 Primary 그린 계열 토큰입니다.'},
+  {key:'secondary', title:'secondary', desc:'보조 액션 버튼 및 배경 요소에 사용되는 Secondary 그레이 계열 토큰입니다.'},
+  {key:'statusPositive', title:'status-positive', desc:'성공, 완료, 진행중인 상태를 나타내는 토큰입니다.'},
+  {key:'statusCautionary', title:'status-cautionary', desc:''},
+  {key:'statusNegative', title:'status-negative', desc:'에러, 위험, 부정적인 상태를 나타내는 토큰입니다.'},
+  {key:'statusInfo', title:'status-info', desc:'정보 알림, 안내 상태를 나타내는 토큰입니다.'},
+  {key:'static', title:'Static', desc:'모드(Dark/Light)와 무관하게 고정된 값을 가지는 토큰입니다.'},
+  {key:'glassEffect', title:'glass effect', desc:'글라스모피즘 효과를 주고 싶은 레이어에 사용합니다.'}
+];
+
+function renderDisabledVisual(){
+  const pairs = [
+    ['color-semantic-fill-00 / gray_950','color-semantic-btn-all-disabled-onfill-00-bg'],
+    ['color-semantic-fill-01 / gray_900','color-semantic-btn-all-disabled-onfill-01-bg'],
+    ['color-semantic-fill-02 / gray_800','color-semantic-btn-all-disabled-onfill-02-bg'],
+    ['color-semantic-fill-03 / gray_700','color-semantic-btn-all-disabled-onfill-03-bg']
+  ];
+  const cards = pairs.map(([surfaceTok, btnTok])=>`
+    <div class="disabled-card">
+      <div class="dc-label">바탕 surface :</div>
+      <div class="dc-chip">${surfaceTok}</div>
+      <div class="dc-btn">button</div>
+      <div class="dc-arrow">↓</div>
+      <div class="dc-label">버튼 surface :</div>
+      <div class="dc-chip">${btnTok}</div>
+    </div>`).join('');
+  return `<div class="rule-box">
+    <h4>핵심규칙</h4>
+    <ol>
+      <li>버튼 disabled 배경색 = 바탕 surface 보다 <strong>한 단계 위 컬러</strong>를 사용합니다.</li>
+      <li>바탕 surface가 어두울수록 버튼도 한 단계씩 어두워져 배경과의 대비가 일정하게 유지됩니다.</li>
+      <li>버튼 텍스트는 <strong>무관하게 공통 컬러값</strong>(gray/100, opacity 20%)을 사용합니다.</li>
+    </ol>
+  </div>
+  <div class="disabled-grid-title">Fill 단계별 Disabled 버튼 컬러</div>
+  <div class="disabled-grid">${cards}</div>`;
+}
+
+function renderSemanticGroups(data){
+  const header = `<div class="trow thead-row">
+    <div class="tcell-name">Token</div>
+    <div class="tcell-ref">Reference</div>
+    <div class="tcell-hex">Hex</div>
+  </div>`;
+  const html = SEMANTIC_GROUPS.map(g=>{
+    const rows = (data.semantic && data.semantic[g.key]) || [];
+    let out = `<div class="cat-subtitle">${g.title}</div>`;
+    if(g.desc) out += `<p class="cat-text">${g.desc}</p>`;
+    if(g.special === 'disabledVisual') out += renderDisabledVisual();
+    out += `<div class="token-rows">${header}${rows.map(r=>tokenRow(...r)).join('')}</div>`;
+    return out;
+  }).join('');
+  document.getElementById('semantic-groups').innerHTML = html;
+}
+
 function typeRow(name, sizePx, leadingPct, weight, tracking, sample){
   const weightNum = (weight.split('/')[1]) || '400';
   return `<div class="type-row">
@@ -451,12 +540,7 @@ function renderAll(data){
   renderRamp('ramp-red', data.ramps.red);
   renderRamp('ramp-blue', data.ramps.blue);
 
-  fillTable('tbl-fill', data.semantic.fill);
-  fillTable('tbl-btn', data.semantic.btn);
-  fillTable('tbl-label', data.semantic.label);
-  fillTable('tbl-line', data.semantic.line);
-  fillTable('tbl-brand', data.semantic.brand);
-  fillTable('tbl-etc', data.semantic.etc);
+  renderSemanticGroups(data);
 
   renderTypeGroup('type-display', data.typography.display, SAMPLES.display);
   renderTypeGroup('type-heading', data.typography.heading, SAMPLES.heading);
