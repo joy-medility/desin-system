@@ -31,6 +31,9 @@
   .nav-link{ display:block; font-size:13px; color:var(--label-neutral); text-decoration:none; padding:8px 12px; border-radius:var(--radius-s); transition:background .15s, color .15s; }
   .nav-link:hover{ background:var(--surface-2); color:var(--label-heavy); }
   .main{ flex:1; min-width:0; }
+  .page{ display:none; }
+  .page.active{ display:block; }
+  .nav-link.nav-active{ background:var(--surface-2); color:var(--label-heavy); }
   .section{ padding:80px 64px; border-bottom:1px solid var(--line-normal); }
   .section-header{ max-width:720px; margin-bottom:48px; }
   .eyebrow{ font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--green-500); margin-bottom:12px; }
@@ -232,6 +235,7 @@
   </nav>
 
   <main class="main">
+    <div class="page active" id="page-overview" data-page="overview">
     <section class="hero" id="overview">
       <span class="badge">PillEye Design System · v1.0</span>
       <h1>정확한 카운팅, 흔들림 없는 신뢰.</h1>
@@ -287,6 +291,9 @@
       </div>
     </section>
 
+    </div>
+
+    <div class="page" id="page-brand" data-page="brand">
     <section class="section" id="brand">
       <div class="section-header">
         <div class="eyebrow">Brand</div>
@@ -296,6 +303,9 @@
       <div class="tbd-box">TBD — 아직 작성되지 않았습니다.</div>
     </section>
 
+    </div>
+
+    <div class="page" id="page-foundation" data-page="foundation">
     <section class="section" id="primitive">
       <div class="section-header">
         <div class="eyebrow">Foundation / Color</div>
@@ -469,6 +479,9 @@
       </div>
     </section>
 
+    </div>
+
+    <div class="page" id="page-component" data-page="component">
         <section class="section" id="component">
       <div class="section-header">
         <div class="eyebrow">Component</div>
@@ -478,6 +491,9 @@
       <div class="tbd-box">TBD — 아직 작성되지 않았습니다.</div>
     </section>
 
+    </div>
+
+    <div class="page" id="page-ux-writing" data-page="ux-writing">
     <section class="section" id="ux-writing">
       <div class="section-header">
         <div class="eyebrow">UX Writing</div>
@@ -488,6 +504,8 @@
     </section>
 
     <footer>PillEye Design System · v1.0 — 열람 전용 공유본 · Figma theme 페이지 스냅샷 기반</footer>
+    </div>
+
   </main>
 </div>
 
@@ -822,14 +840,53 @@ function renderAll(data){
 
 renderAll(DEFAULT_DATA);
 
-// ---------- Sidebar active state on scroll ----------
-const links = document.querySelectorAll('.nav-link');
-const navSections = [...links].map(l => document.querySelector(l.getAttribute('href')));
-window.addEventListener('scroll', ()=>{
-  let idx = 0;
-  navSections.forEach((s,i)=>{ if(s && window.scrollY >= s.offsetTop - 120) idx = i; });
-  links.forEach((l,i)=>{ l.style.background = i===idx ? 'var(--surface-2)' : ''; l.style.color = i===idx ? 'var(--label-heavy)' : ''; });
+// ---------- Page navigation ----------
+const PAGE_MAP = {
+  overview: 'overview', brand: 'brand',
+  primitive: 'foundation', semantic: 'foundation', status: 'foundation', typography: 'foundation', radius: 'foundation',
+  component: 'component', 'ux-writing': 'ux-writing'
+};
+
+function switchPage(pageName, anchorId){
+  document.querySelectorAll('.page').forEach(p => p.classList.toggle('active', p.dataset.page === pageName));
+  if(anchorId){
+    requestAnimationFrame(()=>{
+      const el = document.getElementById(anchorId);
+      if(el) el.scrollIntoView({ behavior:'auto', block:'start' });
+    });
+  } else {
+    window.scrollTo({ top:0 });
+  }
+}
+
+const navLinks = document.querySelectorAll('.nav-link');
+navLinks.forEach(link=>{
+  link.addEventListener('click', function(e){
+    e.preventDefault();
+    const anchorId = this.getAttribute('href').replace('#','');
+    const pageName = PAGE_MAP[anchorId] || anchorId;
+    switchPage(pageName, anchorId);
+    navLinks.forEach(l => l.classList.remove('nav-active'));
+    this.classList.add('nav-active');
+  });
 });
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  if(a.classList.contains('nav-link')) return;
+  a.addEventListener('click', function(e){
+    const anchorId = this.getAttribute('href').replace('#','');
+    if(!(anchorId in PAGE_MAP)) return;
+    e.preventDefault();
+    const pageName = PAGE_MAP[anchorId];
+    switchPage(pageName, anchorId);
+    navLinks.forEach(l => l.classList.remove('nav-active'));
+    const matchingNavLink = document.querySelector(`.nav-link[href="#${anchorId}"]`);
+    if(matchingNavLink) matchingNavLink.classList.add('nav-active');
+  });
+});
+
+const defaultLink = document.querySelector('.nav-link[href="#overview"]');
+if(defaultLink) defaultLink.classList.add('nav-active');
 </script>
 </body>
 </html>
