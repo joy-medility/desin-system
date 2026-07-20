@@ -46,11 +46,14 @@
   .hero-refs{ display:flex; gap:8px; flex-wrap:wrap; margin-top:32px; }
   .hero-refs span{ font-size:12px; color:var(--label-assistive); border:1px solid var(--line-normal); padding:6px 12px; border-radius:var(--radius-circle); }
 
-  .principle-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-top:48px; max-width:900px; }
-  .principle-card{ background:rgba(30,30,34,0.6); border:1px solid var(--line-normal); border-radius:var(--radius-l); padding:24px; backdrop-filter:blur(8px); }
-  .principle-num{ font-family:'SF Mono', monospace; font-size:13px; color:var(--green-500); font-weight:700; margin-bottom:10px; }
-  .principle-title{ font-size:18px; font-weight:700; color:var(--label-heavy); margin-bottom:8px; }
-  .principle-desc{ font-size:13px; color:var(--label-neutral); line-height:1.6; }
+  .corevalue-section{ margin-top:48px; max-width:820px; }
+  .corevalue-heading{ font-size:28px; font-weight:700; color:var(--label-heavy); margin-bottom:32px; }
+  .corevalue-item{ margin-bottom:40px; }
+  .corevalue-item:last-child{ margin-bottom:0; }
+  .cv-title{ font-size:22px; font-weight:700; color:var(--label-heavy); margin-bottom:10px; }
+  .cv-tagline{ font-size:15px; font-weight:700; color:var(--green-500); margin-bottom:16px; }
+  .cv-en{ font-size:14px; color:var(--label-normal); margin-bottom:12px; }
+  .cv-kr{ font-size:13.5px; color:var(--label-neutral); line-height:1.9; }
 
   .menu-list{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-top:24px; max-width:900px; }
   .menu-item{ display:block; background:var(--surface-1); border:1px solid var(--line-normal); border-radius:var(--radius-l); padding:22px; text-decoration:none; transition:border-color .15s, background .15s; }
@@ -241,21 +244,25 @@
       <h1>정확한 카운팅, 흔들림 없는 신뢰.</h1>
       <p>약사를 위한 비전 AI 기반의 PillEye B2B 환경에 맞는 다크모드 기반으로 신뢰감을 전달합니다. 절제된 색상 대비와 명확한 타이포그래피 위계, 즉각적인 상태 피드백을 통해 신뢰성을 화면 곳곳에서 시각적으로 구현해 더 나은 사용자 경험을 제공합니다.</p>
 
-      <div class="principle-grid">
-        <div class="principle-card">
-          <div class="principle-num">01</div>
-          <div class="principle-title">정확성</div>
-          <div class="principle-desc">오차 없는 판별. 컬러, 문구, 수치 하나까지 정확하게 전달합니다.</div>
+      <div class="corevalue-section">
+        <h2 class="corevalue-heading">Core Value</h2>
+        <div class="corevalue-item">
+          <div class="cv-title">1. Trusted Accuracy</div>
+          <div class="cv-tagline">오류가 없는 곳에서, 신뢰가 시작됩니다.</div>
+          <p class="cv-en">Enterprise-grade counting accuracy with built-in error detection.</p>
+          <p class="cv-kr">엔터프라이즈 수준의 정확도와 오류 감지 기능을 제공합니다.<br>단순한 카운팅을 넘어, 복잡한 제형 인식과 wrong drug flagging까지 실시간으로 처리합니다. 사람이 놓칠 수 있는 오류를 시스템이 먼저 잡아내어, 약사가 최종 판단에만 집중할 수 있는 환경을 만듭니다.</p>
         </div>
-        <div class="principle-card">
-          <div class="principle-num">02</div>
-          <div class="principle-title">속도</div>
-          <div class="principle-desc">즉각적인 피드백. 기다리지 않는 인터랙션을 설계합니다.</div>
+        <div class="corevalue-item">
+          <div class="cv-title">2. Real-Time Workflow Automation</div>
+          <div class="cv-tagline">설치도, 적응할 시간도, 기다림도 필요하지 않습니다.</div>
+          <p class="cv-en">Instant deployment with seamless workflow integration.</p>
+          <p class="cv-kr">즉시 배포 가능하며 기존 워크플로우에 자연스럽게 통합됩니다.<br>인력 부족 상황에서도 즉시 투입 가능한 Zero-install 구조로, 기존 시스템을 바꾸지 않고 그대로 연결됩니다. 현장이 기술에 맞춰야 하는 부담 없이, 도입 첫날부터 운영 효율이 올라갑니다.</p>
         </div>
-        <div class="principle-card">
-          <div class="principle-num">03</div>
-          <div class="principle-title">신뢰</div>
-          <div class="principle-desc">일관된 규칙. 어디서나 예측 가능한 톤과 구조를 유지합니다.</div>
+        <div class="corevalue-item">
+          <div class="cv-title">3. Scalable Cost Efficiency</div>
+          <div class="cv-tagline">초기 투자 비용 없이, 바로 사용할 수 있습니다.</div>
+          <p class="cv-en">Subscription-based model designed for enterprise rollout.</p>
+          <p class="cv-kr">엔터프라이즈 확장을 고려한 구독 기반 모델을 제공합니다.<br>하드웨어 구매 없이 구독 방식으로 시작하여 CapEx를 제거하고, 체인 약국·병원 그룹 단위의 대규모 확장도 동일한 구조로 대응합니다. 규모가 커질수록 효율도 함께 커집니다.</p>
         </div>
       </div>
 
