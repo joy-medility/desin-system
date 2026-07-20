@@ -42,6 +42,24 @@
   .hero p{ font-size:17px; color:var(--label-neutral); max-width:640px; line-height:1.6; }
   .hero-refs{ display:flex; gap:8px; flex-wrap:wrap; margin-top:32px; }
   .hero-refs span{ font-size:12px; color:var(--label-assistive); border:1px solid var(--line-normal); padding:6px 12px; border-radius:var(--radius-circle); }
+
+  .principle-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-top:48px; max-width:900px; }
+  .principle-card{ background:rgba(30,30,34,0.6); border:1px solid var(--line-normal); border-radius:var(--radius-l); padding:24px; backdrop-filter:blur(8px); }
+  .principle-num{ font-family:'SF Mono', monospace; font-size:13px; color:var(--green-500); font-weight:700; margin-bottom:10px; }
+  .principle-title{ font-size:18px; font-weight:700; color:var(--label-heavy); margin-bottom:8px; }
+  .principle-desc{ font-size:13px; color:var(--label-neutral); line-height:1.6; }
+
+  .menu-list{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-top:24px; max-width:900px; }
+  .menu-item{ display:block; background:var(--surface-1); border:1px solid var(--line-normal); border-radius:var(--radius-l); padding:22px; text-decoration:none; transition:border-color .15s, background .15s; }
+  .menu-item:hover{ border-color:var(--label-assistive); background:var(--surface-2); }
+  .menu-item-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .menu-item-title{ font-size:17px; font-weight:700; color:var(--label-heavy); }
+  .menu-item-badge{ font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; padding:3px 9px; border-radius:999px; }
+  .menu-item-badge.tbd{ background:var(--surface-3); color:var(--label-assistive); }
+  .menu-item-badge.ready{ background:rgba(0,195,107,0.12); color:var(--green-500); }
+  .menu-item-desc{ font-size:12.5px; color:var(--label-neutral); line-height:1.5; }
+
+  .tbd-box{ border:1px dashed var(--line-normal); border-radius:var(--radius-l); padding:48px; text-align:center; color:var(--label-assistive); font-size:14px; }
   .ramp-bar{ display:flex; width:100%; height:96px; border-radius:20px; overflow:hidden; margin-bottom:10px; }
   .ramp-bar .seg{ flex:1; height:100%; }
   .ramp-labels{ display:flex; width:100%; margin-bottom:36px; }
@@ -188,12 +206,28 @@
       <a class="nav-link" href="#overview">개요</a>
     </div>
     <div class="nav-group">
+      <div class="nav-label">Brand</div>
+      <a class="nav-link" href="#brand">Brand</a>
+    </div>
+    <div class="nav-group">
       <div class="nav-label">Foundation</div>
       <a class="nav-link" href="#primitive">Primitive Color</a>
       <a class="nav-link" href="#semantic">Semantic Color</a>
       <a class="nav-link" href="#status">Status Color</a>
       <a class="nav-link" href="#typography">Typography</a>
       <a class="nav-link" href="#radius">Radius</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Component</div>
+      <a class="nav-link" href="#component">Component</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">UX Writing</div>
+      <a class="nav-link" href="#ux-writing">UX Writing</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">동기화</div>
+      <a class="nav-link" href="#sync">Figma 업데이트</a>
     </div>
   </nav>
 
@@ -202,6 +236,64 @@
       <span class="badge">PillEye Design System · v1.0</span>
       <h1>정확한 카운팅, 흔들림 없는 신뢰.</h1>
       <p>약사를 위한 비전 AI 기반의 PillEye B2B 환경에 맞는 다크모드 기반으로 신뢰감을 전달합니다. 절제된 색상 대비와 명확한 타이포그래피 위계, 즉각적인 상태 피드백을 통해 신뢰성을 화면 곳곳에서 시각적으로 구현해 더 나은 사용자 경험을 제공합니다.</p>
+
+      <div class="principle-grid">
+        <div class="principle-card">
+          <div class="principle-num">01</div>
+          <div class="principle-title">정확성</div>
+          <div class="principle-desc">오차 없는 판별. 컬러, 문구, 수치 하나까지 정확하게 전달합니다.</div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-num">02</div>
+          <div class="principle-title">속도</div>
+          <div class="principle-desc">즉각적인 피드백. 기다리지 않는 인터랙션을 설계합니다.</div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-num">03</div>
+          <div class="principle-title">신뢰</div>
+          <div class="principle-desc">일관된 규칙. 어디서나 예측 가능한 톤과 구조를 유지합니다.</div>
+        </div>
+      </div>
+
+      <div class="menu-list">
+        <a class="menu-item" href="#brand">
+          <div class="menu-item-top">
+            <span class="menu-item-title">Brand</span>
+            <span class="menu-item-badge tbd">TBD</span>
+          </div>
+          <p class="menu-item-desc">브랜드 아이덴티티, 톤앤매너, 로고 사용 가이드</p>
+        </a>
+        <a class="menu-item" href="#primitive">
+          <div class="menu-item-top">
+            <span class="menu-item-title">Foundation</span>
+            <span class="menu-item-badge ready">진행 중</span>
+          </div>
+          <p class="menu-item-desc">컬러, 타이포그래피, Radius 등 디자인 토큰</p>
+        </a>
+        <a class="menu-item" href="#component">
+          <div class="menu-item-top">
+            <span class="menu-item-title">Component</span>
+            <span class="menu-item-badge tbd">TBD</span>
+          </div>
+          <p class="menu-item-desc">버튼, 인풋 등 UI 컴포넌트 가이드</p>
+        </a>
+        <a class="menu-item" href="#ux-writing">
+          <div class="menu-item-top">
+            <span class="menu-item-title">UX Writing</span>
+            <span class="menu-item-badge tbd">TBD</span>
+          </div>
+          <p class="menu-item-desc">화면 문구, 톤앤매너, 라이팅 가이드</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="brand">
+      <div class="section-header">
+        <div class="eyebrow">Brand</div>
+        <h2 class="section-title">Brand</h2>
+        <p class="section-desc">브랜드 아이덴티티, 톤앤매너, 로고 사용 가이드 등이 이 섹션에 정리될 예정입니다.</p>
+      </div>
+      <div class="tbd-box">TBD — 아직 작성되지 않았습니다.</div>
     </section>
 
     <section class="section" id="primitive">
@@ -375,6 +467,24 @@
           <li>토큰에 없는 임의의 Radius 값을 쓰지 않습니다. 반드시 정의된 토큰 중에서 선택합니다.</li>
         </ul>
       </div>
+    </section>
+
+        <section class="section" id="component">
+      <div class="section-header">
+        <div class="eyebrow">Component</div>
+        <h2 class="section-title">Component</h2>
+        <p class="section-desc">버튼, 인풋, 카드 등 UI 컴포넌트 가이드가 이 섹션에 정리될 예정입니다.</p>
+      </div>
+      <div class="tbd-box">TBD — 아직 작성되지 않았습니다.</div>
+    </section>
+
+    <section class="section" id="ux-writing">
+      <div class="section-header">
+        <div class="eyebrow">UX Writing</div>
+        <h2 class="section-title">UX Writing</h2>
+        <p class="section-desc">화면 문구, 톤앤매너, 라이팅 원칙이 이 섹션에 정리될 예정입니다.</p>
+      </div>
+      <div class="tbd-box">TBD — 아직 작성되지 않았습니다.</div>
     </section>
 
     <footer>PillEye Design System · v1.0 — 열람 전용 공유본 · Figma theme 페이지 스냅샷 기반</footer>
