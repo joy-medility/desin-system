@@ -58,6 +58,7 @@
   .tcell-name .token-name{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .tcell-ref{ flex:0 0 240px; }
   .tcell-hex{ flex:1; }
+  .thead-row{ background:var(--surface-1); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--label-heavy); }
   .token-name{ font-family:'SF Mono', monospace; color:var(--label-heavy); font-size:12.5px;}
   .token-swatch{ display:inline-flex; align-items:center; gap:10px; }
   .token-swatch .dot{ width:22px; height:22px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); flex-shrink:0;}
@@ -408,7 +409,14 @@ function tokenRow(name, hex, ref){
     <div class="tcell-hex token-hex">${hex}</div>
   </div>`;
 }
-function fillTable(id, rows){ document.getElementById(id).innerHTML = rows.map(r=>tokenRow(...r)).join(''); }
+function fillTable(id, rows){
+  const header = `<div class="trow thead-row">
+    <div class="tcell-name">Token</div>
+    <div class="tcell-ref">Reference</div>
+    <div class="tcell-hex">Hex</div>
+  </div>`;
+  document.getElementById(id).innerHTML = header + rows.map(r=>tokenRow(...r)).join('');
+}
 
 function typeRow(name, sizePx, leadingPct, weight, tracking, sample){
   const weightNum = (weight.split('/')[1]) || '400';
