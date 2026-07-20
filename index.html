@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PillCount Design System · v1.0</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  :root{
+    --gray-0:#FAFAFA; --gray-50:#F5F5F6; --gray-100:#E8E8EA; --gray-200:#D4D4D8;
+    --gray-300:#B0B0B8; --gray-400:#8E8E98; --gray-500:#6B6B75; --gray-600:#4A4A54;
+    --gray-700:#3B3B44; --gray-800:#2C2C31; --gray-900:#1E1E22; --gray-950:#111214;
+    --green-500:#00C36B; --yellow-500:#F8BA00; --red-500:#F93446; --blue-500:#0073FF;
+    --radius-xs:4px; --radius-s:6px; --radius-m:8px; --radius-l:12px; --radius-xl:16px; --radius-circle:9999px;
+    --bg:#111214; --surface-1:#1E1E22; --surface-2:#2C2C31; --surface-3:#3B3B44;
+    --label-heavy:#FAFAFA; --label-strong:#F5F5F6; --label-normal:#E8E8EA; --label-neutral:#B0B0B8; --label-assistive:#8E8E98;
+    --line-normal:#3B3B44;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--bg); color:var(--label-normal); font-family:'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height:1.5; -webkit-font-smoothing:antialiased; }
+  .shell{ display:flex; min-height:100vh; }
+  .sidebar{ width:240px; flex-shrink:0; position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--surface-1); border-right:1px solid var(--line-normal); padding:32px 0; }
+  .sidebar-brand{ padding:0 24px 24px; border-bottom:1px solid var(--line-normal); margin-bottom:16px;}
+  .sidebar-brand .badge{ display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; color:var(--green-500); background:rgba(0,195,107,0.12); border:1px solid rgba(0,195,107,0.3); padding:4px 10px; border-radius:var(--radius-circle); margin-bottom:12px; }
+  .sidebar-brand h1{ font-size:16px; font-weight:700; color:var(--label-heavy); }
+  .sidebar-brand p{ font-size:12px; color:var(--label-assistive); margin-top:4px; }
+  .nav-group{ padding:0 12px; margin-bottom:8px; }
+  .nav-label{ font-size:11px; font-weight:600; letter-spacing:0.06em; color:var(--label-assistive); text-transform:uppercase; padding:8px 12px 4px; }
+  .nav-link{ display:block; font-size:13px; color:var(--label-neutral); text-decoration:none; padding:8px 12px; border-radius:var(--radius-s); transition:background .15s, color .15s; }
+  .nav-link:hover{ background:var(--surface-2); color:var(--label-heavy); }
+  .main{ flex:1; min-width:0; }
+  .section{ padding:80px 64px; border-bottom:1px solid var(--line-normal); }
+  .section-header{ max-width:720px; margin-bottom:48px; }
+  .eyebrow{ font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--green-500); margin-bottom:12px; }
+  .section-title{ font-size:32px; font-weight:700; color:var(--label-heavy); margin-bottom:12px; letter-spacing:-0.01em;}
+  .section-desc{ font-size:15px; color:var(--label-neutral); line-height:1.6; }
+  .hero{ padding:96px 64px 72px; border-bottom:1px solid var(--line-normal); background: radial-gradient(1200px 400px at 20% -10%, rgba(0,195,107,0.10), transparent 60%); position:relative; }
+  .hero .badge{ display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:var(--label-normal); background:rgba(59,59,68,0.4); border:1px solid var(--line-normal); padding:6px 14px; border-radius:var(--radius-circle); margin-bottom:24px; backdrop-filter: blur(8px); }
+  .hero h1{ font-size:48px; font-weight:700; color:var(--label-heavy); line-height:1.15; letter-spacing:-0.02em; max-width:700px; margin-bottom:24px;}
+  .hero p{ font-size:17px; color:var(--label-neutral); max-width:640px; line-height:1.6; }
+  .hero-refs{ display:flex; gap:8px; flex-wrap:wrap; margin-top:32px; }
+  .hero-refs span{ font-size:12px; color:var(--label-assistive); border:1px solid var(--line-normal); padding:6px 12px; border-radius:var(--radius-circle); }
+  .swatch-row{ display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:1px; background:var(--line-normal); border:1px solid var(--line-normal); border-radius:var(--radius-m); overflow:hidden; margin-bottom:40px;}
+  .swatch{ background:var(--surface-1); padding:24px 16px 16px; display:flex; flex-direction:column; gap:20px; min-height:150px; }
+  .swatch-meta .step{ font-size:20px; font-weight:700; }
+  .swatch-meta .hex{ font-size:12px; color:var(--label-assistive); font-family:'SF Mono', monospace; margin-top:2px;}
+  .ramp-title{ font-size:14px; font-weight:600; color:var(--label-normal); margin-bottom:16px; display:flex; align-items:center; gap:8px;}
+  .ramp-title .dot{ width:10px; height:10px; border-radius:50%; }
+  .token-table{ width:100%; border-collapse:collapse; margin-bottom:40px; font-size:13px;}
+  .token-table tbody td{ padding:14px 16px; border-bottom:1px solid var(--surface-2); vertical-align:middle;}
+  .token-table tbody tr:hover{ background:rgba(255,255,255,0.02); }
+  .token-name{ font-family:'SF Mono', monospace; color:var(--label-heavy); font-size:12.5px;}
+  .token-swatch{ display:inline-flex; align-items:center; gap:10px; }
+  .token-swatch .dot{ width:22px; height:22px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); flex-shrink:0;}
+  .token-hex{ font-family:'SF Mono', monospace; color:var(--label-neutral); }
+  .group-title{ font-size:13px; font-weight:600; color:var(--green-500); text-transform:uppercase; letter-spacing:0.05em; margin:32px 0 8px; }
+  .type-row{ display:flex; align-items:baseline; gap:24px; padding:20px 0; border-bottom:1px solid var(--surface-2); flex-wrap:wrap;}
+  .type-row:last-child{ border-bottom:none; }
+  .type-meta{ width:220px; flex-shrink:0; }
+  .type-meta .name{ font-family:'SF Mono', monospace; font-size:12px; color:var(--label-heavy);}
+  .type-meta .spec{ font-size:11px; color:var(--label-assistive); margin-top:4px; }
+  .type-sample{ color:var(--label-heavy); flex:1; min-width:280px; }
+  .cat-desc{ font-size:13px; color:var(--label-neutral); margin-bottom:8px; line-height:1.6;}
+  .cat-block{ margin-bottom:48px; }
+  .radius-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(180px,1fr)); gap:16px; margin-bottom:40px;}
+  .radius-card{ background:var(--surface-1); border:1px solid var(--line-normal); padding:24px; border-radius:var(--radius-m); }
+  .radius-box{ width:64px; height:64px; background:var(--green-500); margin-bottom:16px; }
+  .radius-card .name{ font-family:'SF Mono', monospace; font-size:12.5px; color:var(--label-heavy); margin-bottom:2px;}
+  .radius-card .px{ font-size:12px; color:var(--label-assistive); margin-bottom:8px; }
+  .radius-card .desc{ font-size:12px; color:var(--label-neutral); line-height:1.5;}
+  .callout{ border:1px solid var(--line-normal); border-radius:var(--radius-l); padding:32px 40px; margin-top:24px;}
+  .callout.dont{ border-color:rgba(249,52,70,0.3); background:rgba(249,52,70,0.04);}
+  .callout h3{ font-size:18px; font-weight:700; color:var(--red-500); margin-bottom:16px;}
+  .callout ul{ list-style:none; }
+  .callout li{ font-size:13px; color:var(--label-neutral); line-height:1.7; padding-left:16px; position:relative; margin-bottom:6px;}
+  .callout li::before{ content:'—'; position:absolute; left:0; color:var(--label-assistive); }
+  .status-section{ margin-bottom:56px; }
+  .status-head{ display:flex; align-items:center; gap:12px; margin-bottom:8px; }
+  .status-head .dot{ width:14px; height:14px; border-radius:50%; }
+  .status-head h4{ font-size:20px; font-weight:700; color:var(--label-heavy); }
+  .status-tag{ font-size:12px; padding:4px 12px; border-radius:var(--radius-circle); border:1px solid var(--line-normal); color:var(--label-neutral); }
+  .status-desc{ font-size:13px; color:var(--label-neutral); margin:12px 0 20px; line-height:1.6; max-width:640px;}
+  .usecase-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:12px; }
+  .usecase-card{ background:var(--surface-1); border:1px solid var(--line-normal); border-radius:var(--radius-m); padding:20px; }
+  .usecase-card .t{ font-size:14px; font-weight:600; color:var(--label-heavy); margin-bottom:4px; }
+  .usecase-card .d{ font-size:12px; color:var(--label-assistive); }
+  .avoid-note{ font-size:12.5px; color:var(--yellow-500); background:rgba(248,186,0,0.08); border:1px solid rgba(248,186,0,0.25); padding:12px 16px; border-radius:var(--radius-s); margin-top:12px;}
+  .update-panel{ background:var(--surface-1); border:1px solid var(--line-normal); border-radius:var(--radius-l); padding:28px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;}
+  .update-panel .txt h4{ font-size:15px; color:var(--label-heavy); margin-bottom:4px; }
+  .update-panel .txt p{ font-size:12.5px; color:var(--label-assistive); }
+  .btn-refresh{ background:var(--green-500); color:#04140c; border:none; font-weight:700; font-size:13px; padding:12px 22px; border-radius:var(--radius-s); cursor:pointer; white-space:nowrap; transition:background .15s; }
+  .btn-refresh:hover{ background:#2ED586; }
+  .btn-refresh:disabled{ background:var(--surface-3); color:var(--label-assistive); cursor:default; }
+  .sync-msg{ font-size:12.5px; margin-top:10px; }
+  .sync-msg.error{ color:var(--red-500); }
+  .sync-msg.ok{ color:var(--green-500); }
+  footer{ padding:48px 64px; font-size:12px; color:var(--label-assistive); }
+  @media (max-width:900px){
+    .shell{ flex-direction:column; }
+    .sidebar{ position:relative; width:100%; height:auto; }
+    .section{ padding:48px 24px; }
+    .hero{ padding:56px 24px; }
+    .hero h1{ font-size:32px; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-brand">
+      <span class="badge">● v1.0 · Dark / B2B</span>
+      <h1>PillCount</h1>
+      <p>Design System</p>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">시작하기</div>
+      <a class="nav-link" href="#overview">개요</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Foundation</div>
+      <a class="nav-link" href="#primitive">Primitive Color</a>
+      <a class="nav-link" href="#semantic">Semantic Color</a>
+      <a class="nav-link" href="#status">Status Color</a>
+      <a class="nav-link" href="#typography">Typography</a>
+      <a class="nav-link" href="#radius">Radius</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <section class="hero" id="overview">
+      <span class="badge">PillCount Design System · v1.0</span>
+      <h1>정확한 카운팅, 흔들림 없는 신뢰.</h1>
+      <p>약사를 위한 비전 AI 제품에 어울리는 디자인 시스템입니다. B2C는 가벼운 라이트 모드, B2B는 글라스모피즘을 활용한 묵직한 다크 모드를 같은 토큰 위에서 양쪽 모두 안정적으로 표현합니다. Spotify의 다크 미학, Linear의 토큰 구조, Toss의 친근함, Robinhood의 절제를 참고했습니다.</p>
+      <div class="hero-refs">
+        <span>Spotify — Dark 미학</span>
+        <span>Linear — 토큰 구조</span>
+        <span>Toss — 친근함</span>
+        <span>Robinhood — 절제</span>
+      </div>
+    </section>
+
+    <section class="section" id="primitive">
+      <div class="section-header">
+        <div class="eyebrow">Foundation / Color</div>
+        <h2 class="section-title">Primitive Color</h2>
+        <p class="section-desc">모든 색상 토큰의 기반이 되는 원시 팔레트입니다. Semantic 토큰은 이 값을 참조합니다.</p>
+      </div>
+      <div class="ramp-title"><span class="dot" style="background:var(--gray-500)"></span>Gray (Neutral)</div>
+      <div class="swatch-row" id="ramp-gray"></div>
+      <div class="ramp-title"><span class="dot" style="background:var(--green-500)"></span>Green (Primary)</div>
+      <div class="swatch-row" id="ramp-green"></div>
+      <div class="ramp-title"><span class="dot" style="background:var(--yellow-500)"></span>Yellow (Warning)</div>
+      <div class="swatch-row" id="ramp-yellow"></div>
+      <div class="ramp-title"><span class="dot" style="background:var(--red-500)"></span>Red (Error)</div>
+      <div class="swatch-row" id="ramp-red"></div>
+      <div class="ramp-title"><span class="dot" style="background:var(--blue-500)"></span>Blue (Info)</div>
+      <div class="swatch-row" id="ramp-blue"></div>
+    </section>
+
+    <section class="section" id="semantic">
+      <div class="section-header">
+        <div class="eyebrow">Foundation / Color</div>
+        <h2 class="section-title">Semantic Color Tokens</h2>
+        <p class="section-desc">UI 역할 기반의 색상 토큰입니다. Primitive 팔레트를 참조하며 Dark 모드를 지원합니다.</p>
+      </div>
+      <div class="group-title">Fill / Overlay</div>
+      <table class="token-table"><tbody id="tbl-fill"></tbody></table>
+      <div class="group-title">Button</div>
+      <table class="token-table"><tbody id="tbl-btn"></tbody></table>
+      <div class="group-title">Label (Text)</div>
+      <table class="token-table"><tbody id="tbl-label"></tbody></table>
+      <div class="group-title">Line (Border)</div>
+      <table class="token-table"><tbody id="tbl-line"></tbody></table>
+      <div class="group-title">Primary / Secondary / Status</div>
+      <table class="token-table"><tbody id="tbl-brand"></tbody></table>
+      <div class="group-title">Static / Glass Effect</div>
+      <table class="token-table"><tbody id="tbl-etc"></tbody></table>
+    </section>
+
+    <section class="section" id="status">
+      <div class="section-header">
+        <div class="eyebrow">Foundation / Color</div>
+        <h2 class="section-title">Secondary Color — 상태 의미</h2>
+        <p class="section-desc">상태 표시 및 의미 전달에 사용되는 4가지 보조 컬러입니다. 각 컬러는 고유한 의미를 가지며 경고, 오류, 주의, 정보 상태를 나타냅니다.</p>
+      </div>
+      <div class="status-section">
+        <div class="status-head"><span class="dot" style="background:var(--green-500)"></span><h4>Green</h4><span class="status-tag">강조 · 정상 완료 · 확인됨 · 카운팅 성공</span></div>
+        <p class="status-desc">특정 행동을 유도할 때 사용합니다. 또는 이 상태로 다음 스텝을 진행해도 시스템이 정상 작동하는 케이스에 사용합니다. <span class="token-name">Primary/green_500 · #00C36B</span></p>
+        <div class="usecase-grid">
+          <div class="usecase-card"><div class="t">Rx 스캔 완료</div><div class="d">인식 완료 표시할 때 툴팁</div></div>
+          <div class="usecase-card"><div class="t">목표 수량(QTY) 입력 완료</div><div class="d">—</div></div>
+          <div class="usecase-card"><div class="t">카운팅 목표 수량 도달, 카운팅 완료</div><div class="d">현재 카운트 = 목표 수량 일치할 때</div></div>
+          <div class="usecase-card"><div class="t">특정 UI나 부분 강조</div><div class="d">메인 CTA 등 권장하는 플로우대로 유도해야 할 때</div></div>
+        </div>
+      </div>
+      <div class="status-section">
+        <div class="status-head"><span class="dot" style="background:var(--red-500)"></span><h4>Red</h4><span class="status-tag">오류 · 필수 누락 · 즉각 조치 필요</span></div>
+        <p class="status-desc">오류 상태, 실패한 작업, 되돌릴 수 없는 파괴적 액션을 나타냅니다. 사용자에게 즉각적인 주의를 요구하는 상황에 사용합니다. <span class="token-name">Error/Red_500 · #F93446</span></p>
+        <div class="usecase-grid">
+          <div class="usecase-card"><div class="t">필수 요소인 목표 수량(QTY) 미입력</div><div class="d">목표 수량 미입력 후 다음 스텝으로 넘어가려 할 때</div></div>
+          <div class="usecase-card"><div class="t">데이터나 기록 삭제</div><div class="d">delete 처럼 영구적으로 삭제를 원할 때</div></div>
+          <div class="usecase-card"><div class="t">Scan Rx 문구</div><div class="d">Rx 스캔을 진행하지 않고 카운팅 먼저 진행했을 때</div></div>
+        </div>
+        <div class="avoid-note">⚠ 같은 화면에서 컬러는 최대 1가지만 사용한다. — 그린과 레드가 동시에 보이면 혼란</div>
+      </div>
+      <div class="status-section">
+        <div class="status-head"><span class="dot" style="background:var(--yellow-500)"></span><h4>Yellow</h4><span class="status-tag">주의 필요 · 진행 중 · 사용자 액션 대기</span></div>
+        <p class="status-desc">완료는 됐지만 주의가 필요한 상태나, 선택적으로 확인이 필요한 상황을 나타냅니다. <span class="token-name">Warning/Yellow_500 · #F8BA00</span></p>
+        <div class="usecase-grid">
+          <div class="usecase-card"><div class="t">Remove N pills (overfill) 문구</div><div class="d">카운팅 중 추가투입을 기다리는 상태</div></div>
+          <div class="usecase-card"><div class="t">목표 수량 초과 감지</div><div class="d">카운트가 목표를 넘어섰을 때</div></div>
+        </div>
+      </div>
+      <div class="status-section">
+        <div class="status-head"><span class="dot" style="background:var(--blue-500)"></span><h4>Blue</h4><span class="status-tag">정보 · 링크 (Info / Link)</span></div>
+        <p class="status-desc">정보성 메시지, 링크, 외부 연결을 나타냅니다. 사용자에게 추가 정보나 탐색 가능한 요소를 안내할 때 사용합니다. <span class="token-name">Info/Blue_500 · #0073FF</span></p>
+      </div>
+    </section>
+
+    <section class="section" id="typography">
+      <div class="section-header">
+        <div class="eyebrow">Foundation / Type</div>
+        <h2 class="section-title">Text</h2>
+        <p class="section-desc">일관된 타이포그래피 시스템을 제공하여 다양한 UI 구성 요소에 적용할 수 있도록 합니다.</p>
+      </div>
+      <div class="cat-block">
+        <div class="group-title">Display</div>
+        <p class="cat-desc">화면에서 가장 크고 강조되어야 하는 요소에 사용합니다. 주로 카운팅 숫자, 핵심 수치처럼 한눈에 들어와야 하는 단일 정보에 적합합니다. 숫자로 쓰일 때는 3% 자간을, 텍스트로 쓰일 때는 0% 자간을 적용합니다.</p>
+        <div id="type-display"></div>
+      </div>
+      <div class="cat-block">
+        <div class="group-title">Heading</div>
+        <p class="cat-desc">화면 내 섹션을 구분하거나 팝업/모달의 제목에 사용합니다. Display보다 작지만 Body보다 크고 굵어서 위계를 구분해줍니다.</p>
+        <div id="type-heading"></div>
+      </div>
+      <div class="cat-block">
+        <div class="group-title">Body</div>
+        <p class="cat-desc">UI에서 가장 많이 쓰이는 텍스트 유형입니다. 버튼 레이블, 설명 텍스트, 상태 메시지처럼 읽어야 하는 텍스트에 사용합니다.</p>
+        <div id="type-body"></div>
+      </div>
+      <div class="cat-block">
+        <div class="group-title">Caption</div>
+        <p class="cat-desc">화면에서 가장 작은 텍스트입니다. 주요 정보를 보조하는 역할입니다. 단독으로 쓰기보다 다른 텍스트와 함께 사용합니다.</p>
+        <div id="type-caption"></div>
+      </div>
+      <div class="callout dont">
+        <h3>Don't</h3>
+        <ul>
+          <li>한 화면에 display는 1~2개 이내로 제한합니다. 많을수록 강조 효과가 희석됩니다.</li>
+          <li>Display는 긴 문장에 사용하지 않습니다. (20글자 이하로 사용)</li>
+          <li>숫자 단독 표시 시 tracked 변형(자간 3%)을 사용해요. 텍스트 혼용 시엔 기본(0%)을 사용합니다.</li>
+          <li>Caption은 항상 보조 역할입니다. 사용자가 반드시 읽어야 하는 정보에는 쓰지 않아요. Ex) Rx 번호나 NDC 같은 핵심 식별 정보는 body 계열로 올리고, Caption은 부가 정보에만 사용</li>
+          <li>버튼 레이블에 Caption을 사용하지 않습니다. Caption(14px)은 터치 영역에서 가독성이 떨어지기 때문에 버튼은 최소 Body-3(18px) 이상을 사용해야 합니다.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="radius">
+      <div class="section-header">
+        <div class="eyebrow">Foundation / Shape</div>
+        <h2 class="section-title">Radius</h2>
+        <p class="section-desc">XL~XS 상대 크기 체계로 반지름 값을 변환한 토큰입니다. 시각적 중요도·형태 비율·레이아웃 맥락에 맞춰 일관된 Radius를 적용합니다.</p>
+      </div>
+      <div class="radius-grid" id="radius-grid"></div>
+      <div class="callout dont">
+        <h3>Don't</h3>
+        <ul>
+          <li>같은 위계의 버튼에 다른 Radius를 쓰지 않습니다. Ex) Cancel Fill, Partial Fill, Complete Fill은 같은 위계의 버튼이므로 동일한 Radius 값을 사용합니다.</li>
+          <li>작은 컴포넌트에 큰 Radius를 쓰지 않습니다. Ex) 작은 칩/태그 컴포넌트는 corner-radius-XS(4px) 또는 corner-radius-S(6px)를 사용하고 circle은 완전한 원형이 필요할 때만 사용합니다.</li>
+          <li>모달/다이얼로그에 작은 Radius를 쓰지 않으며 corner-radius-L(12px) 이상부터 적용해서 사용합니다.</li>
+          <li>중첩된 박스에 같은 Radius를 쓰지 않습니다. 안쪽 박스는 바깥 박스보다 한 단계 작은 Radius를 사용합니다. Ex) 바깥 XL(16px) → 안쪽 M(8px) 또는 S(6px).</li>
+          <li>Radius를 0으로 쓰지 않습니다. 최소 corner-radius-XS(4px) 이상을 사용해요. Radius 0은 토큰에 정의되지 않은 값입니다.</li>
+          <li>토큰에 없는 임의의 Radius 값을 쓰지 않습니다. 반드시 정의된 토큰 중에서 선택합니다.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>PillCount Design System · v1.0 — 열람 전용 공유본 · Figma theme 페이지 스냅샷 기반</footer>
+  </main>
+</div>
+
+<script>
+const FIGMA_FILE_KEY = 'JH1s9kQ1M4iImUAPsn5BTh';
+const NODE_IDS = {
+  gray: '386:101',
+  green: '386:340',
+  yellow: '413:1661',
+  red: '413:1672',
+  blue: '429:1332',
+  radius: '780:3273',
+  typography: '764:1766',
+  semantic: '780:3275'
+};
+
+const DEFAULT_DATA = {
+  ramps: {
+    gray:   [["0","#FAFAFA"],["50","#F5F5F6"],["100","#E8E8EA"],["200","#D4D4D8"],["300","#B0B0B8"],["400","#8E8E98"],["500","#6B6B75"],["600","#4A4A54"],["700","#3B3B44"],["800","#2C2C31"],["900","#1E1E22"],["950","#111214"]],
+    green:  [["50","#E6FAF1"],["100","#BFF2D9"],["200","#8FE8BD"],["300","#5FDFA1"],["400","#2ED586"],["500","#00C36B"],["600","#00A85C"],["700","#008C4D"],["800","#00703E"],["900","#00532E"],["950","#002B18"]],
+    yellow: [["50","#FFF8D7"],["200","#FFE28A"],["500","#F8BA00"],["700","#AA8000"],["900","#3F3000"]],
+    red:    [["50","#FFEAEC"],["200","#FF979E"],["500","#F93446"],["700","#C2001B"],["900","#380005"]],
+    blue:   [["50","#DBEBFF"],["200","#68ACFF"],["500","#0073FF"],["700","#0052B6"],["900","#001E42"]]
+  },
+  semantic: {
+    fill: [
+      ["color-semantic-fill-00","#111214","gray/950"],
+      ["color-semantic-fill-01","#1E1E22","gray/900"],
+      ["color-semantic-fill-02","#2C2C31","gray/800"],
+      ["color-semantic-fill-03","#3B3B44","gray/700"],
+      ["color-semantic-fill-04","#4A4A54","gray/600"],
+      ["color-semantic-overlay-normal","#111214","gray/950, opacity 50%"],
+      ["color-semantic-overlay-assistive","#3B3B44","gray/700, opacity 50%"]
+    ],
+    btn: [
+      ["color-semantic-btn-primary-default-bg","#00C36B","green/500"],
+      ["color-semantic-btn-primary-pressed-bg","#00A85C","green/600"],
+      ["color-semantic-btn-secondary-default-bg","#4A4A54","gray/600"],
+      ["color-semantic-btn-secondary-pressed-bg","#3B3B44","gray/700"],
+      ["color-semantic-btn-tertiary-default-line","#4A4A54","gray/600"],
+      ["color-semantic-btn-tertiary-pressed-bg","#2C2C31","gray/800"],
+      ["color-semantic-btn-warning-default-bg","#F93446","red/500"],
+      ["color-semantic-btn-warning-pressed-bg","#C2001B","red/700"],
+      ["color-semantic-btn-all-disabled-onfill-00-bg","#1E1E22","gray/900"],
+      ["color-semantic-btn-all-disabled-onfill-01-bg","#2C2C31","gray/800"],
+      ["color-semantic-btn-all-disabled-onfill-02-bg","#3B3B44","gray/700"],
+      ["color-semantic-btn-all-disabled-onfill-03-bg","#4A4A54","gray/600"],
+      ["color-semantic-btn-all-disabled-onfill-label","#E8E8EA","gray/100, opacity 20%"],
+      ["color-semantic-btn-all-disabled-onfill-line","#3B3B44","gray/700"]
+    ],
+    label: [
+      ["color-semantic-label-heavy","#FAFAFA","gray/0"],
+      ["color-semantic-label-strong","#F5F5F6","gray/50"],
+      ["color-semantic-label-normal","#F5F5F6","gray/100"],
+      ["color-semantic-label-neutral","#B0B0B8","gray/300"],
+      ["color-semantic-label-assistive","#8E8E98","gray/400"]
+    ],
+    line: [
+      ["color-semantic-line-heavy","#6B6B75","gray/500"],
+      ["color-semantic-line-strong","#4A4A54","gray/600"],
+      ["color-semantic-line-normal","#3B3B44","gray/700"],
+      ["color-semantic-line-neutral","#3B3B44","gray/800"],
+      ["color-semantic-line-assistive","#1E1E22","gray/900"]
+    ],
+    brand: [
+      ["color-semantic-primary-default","#00C36B","green/500"],
+      ["color-semantic-primary-pressed","#00A85C","green/600"],
+      ["color-semantic-secondary-default","#4A4A54","gray/900"],
+      ["color-semantic-secondary-pressed","#3B3B44","gray/700"],
+      ["color-semantic-positive-background","#002B18","green/950"],
+      ["color-semantic-positive-default","#00C36B","green/500"],
+      ["color-semantic-positive-strong","#008C4D","green/700"],
+      ["color-semantic-cautionary-background","#3F3000","yellow/900"],
+      ["color-semantic-cautionary-default","#F8BA00","yellow/500"],
+      ["color-semantic-cautionary-strong","#AA8000","yellow/700"],
+      ["color-semantic-negative-background","#380005","red/900"],
+      ["color-semantic-negative-default","#F93446","red/500"],
+      ["color-semantic-negative-strong","#C2001B","red/700"],
+      ["color-semantic-info-background","#001E42","blue/900"],
+      ["color-semantic-info-default","#0073FF","blue/500"],
+      ["color-semantic-info-strong","#0052B6","blue/700"]
+    ],
+    etc: [
+      ["color-semantic-static-dim","#111214","gray/950, opacity 40%"],
+      ["color-semantic-glass-effect-normal","#3B3B44","gray/700, opacity 40%"]
+    ]
+  },
+  typography: {
+    display: [["text-display-1-700-tracked",140,"105%","Bold/700","3%"],["text-display-1-700",140,"105%","Bold/700","0%"],["text-display-2-700-tracked",46,"115%","Bold/700","3%"],["text-display-2-700",46,"115%","Bold/700","0%"],["text-display-3-700-tracked",40,"115%","Bold/700","3%"],["text-display-3-700",40,"115%","Bold/700","0%"]],
+    heading: [["text-heading-1-700",30,"120%","Bold/700","0%"],["text-heading-2-700",28,"135%","Bold/700","0%"],["text-heading-3-700",26,"135%","Bold/700","0%"],["text-heading-3-600",26,"135%","Semibold/600","0%"],["text-heading-4-700",24,"135%","Bold/700","0%"],["text-heading-4-600",24,"135%","Semibold/600","0%"],["text-heading-4-500",24,"135%","Medium/500","0%"]],
+    body: [["text-body-1-700",22,"135%","Bold/700","0%"],["text-body-1-600",22,"135%","Semibold/600","0%"],["text-body-1-500",22,"135%","Medium/500","0%"],["text-body-2-700",20,"135%","Bold/700","0%"],["text-body-2-600",20,"135%","Semibold/600","0%"],["text-body-2-500",20,"135%","Medium/500","0%"],["text-body-2-400",20,"135%","Regular/400","0%"],["text-body-3-700",18,"135%","Bold/700","0%"],["text-body-3-600",18,"135%","Semibold/600","0%"],["text-body-3-500",18,"135%","Medium/500","0%"],["text-body-3-400",18,"135%","Regular/400","0%"]],
+    caption: [["text-caption-1-700",14,"135%","Bold/700","0%"],["text-caption-1-600",14,"135%","Semibold/600","0%"],["text-caption-1-500",14,"135%","Medium/500","0%"],["text-caption-1-400",14,"135%","Regular/400","0%"]]
+  },
+  radius: [
+    ["corner-radius-XS",4,"가장 작은 값으로, label, tag, button 등 작은 컴포넌트에 사용합니다."],
+    ["corner-radius-S",6,"가장 자주 사용되는 값으로 주로 메인 button에 사용합니다."],
+    ["corner-radius-M",8,"button 에 사용합니다."],
+    ["corner-radius-L",12,"다이얼로그처럼 화면 앞에 오버레이 된 박스에 사용합니다."],
+    ["corner-radius-XL",16,"화면 비중의 50% 이상을 차지하는 박스나 대형 배경 요소에 사용합니다."],
+    ["corner-radius-circle",9999,"원형 표현이 필요한 경우에 사용합니다."]
+  ]
+};
+
+const SAMPLES = {
+  display: ['128','Count','128','Count Complete','128','Count Complete'],
+  heading: ['섹션 제목','섹션 제목','모달 타이틀','모달 타이틀','카드 타이틀','카드 타이틀','카드 타이틀'],
+  body: ['버튼 레이블 / 본문','버튼 레이블 / 본문','버튼 레이블 / 본문','상태 메시지','상태 메시지','상태 메시지','상태 메시지','설명 텍스트','설명 텍스트','설명 텍스트','설명 텍스트'],
+  caption: ['보조 정보 텍스트','보조 정보 텍스트','보조 정보 텍스트','보조 정보 텍스트']
+};
+
+function hexToRgb(hex){ const v = hex.replace('#',''); const num = parseInt(v,16); return { r:(num>>16)&255, g:(num>>8)&255, b:num&255 }; }
+function isDark(hex){ try{ const {r,g,b} = hexToRgb(hex); return (r*299+g*587+b*114)/1000 < 150; }catch(e){ return true; } }
+
+function renderRamp(id, steps){
+  document.getElementById(id).innerHTML = steps.map(([step,hex])=>{
+    const textColor = isDark(hex) ? '#FAFAFA' : '#111214';
+    return `<div class="swatch" style="background:${hex}">
+      <div class="swatch-meta" style="color:${textColor}">
+        <div class="step">${step}</div>
+        <div class="hex" style="color:${textColor}; opacity:.7">${hex}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function tokenRow(name, hex, ref){
+  return `<tr>
+    <td class="token-swatch"><span class="dot" style="background:${hex}"></span><span class="token-name">${name}</span></td>
+    <td class="token-hex">${ref}</td>
+    <td class="token-hex">${hex}</td>
+  </tr>`;
+}
+function fillTable(id, rows){ document.getElementById(id).innerHTML = rows.map(r=>tokenRow(...r)).join(''); }
+
+function typeRow(name, sizePx, leadingPct, weight, tracking, sample){
+  const weightNum = (weight.split('/')[1]) || '400';
+  return `<div class="type-row">
+    <div class="type-meta">
+      <div class="name">${name}</div>
+      <div class="spec">${sizePx}px · ${leadingPct} leading · ${weight} · tracking ${tracking}</div>
+    </div>
+    <div class="type-sample" style="font-size:${Math.min(sizePx,64)}px; font-weight:${weightNum}; line-height:${leadingPct}; letter-spacing:${tracking==='3%'?'0.03em':'0'};">${sample}</div>
+  </div>`;
+}
+function renderTypeGroup(id, rows, samples){
+  document.getElementById(id).innerHTML = rows.map((r,i)=>typeRow(r[0],r[1],r[2],r[3],r[4], (samples&&samples[i])||r[0])).join('');
+}
+
+function renderRadius(rows){
+  document.getElementById('radius-grid').innerHTML = rows.map(([name,px,desc])=>{
+    const boxRadius = px > 60 ? '50%' : px+'px';
+    return `<div class="radius-card">
+      <div class="radius-box" style="border-radius:${boxRadius}"></div>
+      <div class="name">${name}</div>
+      <div class="px">${px}px</div>
+      <div class="desc">${desc}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderAll(data){
+  renderRamp('ramp-gray', data.ramps.gray);
+  renderRamp('ramp-green', data.ramps.green);
+  renderRamp('ramp-yellow', data.ramps.yellow);
+  renderRamp('ramp-red', data.ramps.red);
+  renderRamp('ramp-blue', data.ramps.blue);
+
+  fillTable('tbl-fill', data.semantic.fill);
+  fillTable('tbl-btn', data.semantic.btn);
+  fillTable('tbl-label', data.semantic.label);
+  fillTable('tbl-line', data.semantic.line);
+  fillTable('tbl-brand', data.semantic.brand);
+  fillTable('tbl-etc', data.semantic.etc);
+
+  renderTypeGroup('type-display', data.typography.display, SAMPLES.display);
+  renderTypeGroup('type-heading', data.typography.heading, SAMPLES.heading);
+  renderTypeGroup('type-body', data.typography.body, SAMPLES.body);
+  renderTypeGroup('type-caption', data.typography.caption, SAMPLES.caption);
+
+  renderRadius(data.radius);
+}
+
+renderAll(DEFAULT_DATA);
+
+// ---------- Sidebar active state on scroll ----------
+const links = document.querySelectorAll('.nav-link');
+const navSections = [...links].map(l => document.querySelector(l.getAttribute('href')));
+window.addEventListener('scroll', ()=>{
+  let idx = 0;
+  navSections.forEach((s,i)=>{ if(s && window.scrollY >= s.offsetTop - 120) idx = i; });
+  links.forEach((l,i)=>{ l.style.background = i===idx ? 'var(--surface-2)' : ''; l.style.color = i===idx ? 'var(--label-heavy)' : ''; });
+});
+</script>
+</body>
+</html>
