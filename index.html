@@ -57,14 +57,15 @@
 
   .menu-list{ display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-top:24px; max-width:900px; }
   .explore-heading{ font-size:28px; font-weight:700; color:var(--label-heavy); margin-top:64px; padding-top:48px; border-top:1px solid var(--line-normal); max-width:900px; }
-  .menu-item{ display:flex; flex-direction:column; justify-content:center; aspect-ratio:6/4; background:var(--surface-1); border:1px solid var(--line-normal); border-radius:var(--radius-l); padding:22px; text-decoration:none; transition:border-color .15s, background .15s; }
+  .menu-item{ position:relative; display:flex; flex-direction:column; justify-content:space-between; aspect-ratio:6/4; background:var(--surface-1); border:1px solid var(--line-normal); border-radius:var(--radius-l); padding:28px; text-decoration:none; transition:border-color .15s, background .15s; overflow:hidden; }
   .menu-item:hover{ border-color:var(--label-assistive); background:var(--surface-2); }
-  .menu-item-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
-  .menu-item-title{ font-size:17px; font-weight:700; color:var(--label-heavy); }
-  .menu-item-badge{ font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; padding:3px 9px; border-radius:999px; }
+  .menu-item-mark{ font-family:'SF Mono', monospace; font-size:56px; font-weight:700; color:var(--surface-3); line-height:1; }
+  .menu-item-bottom{ position:relative; z-index:1; }
+  .menu-item-title{ font-size:22px; font-weight:700; color:var(--label-heavy); display:block; margin-bottom:8px; }
+  .menu-item-badge{ position:absolute; top:24px; right:24px; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; padding:4px 10px; border-radius:999px; z-index:2; }
   .menu-item-badge.tbd{ background:var(--surface-3); color:var(--label-assistive); }
   .menu-item-badge.ready{ background:rgba(0,195,107,0.12); color:var(--green-500); }
-  .menu-item-desc{ font-size:12.5px; color:var(--label-neutral); line-height:1.5; }
+  .menu-item-desc{ font-size:13px; color:var(--label-neutral); line-height:1.6; max-width:80%; }
 
   .tbd-box{ border:1px dashed var(--line-normal); border-radius:var(--radius-l); padding:48px; text-align:center; color:var(--label-assistive); font-size:14px; }
   .ramp-bar{ display:flex; width:100%; height:96px; border-radius:20px; overflow:hidden; margin-bottom:10px; }
@@ -249,32 +250,36 @@
       <h2 class="explore-heading">Explore LINE Design System</h2>
       <div class="menu-list">
         <a class="menu-item" href="#brand">
-          <div class="menu-item-top">
+          <span class="menu-item-badge tbd">TBD</span>
+          <div class="menu-item-mark">01</div>
+          <div class="menu-item-bottom">
             <span class="menu-item-title">Brand</span>
-            <span class="menu-item-badge tbd">TBD</span>
+            <p class="menu-item-desc">브랜드 아이덴티티, 톤앤매너, 로고 사용 가이드</p>
           </div>
-          <p class="menu-item-desc">브랜드 아이덴티티, 톤앤매너, 로고 사용 가이드</p>
         </a>
         <a class="menu-item" href="#ux-writing">
-          <div class="menu-item-top">
+          <span class="menu-item-badge tbd">TBD</span>
+          <div class="menu-item-mark">02</div>
+          <div class="menu-item-bottom">
             <span class="menu-item-title">UX Writing</span>
-            <span class="menu-item-badge tbd">TBD</span>
+            <p class="menu-item-desc">화면 문구, 톤앤매너, 라이팅 가이드</p>
           </div>
-          <p class="menu-item-desc">화면 문구, 톤앤매너, 라이팅 가이드</p>
         </a>
         <a class="menu-item" href="#primitive">
-          <div class="menu-item-top">
+          <span class="menu-item-badge ready">진행 중</span>
+          <div class="menu-item-mark">03</div>
+          <div class="menu-item-bottom">
             <span class="menu-item-title">Foundation</span>
-            <span class="menu-item-badge ready">진행 중</span>
+            <p class="menu-item-desc">컬러, 타이포그래피, Radius 등 디자인 토큰</p>
           </div>
-          <p class="menu-item-desc">컬러, 타이포그래피, Radius 등 디자인 토큰</p>
         </a>
         <a class="menu-item" href="#component">
-          <div class="menu-item-top">
+          <span class="menu-item-badge tbd">TBD</span>
+          <div class="menu-item-mark">04</div>
+          <div class="menu-item-bottom">
             <span class="menu-item-title">Component</span>
-            <span class="menu-item-badge tbd">TBD</span>
+            <p class="menu-item-desc">버튼, 인풋 등 UI 컴포넌트 가이드</p>
           </div>
-          <p class="menu-item-desc">버튼, 인풋 등 UI 컴포넌트 가이드</p>
         </a>
       </div>
     </section>
