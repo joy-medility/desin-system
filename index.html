@@ -7,14 +7,85 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <style>
   :root{
+    /* Primitive */
     --gray-0:#FAFAFA; --gray-50:#F5F5F6; --gray-100:#E8E8EA; --gray-200:#D4D4D8;
     --gray-300:#B0B0B8; --gray-400:#8E8E98; --gray-500:#6B6B75; --gray-600:#4A4A54;
     --gray-700:#3B3B44; --gray-800:#2C2C31; --gray-900:#1E1E22; --gray-950:#111214;
     --green-500:#00C36B; --green-600:#00A85C; --yellow-500:#F8BA00; --red-500:#F93446; --blue-500:#0073FF;
     --radius-xs:4px; --radius-s:6px; --radius-m:8px; --radius-l:12px; --radius-xl:16px; --radius-circle:9999px;
-    --bg:#111214; --surface-1:#1E1E22; --surface-2:#2C2C31; --surface-3:#3B3B44;
-    --label-heavy:#FAFAFA; --label-strong:#F5F5F6; --label-normal:#E8E8EA; --label-neutral:#B0B0B8; --label-assistive:#8E8E98;
-    --line-normal:#3B3B44;
+
+    /* Semantic — Background */
+    --color-semantic-background-base:#111214;
+
+    /* Semantic — Fill */
+    --color-semantic-fill-00:#111214;
+    --color-semantic-fill-01:#1E1E22;
+    --color-semantic-fill-02:#2C2C31;
+    --color-semantic-fill-03:#3B3B44;
+    --color-semantic-fill-04:#4A4A54;
+
+    /* Semantic — Overlay */
+    --color-semantic-overlay-normal:rgba(17,18,20,0.5);
+    --color-semantic-overlay-assistive:rgba(59,59,68,0.5);
+
+    /* Semantic — Button */
+    --color-semantic-btn-primary-default-bg:#00C36B;
+    --color-semantic-btn-primary-pressed-bg:#00A85C;
+    --color-semantic-btn-secondary-default-bg:#4A4A54;
+    --color-semantic-btn-secondary-pressed-bg:#3B3B44;
+    --color-semantic-btn-tertiary-default-line:#4A4A54;
+    --color-semantic-btn-tertiary-pressed-bg:#2C2C31;
+    --color-semantic-btn-warning-default-bg:#F93446;
+    --color-semantic-btn-warning-pressed-bg:#C2001B;
+    --color-semantic-btn-all-disabled-onfill-00-bg:#1E1E22;
+    --color-semantic-btn-all-disabled-onfill-01-bg:#2C2C31;
+    --color-semantic-btn-all-disabled-onfill-02-bg:#3B3B44;
+    --color-semantic-btn-all-disabled-onfill-03-bg:#4A4A54;
+    --color-semantic-btn-all-disabled-label:rgba(232,232,234,0.2);
+
+    /* Semantic — Label */
+    --color-semantic-label-heavy:#FAFAFA;
+    --color-semantic-label-strong:#F5F5F6;
+    --color-semantic-label-normal:#E8E8EA;
+    --color-semantic-label-neutral:#B0B0B8;
+    --color-semantic-label-assistive:#8E8E98;
+
+    /* Semantic — Line */
+    --color-semantic-line-heavy:#6B6B75;
+    --color-semantic-line-strong:#4A4A54;
+    --color-semantic-line-normal:#3B3B44;
+    --color-semantic-line-neutral:#2C2C31;
+    --color-semantic-line-assistive:#1E1E22;
+
+    /* Semantic — Status */
+    --color-semantic-positive-background:#002B18;
+    --color-semantic-positive-default:#00C36B;
+    --color-semantic-positive-strong:#008C4D;
+    --color-semantic-cautionary-background:#3F3000;
+    --color-semantic-cautionary-default:#F8BA00;
+    --color-semantic-cautionary-strong:#AA8000;
+    --color-semantic-negative-background:#380005;
+    --color-semantic-negative-default:#F93446;
+    --color-semantic-negative-strong:#C2001B;
+    --color-semantic-info-background:#001E42;
+    --color-semantic-info-default:#0073FF;
+    --color-semantic-info-strong:#0052B6;
+
+    /* Semantic — Static / Glass */
+    --color-semantic-static-dim:rgba(17,18,20,0.4);
+    --color-semantic-glass-effect-normal:rgba(59,59,68,0.4);
+
+    /* UI 별칭 — 시맨틱 토큰으로 매핑 */
+    --bg:var(--color-semantic-background-base);
+    --surface-1:var(--color-semantic-fill-01);
+    --surface-2:var(--color-semantic-fill-02);
+    --surface-3:var(--color-semantic-fill-03);
+    --label-heavy:var(--color-semantic-label-heavy);
+    --label-strong:var(--color-semantic-label-strong);
+    --label-normal:var(--color-semantic-label-normal);
+    --label-neutral:var(--color-semantic-label-neutral);
+    --label-assistive:var(--color-semantic-label-assistive);
+    --line-normal:var(--color-semantic-line-normal);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
