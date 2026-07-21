@@ -183,6 +183,7 @@
   .tcell-name .token-name{ white-space:normal; word-break:break-all; overflow:visible; }
   .tcell-ref{ flex:0 0 240px; }
   .tcell-hex{ flex:1; }
+  .tcell-usage{ flex:0 0 260px; }
   .thead-row{ background:var(--surface-1); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--label-heavy); }
 
   .cat-subtitle{ font-size:24px; font-weight:700; color:var(--label-heavy); margin:44px 0 10px; letter-spacing:-0.01em; }
@@ -940,73 +941,73 @@ const DEFAULT_DATA = {
   },
   semantic: {
     background: [
-      ["color-semantic-background-base","#111214","gray/950"]
+      ["color-semantic-background-base","#111214","gray/950","제일 기본이 되는 프레임 배경 색상"]
     ],
     fill: [
-      ["color-semantic-fill-00","#111214","gray/950"],
-      ["color-semantic-fill-01","#1E1E22","gray/900"],
-      ["color-semantic-fill-02","#2C2C31","gray/800"],
-      ["color-semantic-fill-03","#3B3B44","gray/700"],
-      ["color-semantic-fill-04","#4A4A54","gray/600"]
+      ["color-semantic-fill-00","#111214","gray/950","UI surface (최하단 계층)"],
+      ["color-semantic-fill-01","#1E1E22","gray/900","UI surface"],
+      ["color-semantic-fill-02","#2C2C31","gray/800","UI surface"],
+      ["color-semantic-fill-03","#3B3B44","gray/700","dialog 배경"],
+      ["color-semantic-fill-04","#4A4A54","gray/600","UI surface (최상단 계층), dialog/tooltip 배경"]
     ],
     overlay: [
       ["color-semantic-overlay-normal","#111214","gray/950, opacity 50%"],
       ["color-semantic-overlay-assistive","#3B3B44","gray/700, opacity 50%"]
     ],
     btn: [
-      ["color-semantic-btn-primary-default-bg","#00C36B","green/500"],
-      ["color-semantic-btn-primary-pressed-bg","#00A85C","green/600"],
-      ["color-semantic-btn-secondary-default-bg","#4A4A54","gray/600"],
-      ["color-semantic-btn-secondary-pressed-bg","#3B3B44","gray/700"],
-      ["color-semantic-btn-tertiary-default-line","#4A4A54","gray/600"],
-      ["color-semantic-btn-tertiary-pressed-bg","#2C2C31","gray/800"],
-      ["color-semantic-btn-warning-default-bg","#F93446","red/500"],
-      ["color-semantic-btn-warning-pressed-bg","#C2001B","red/700"]
+      ["color-semantic-btn-primary-default-bg","#00C36B","green/500","primary button - 배경"],
+      ["color-semantic-btn-primary-pressed-bg","#00A85C","green/600","primary button - pressed 배경"],
+      ["color-semantic-btn-secondary-default-bg","#4A4A54","gray/600","secondary button - 배경"],
+      ["color-semantic-btn-secondary-pressed-bg","#3B3B44","gray/700","secondary button - pressed 배경"],
+      ["color-semantic-btn-tertiary-default-line","#4A4A54","gray/600","tertiary button - 라인 처리"],
+      ["color-semantic-btn-tertiary-pressed-bg","#2C2C31","gray/800","tertiary button - pressed 배경"],
+      ["color-semantic-btn-warning-default-bg","#F93446","red/500","warning button - 배경"],
+      ["color-semantic-btn-warning-pressed-bg","#C2001B","red/700","warning button - pressed 배경"]
     ],
     btnDisabled: [
-      ["color-semantic-btn-all-disabled-onfill-00-bg","#1E1E22","gray/900"],
-      ["color-semantic-btn-all-disabled-onfill-01-bg","#2C2C31","gray/800"],
-      ["color-semantic-btn-all-disabled-onfill-02-bg","#3B3B44","gray/700"],
-      ["color-semantic-btn-all-disabled-onfill-03-bg","#4A4A54","gray/600"],
+      ["color-semantic-btn-all-disabled-onfill-00-bg","#1E1E22","gray/900","비활성화 버튼 배경 - 배경이 00 토큰일 때"],
+      ["color-semantic-btn-all-disabled-onfill-01-bg","#2C2C31","gray/800","비활성화 버튼 배경 - 배경이 01 토큰일 때"],
+      ["color-semantic-btn-all-disabled-onfill-02-bg","#3B3B44","gray/700","비활성화 버튼 배경 - 배경이 02 토큰일 때"],
+      ["color-semantic-btn-all-disabled-onfill-03-bg","#4A4A54","gray/600","비활성화 버튼 배경 - 배경이 03 토큰일 때"],
       ["color-semantic-btn-all-disabled-onfill-label","#E8E8EA","gray/100, opacity 20%"],
-      ["color-semantic-btn-all-disabled-onfill-line","#3B3B44","gray/700"]
+      ["color-semantic-btn-all-disabled-onfill-line","#3B3B44","gray/700","비활성화 tertiary button - 라인 색상"]
     ],
     label: [
-      ["color-semantic-label-heavy","#FAFAFA","gray/0"],
-      ["color-semantic-label-strong","#F5F5F6","gray/50"],
-      ["color-semantic-label-normal","#F5F5F6","gray/100"],
-      ["color-semantic-label-neutral","#B0B0B8","gray/300"],
-      ["color-semantic-label-assistive","#8E8E98","gray/400"]
+      ["color-semantic-label-heavy","#FAFAFA","gray/0","Title, Header, Button text"],
+      ["color-semantic-label-strong","#F5F5F6","gray/50","Dialog body text"],
+      ["color-semantic-label-normal","#F5F5F6","gray/100","text"],
+      ["color-semantic-label-neutral","#B0B0B8","gray/300","icon, text"],
+      ["color-semantic-label-assistive","#8E8E98","gray/400","Header icon, text"]
     ],
     line: [
-      ["color-semantic-line-heavy","#6B6B75","gray/500"],
-      ["color-semantic-line-strong","#4A4A54","gray/600"],
-      ["color-semantic-line-normal","#3B3B44","gray/700"],
-      ["color-semantic-line-neutral","#3B3B44","gray/800"],
-      ["color-semantic-line-assistive","#1E1E22","gray/900"]
+      ["color-semantic-line-heavy","#6B6B75","gray/500","dialog 테두리"],
+      ["color-semantic-line-strong","#4A4A54","gray/600","강조 구분선, dialog 테두리"],
+      ["color-semantic-line-normal","#3B3B44","gray/700","섹션 경계, dialog 테두리"],
+      ["color-semantic-line-neutral","#3B3B44","gray/800","은은한 구분선, 레이아웃 내부 경계"],
+      ["color-semantic-line-assistive","#1E1E22","gray/900","가장 약한 구분선, 배경과 거의 유사"]
     ],
     statusPositive: [
-      ["color-semantic-positive-background","#002B18","green/950"],
-      ["color-semantic-positive-default","#00C36B","green/500"],
-      ["color-semantic-positive-strong","#008C4D","green/700"]
+      ["color-semantic-positive-background","#002B18","green/950","green default의 배경이 필요할 때"],
+      ["color-semantic-positive-default","#00C36B","green/500","특정 정보를 강조하거나 유도해야 할 때, 수행 완료 상태 표시"],
+      ["color-semantic-positive-strong","#008C4D","green/700",""]
     ],
     statusCautionary: [
-      ["color-semantic-cautionary-background","#3F3000","yellow/900"],
-      ["color-semantic-cautionary-default","#F8BA00","yellow/500"],
-      ["color-semantic-cautionary-strong","#AA8000","yellow/700"]
+      ["color-semantic-cautionary-background","#3F3000","yellow/900","yellow default의 배경이 필요할 때"],
+      ["color-semantic-cautionary-default","#F8BA00","yellow/500",""],
+      ["color-semantic-cautionary-strong","#AA8000","yellow/700",""]
     ],
     statusNegative: [
-      ["color-semantic-negative-background","#380005","red/900"],
-      ["color-semantic-negative-default","#F93446","red/500"],
-      ["color-semantic-negative-strong","#C2001B","red/700"]
+      ["color-semantic-negative-background","#380005","red/900","red default의 배경이 필요할 때"],
+      ["color-semantic-negative-default","#F93446","red/500",""],
+      ["color-semantic-negative-strong","#C2001B","red/700",""]
     ],
     statusInfo: [
-      ["color-semantic-info-background","#001E42","blue/900"],
-      ["color-semantic-info-default","#0073FF","blue/500"],
-      ["color-semantic-info-strong","#0052B6","blue/700"]
+      ["color-semantic-info-background","#001E42","blue/900","blue default의 배경이 필요할 때"],
+      ["color-semantic-info-default","#0073FF","blue/500","추가적인 정보를 표시해야 할 때"],
+      ["color-semantic-info-strong","#0052B6","blue/700",""]
     ],
   },
-  typography: {
+    typography: {
     display: [["text-display-1-700-tracked",140,"105%","Bold/700","3%"],["text-display-2-700-tracked",46,"115%","Bold/700","3%"],["text-display-2-700",46,"115%","Bold/700","0%"],["text-display-3-700-tracked",40,"115%","Bold/700","3%"],["text-display-3-700",40,"115%","Bold/700","0%"]],
     heading: [["text-heading-1-700",30,"120%","Bold/700","0%"],["text-heading-2-700",28,"135%","Bold/700","0%"],["text-heading-3-700",26,"135%","Bold/700","0%"],["text-heading-3-600",26,"135%","Semibold/600","0%"],["text-heading-4-700",24,"135%","Bold/700","0%"],["text-heading-4-600",24,"135%","Semibold/600","0%"],["text-heading-4-500",24,"135%","Medium/500","0%"]],
     body: [["text-body-1-700",22,"135%","Bold/700","0%"],["text-body-1-600",22,"135%","Semibold/600","0%"],["text-body-1-500",22,"135%","Medium/500","0%"],["text-body-2-700",20,"135%","Bold/700","0%"],["text-body-2-600",20,"135%","Semibold/600","0%"],["text-body-2-500",20,"135%","Medium/500","0%"],["text-body-2-400",20,"135%","Regular/400","0%"],["text-body-3-700",18,"135%","Bold/700","0%"],["text-body-3-600",18,"135%","Semibold/600","0%"],["text-body-3-500",18,"135%","Medium/500","0%"],["text-body-3-400",18,"135%","Regular/400","0%"]],
@@ -1060,11 +1061,12 @@ function copyText(el, text){
   }).catch(()=>{});
 }
 
-function tokenRow(name, hex, ref){
+function tokenRow(name, hex, ref, usage){
   return `<div class="trow">
     <div class="tcell-name"><span class="dot" style="background:${hex}"></span><span class="token-name" onclick="copyText(this,'${name}')">${name}</span></div>
     <div class="tcell-ref token-hex">${ref}</div>
     <div class="tcell-hex token-hex copy-token" onclick="copyText(this,'${hex}')">${hex}</div>
+    <div class="tcell-usage token-hex">${usage||''}</div>
   </div>`;
 }
 function fillTable(id, rows){
@@ -1072,6 +1074,7 @@ function fillTable(id, rows){
     <div class="tcell-name">Token</div>
     <div class="tcell-ref">Reference</div>
     <div class="tcell-hex">Hex</div>
+    <div class="tcell-usage">Usage</div>
   </div>`;
   document.getElementById(id).innerHTML = header + rows.map(r=>tokenRow(...r)).join('');
 }
