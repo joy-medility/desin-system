@@ -7,88 +7,109 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <style>
   :root{
-    /* Primitive */
+    /* ── Primitive ── */
     --gray-0:#FAFAFA; --gray-50:#F5F5F6; --gray-100:#E8E8EA; --gray-200:#D4D4D8;
     --gray-300:#B0B0B8; --gray-400:#8E8E98; --gray-500:#6B6B75; --gray-600:#4A4A54;
     --gray-700:#3B3B44; --gray-800:#2C2C31; --gray-900:#1E1E22; --gray-950:#111214;
     --green-500:#00C36B; --green-600:#00A85C; --yellow-500:#F8BA00; --red-500:#F93446; --blue-500:#0073FF;
     --radius-xs:4px; --radius-s:6px; --radius-m:8px; --radius-l:12px; --radius-xl:16px; --radius-circle:9999px;
 
-    /* Semantic — Background */
-    --color-semantic-background-base:#111214;
+    /* ── Figma Variable — 피그마 원본 이름 그대로 매핑 (/ → -) ── */
+    --background-base:#111214;
+    --fill-00:#111214;
+    --fill-01:#1E1E22;
+    --fill-02:#2C2C31;
+    --fill-03:#3B3B44;
+    --fill-04:#4A4A54;
+    --overlay-normal:rgba(17,18,20,0.5);
+    --overlay-assistive:rgba(59,59,68,0.5);
+    --btn-primary-default-bg:#00C36B;
+    --btn-primary-pressed-bg:#00A85C;
+    --btn-secondary-default-bg:#4A4A54;
+    --btn-secondary-pressed-bg:#3B3B44;
+    --btn-tertiary-default-line:#4A4A54;
+    --btn-tertiary-pressed-bg:#2C2C31;
+    --btn-warning-default-bg:#F93446;
+    --btn-warning-pressed-bg:#C2001B;
+    --btn-all-disabled-onfill-00-bg:#1E1E22;
+    --btn-all-disabled-onfill-01-bg:#2C2C31;
+    --btn-all-disabled-onfill-02-bg:#3B3B44;
+    --btn-all-disabled-onfill-03-bg:#4A4A54;
+    --btn-all-disabled-onfill-label:rgba(232,232,234,0.2);
+    --btn-all-disabled-onfill-line:#3B3B44;
+    --label-heavy:#FAFAFA;
+    --label-strong:#F5F5F6;
+    --label-normal:#E8E8EA;
+    --label-neutral:#B0B0B8;
+    --label-assistive:#8E8E98;
+    --line-heavy:#6B6B75;
+    --line-strong:#4A4A54;
+    --line-normal:#3B3B44;
+    --line-neutral:#2C2C31;
+    --line-assistive:#1E1E22;
+    --status-positive-background:#002B18;
+    --status-positive-default:#00C36B;
+    --status-positive-strong:#008C4D;
+    --status-cautionary-background:#3F3000;
+    --status-cautionary-default:#F8BA00;
+    --status-cautionary-strong:#AA8000;
+    --status-negative-background:#380005;
+    --status-negative-default:#F93446;
+    --status-negative-strong:#C2001B;
+    --status-info-background:#001E42;
+    --status-info-default:#0073FF;
+    --status-info-strong:#0052B6;
 
-    /* Semantic — Fill */
-    --color-semantic-fill-00:#111214;
-    --color-semantic-fill-01:#1E1E22;
-    --color-semantic-fill-02:#2C2C31;
-    --color-semantic-fill-03:#3B3B44;
-    --color-semantic-fill-04:#4A4A54;
+    /* ── Semantic 별칭 — Figma Variable 참조 ── */
+    --color-semantic-background-base:var(--background-base);
+    --color-semantic-fill-00:var(--fill-00);
+    --color-semantic-fill-01:var(--fill-01);
+    --color-semantic-fill-02:var(--fill-02);
+    --color-semantic-fill-03:var(--fill-03);
+    --color-semantic-fill-04:var(--fill-04);
+    --color-semantic-overlay-normal:var(--overlay-normal);
+    --color-semantic-overlay-assistive:var(--overlay-assistive);
+    --color-semantic-btn-primary-default-bg:var(--btn-primary-default-bg);
+    --color-semantic-btn-primary-pressed-bg:var(--btn-primary-pressed-bg);
+    --color-semantic-btn-secondary-default-bg:var(--btn-secondary-default-bg);
+    --color-semantic-btn-secondary-pressed-bg:var(--btn-secondary-pressed-bg);
+    --color-semantic-btn-tertiary-default-line:var(--btn-tertiary-default-line);
+    --color-semantic-btn-tertiary-pressed-bg:var(--btn-tertiary-pressed-bg);
+    --color-semantic-btn-warning-default-bg:var(--btn-warning-default-bg);
+    --color-semantic-btn-warning-pressed-bg:var(--btn-warning-pressed-bg);
+    --color-semantic-btn-all-disabled-onfill-00-bg:var(--btn-all-disabled-onfill-00-bg);
+    --color-semantic-btn-all-disabled-onfill-01-bg:var(--btn-all-disabled-onfill-01-bg);
+    --color-semantic-btn-all-disabled-onfill-02-bg:var(--btn-all-disabled-onfill-02-bg);
+    --color-semantic-btn-all-disabled-onfill-03-bg:var(--btn-all-disabled-onfill-03-bg);
+    --color-semantic-btn-all-disabled-label:var(--btn-all-disabled-onfill-label);
+    --color-semantic-label-heavy:var(--label-heavy);
+    --color-semantic-label-strong:var(--label-strong);
+    --color-semantic-label-normal:var(--label-normal);
+    --color-semantic-label-neutral:var(--label-neutral);
+    --color-semantic-label-assistive:var(--label-assistive);
+    --color-semantic-line-heavy:var(--line-heavy);
+    --color-semantic-line-strong:var(--line-strong);
+    --color-semantic-line-normal:var(--line-normal);
+    --color-semantic-line-neutral:var(--line-neutral);
+    --color-semantic-line-assistive:var(--line-assistive);
+    --color-semantic-positive-background:var(--status-positive-background);
+    --color-semantic-positive-default:var(--status-positive-default);
+    --color-semantic-positive-strong:var(--status-positive-strong);
+    --color-semantic-cautionary-background:var(--status-cautionary-background);
+    --color-semantic-cautionary-default:var(--status-cautionary-default);
+    --color-semantic-cautionary-strong:var(--status-cautionary-strong);
+    --color-semantic-negative-background:var(--status-negative-background);
+    --color-semantic-negative-default:var(--status-negative-default);
+    --color-semantic-negative-strong:var(--status-negative-strong);
+    --color-semantic-info-background:var(--status-info-background);
+    --color-semantic-info-default:var(--status-info-default);
+    --color-semantic-info-strong:var(--status-info-strong);
 
-    /* Semantic — Overlay */
-    --color-semantic-overlay-normal:rgba(17,18,20,0.5);
-    --color-semantic-overlay-assistive:rgba(59,59,68,0.5);
-
-    /* Semantic — Button */
-    --color-semantic-btn-primary-default-bg:#00C36B;
-    --color-semantic-btn-primary-pressed-bg:#00A85C;
-    --color-semantic-btn-secondary-default-bg:#4A4A54;
-    --color-semantic-btn-secondary-pressed-bg:#3B3B44;
-    --color-semantic-btn-tertiary-default-line:#4A4A54;
-    --color-semantic-btn-tertiary-pressed-bg:#2C2C31;
-    --color-semantic-btn-warning-default-bg:#F93446;
-    --color-semantic-btn-warning-pressed-bg:#C2001B;
-    --color-semantic-btn-all-disabled-onfill-00-bg:#1E1E22;
-    --color-semantic-btn-all-disabled-onfill-01-bg:#2C2C31;
-    --color-semantic-btn-all-disabled-onfill-02-bg:#3B3B44;
-    --color-semantic-btn-all-disabled-onfill-03-bg:#4A4A54;
-    --color-semantic-btn-all-disabled-label:rgba(232,232,234,0.2);
-
-    /* Semantic — Label */
-    --color-semantic-label-heavy:#FAFAFA;
-    --color-semantic-label-strong:#F5F5F6;
-    --color-semantic-label-normal:#E8E8EA;
-    --color-semantic-label-neutral:#B0B0B8;
-    --color-semantic-label-assistive:#8E8E98;
-
-    /* Semantic — Line */
-    --color-semantic-line-heavy:#6B6B75;
-    --color-semantic-line-strong:#4A4A54;
-    --color-semantic-line-normal:#3B3B44;
-    --color-semantic-line-neutral:#2C2C31;
-    --color-semantic-line-assistive:#1E1E22;
-
-    /* Semantic — Status */
-    --color-semantic-positive-background:#002B18;
-    --color-semantic-positive-default:#00C36B;
-    --color-semantic-positive-strong:#008C4D;
-    --color-semantic-cautionary-background:#3F3000;
-    --color-semantic-cautionary-default:#F8BA00;
-    --color-semantic-cautionary-strong:#AA8000;
-    --color-semantic-negative-background:#380005;
-    --color-semantic-negative-default:#F93446;
-    --color-semantic-negative-strong:#C2001B;
-    --color-semantic-info-background:#001E42;
-    --color-semantic-info-default:#0073FF;
-    --color-semantic-info-strong:#0052B6;
-
-    /* Semantic — Static / Glass */
-    --color-semantic-static-dim:rgba(17,18,20,0.4);
-    --color-semantic-glass-effect-normal:rgba(59,59,68,0.4);
-    --color-semantic-static-on-primary:#04140c;
-
-    /* UI 별칭 — 시맨틱 토큰으로 매핑 */
-    --bg:var(--color-semantic-background-base);
-    --surface-1:var(--color-semantic-fill-01);
-    --surface-2:var(--color-semantic-fill-02);
-    --surface-3:var(--color-semantic-fill-03);
-    --label-heavy:var(--color-semantic-label-heavy);
-    --label-strong:var(--color-semantic-label-strong);
-    --label-normal:var(--color-semantic-label-normal);
-    --label-neutral:var(--color-semantic-label-neutral);
-    --label-assistive:var(--color-semantic-label-assistive);
-    --line-normal:var(--color-semantic-line-normal);
-    --on-primary:var(--color-semantic-static-on-primary);
-    --green-400:#2ED586;
+    /* ── UI 별칭 ── */
+    --bg:var(--background-base);
+    --surface-1:var(--fill-01);
+    --surface-2:var(--fill-02);
+    --surface-3:var(--fill-03);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
