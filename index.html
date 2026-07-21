@@ -182,8 +182,8 @@
   .tcell-name .dot{ width:22px; height:22px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); flex-shrink:0; }
   .tcell-name .token-name{ white-space:normal; word-break:break-all; overflow:visible; }
   .tcell-ref{ flex:0 0 240px; }
-  .tcell-hex{ flex:1; }
-  .tcell-usage{ flex:0 0 260px; }
+  .tcell-hex{ flex:0 0 110px; }
+  .tcell-usage{ flex:0 0 280px; padding-left:24px; }
   .thead-row{ background:var(--surface-1); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--label-heavy); }
 
   .cat-subtitle{ font-size:24px; font-weight:700; color:var(--label-heavy); margin:44px 0 10px; letter-spacing:-0.01em; }
@@ -207,7 +207,7 @@
   .token-name{ font-family:'SF Mono', monospace; color:var(--label-heavy); font-size:12.5px;}
   .token-swatch{ display:inline-flex; align-items:center; gap:10px; }
   .token-swatch .dot{ width:22px; height:22px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); flex-shrink:0;}
-  .token-hex{ font-family:'SF Mono', monospace; color:var(--label-neutral); font-size:12.5px; }
+  .token-hex{ font-family:'Pretendard', sans-serif; color:var(--label-neutral); font-size:12.5px; }
   .token-name, .token-hex.copy-token{ cursor:pointer; position:relative; }
   .token-name:hover, .token-hex.copy-token:hover{ color:var(--label-heavy); }
   .token-name::after, .token-hex.copy-token::after{
@@ -974,10 +974,10 @@ const DEFAULT_DATA = {
     ],
     label: [
       ["color-semantic-label-heavy","#FAFAFA","gray/0","Title, Header, Button text"],
-      ["color-semantic-label-strong","#F5F5F6","gray/50","Dialog body text"],
+      ["color-semantic-label-strong","#F5F5F6","gray/50","Dialog_body text, sub text"],
       ["color-semantic-label-normal","#F5F5F6","gray/100","text"],
       ["color-semantic-label-neutral","#B0B0B8","gray/300","icon, text"],
-      ["color-semantic-label-assistive","#8E8E98","gray/400","Header icon, text"]
+      ["color-semantic-label-assistive","#8E8E98","gray/400","Header icon, caption text"]
     ],
     line: [
       ["color-semantic-line-heavy","#6B6B75","gray/500","dialog 테두리"],
@@ -988,22 +988,22 @@ const DEFAULT_DATA = {
     ],
     statusPositive: [
       ["color-semantic-positive-background","#002B18","green/950","green default의 배경이 필요할 때"],
-      ["color-semantic-positive-default","#00C36B","green/500","특정 정보를 강조하거나 유도해야 할 때, 수행 완료 상태 표시"],
+      ["color-semantic-positive-default","#00C36B","green/500","특정 정보를 강조하거나 유도해야 할 때, 수행 완료 상태를 표시할 때 텍스트/UI에 사용"],
       ["color-semantic-positive-strong","#008C4D","green/700",""]
     ],
     statusCautionary: [
-      ["color-semantic-cautionary-background","#3F3000","yellow/900","yellow default의 배경이 필요할 때"],
-      ["color-semantic-cautionary-default","#F8BA00","yellow/500",""],
+      ["color-semantic-cautionary-background","#3F3000","yellow/900","배경"],
+      ["color-semantic-cautionary-default","#F8BA00","yellow/500","텍스트, UI에 사용"],
       ["color-semantic-cautionary-strong","#AA8000","yellow/700",""]
     ],
     statusNegative: [
-      ["color-semantic-negative-background","#380005","red/900","red default의 배경이 필요할 때"],
-      ["color-semantic-negative-default","#F93446","red/500",""],
+      ["color-semantic-negative-background","#380005","red/900","배경"],
+      ["color-semantic-negative-default","#F93446","red/500","텍스트/UI에 사용"],
       ["color-semantic-negative-strong","#C2001B","red/700",""]
     ],
     statusInfo: [
-      ["color-semantic-info-background","#001E42","blue/900","blue default의 배경이 필요할 때"],
-      ["color-semantic-info-default","#0073FF","blue/500","추가적인 정보를 표시해야 할 때"],
+      ["color-semantic-info-background","#001E42","blue/900","배경"],
+      ["color-semantic-info-default","#0073FF","blue/500","추가적인 정보를 표시해야 할 때 텍스트/UI에 사용"],
       ["color-semantic-info-strong","#0052B6","blue/700",""]
     ],
   },
