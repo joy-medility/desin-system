@@ -227,22 +227,17 @@
 
   /* Modal playground */
   .pg-label{ font-size:12px; font-weight:700; color:var(--color-semantic-label-assistive); text-transform:uppercase; letter-spacing:.07em; margin:20px 0 12px; }
-  .modal-pg{ display:flex; gap:24px; align-items:flex-start; }
-  .modal-pg-controls{ flex:0 0 200px; display:flex; flex-direction:column; gap:18px; background:var(--color-semantic-fill-01); border:1px solid var(--color-semantic-line-normal); border-radius:var(--radius-l); padding:20px; }
+  .modal-pg{ display:flex; border:1px solid var(--color-semantic-line-normal); border-radius:var(--radius-l); overflow:hidden; min-height:360px; }
+  .modal-pg-preview{ flex:1; background:var(--fill-00); display:flex; align-items:center; justify-content:center; padding:40px; }
+  .modal-pg-dim{ display:flex; align-items:center; justify-content:center; width:100%; }
+  .modal-pg-controls{ flex:0 0 260px; background:var(--color-semantic-fill-02); border-left:1px solid var(--color-semantic-line-normal); padding:24px; display:flex; flex-direction:column; gap:20px; overflow-y:auto; }
+  .pg-panel-title{ font-size:15px; font-weight:700; color:var(--color-semantic-label-heavy); }
+  .pg-panel-divider{ border:none; border-top:1px solid var(--color-semantic-line-normal); margin:0; }
   .pg-ctrl-group{ display:flex; flex-direction:column; gap:8px; }
-  .pg-ctrl-label{ font-size:11px; font-weight:700; color:var(--color-semantic-label-assistive); text-transform:uppercase; letter-spacing:.06em; }
-  .pg-toggle-row{ display:flex; align-items:center; justify-content:space-between; }
-  .pg-toggle-label{ font-size:13px; font-weight:600; color:var(--color-semantic-label-normal); cursor:pointer; }
-  .pg-toggle{ width:40px; height:22px; border-radius:11px; background:var(--color-semantic-fill-03); cursor:pointer; position:relative; transition:background .2s; flex-shrink:0; }
-  .pg-toggle.on{ background:var(--color-semantic-btn-primary-default-bg); }
-  .pg-toggle-knob{ position:absolute; top:3px; left:3px; width:16px; height:16px; border-radius:50%; background:#fff; transition:left .2s; }
-  .pg-toggle.on .pg-toggle-knob{ left:21px; }
-  .pg-radio-group{ display:flex; flex-direction:column; gap:6px; padding-left:2px; }
-  .pg-radio-row{ display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; color:var(--color-semantic-label-normal); font-family:'Pretendard',sans-serif; }
-  .pg-radio-row input[type=radio]{ accent-color:var(--color-semantic-btn-primary-default-bg); width:14px; height:14px; cursor:pointer; }
-  .pg-sub-group{ padding:10px 12px; background:var(--color-semantic-fill-02); border-radius:var(--radius-s); border:1px solid var(--color-semantic-line-normal); display:flex; flex-direction:column; gap:8px; }
-  .modal-pg-preview{ flex:1; }
-  .modal-pg-dim{ background:rgba(17,18,20,0.6); border-radius:var(--radius-l); padding:32px; display:flex; align-items:center; justify-content:center; min-height:240px; }
+  .pg-ctrl-label{ font-size:11px; font-weight:700; color:var(--color-semantic-label-assistive); text-transform:uppercase; letter-spacing:.07em; margin-bottom:2px; }
+  .pg-radio-row{ display:flex; align-items:center; gap:10px; cursor:pointer; font-size:13.5px; color:var(--color-semantic-label-normal); font-family:'Pretendard',sans-serif; line-height:1; }
+  .pg-radio-row input[type=radio]{ accent-color:var(--color-semantic-btn-primary-default-bg); width:16px; height:16px; cursor:pointer; flex-shrink:0; }
+  .pg-sub-group{ padding:10px 14px; background:var(--color-semantic-fill-03); border-radius:var(--radius-s); display:flex; flex-direction:column; gap:8px; margin-top:2px; }
   .modal-pg-dialog{ background:var(--fill-02); border:1px solid var(--line-normal); border-radius:12px; padding:32px; width:100%; max-width:440px; box-shadow:0 0 10px rgba(0,0,0,0.3); display:flex; flex-direction:column; gap:24px; position:relative; box-sizing:border-box; }
   .pg-dialog-icon{ display:flex; justify-content:center; }
   .pg-dialog-title{ font-size:24px; font-weight:700; color:var(--label-heavy); text-align:center; line-height:1.35; }
@@ -845,71 +840,54 @@
           <!-- 텍스트형 플레이그라운드 -->
           <div class="pg-label">텍스트형 — Playground</div>
           <div class="modal-pg" id="modalPg">
-            <!-- 컨트롤 패널 -->
-            <div class="modal-pg-controls">
 
-              <div class="pg-ctrl-group">
-                <div class="pg-toggle-row">
-                  <label class="pg-toggle-label" for="pgIconToggle">아이콘</label>
-                  <div class="pg-toggle" id="pgIconToggle" onclick="togglePg('icon',this)"><div class="pg-toggle-knob"></div></div>
-                </div>
-              </div>
-
-              <div class="pg-ctrl-group">
-                <div class="pg-ctrl-label">버튼 수</div>
-                <div class="pg-radio-group">
-                  <label class="pg-radio-row">
-                    <input type="radio" name="pgBtns" value="1" onchange="setPgRadio('btns','1')">
-                    <span>1개</span>
-                  </label>
-                  <label class="pg-radio-row">
-                    <input type="radio" name="pgBtns" value="2" checked onchange="setPgRadio('btns','2')">
-                    <span>2개</span>
-                  </label>
-                </div>
-                <div class="pg-sub-group" id="pgBtnDir">
-                  <div class="pg-ctrl-label" style="font-size:10px;">배치</div>
-                  <div class="pg-radio-group">
-                    <label class="pg-radio-row">
-                      <input type="radio" name="pgBtnDir" value="row" checked onchange="setPgRadio('btnDir','row')">
-                      <span>가로형</span>
-                    </label>
-                    <label class="pg-radio-row">
-                      <input type="radio" name="pgBtnDir" value="col" onchange="setPgRadio('btnDir','col')">
-                      <span>세로형</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="pg-ctrl-group">
-                <div class="pg-toggle-row">
-                  <label class="pg-toggle-label" for="pgSelectToggle">셀렉박스 버튼</label>
-                  <div class="pg-toggle" id="pgSelectToggle" onclick="togglePg('select',this)"><div class="pg-toggle-knob"></div></div>
-                </div>
-              </div>
-
-              <div class="pg-ctrl-group">
-                <div class="pg-toggle-row">
-                  <label class="pg-toggle-label" for="pgCountToggle">카운트 박스</label>
-                  <div class="pg-toggle" id="pgCountToggle" onclick="togglePg('count',this)"><div class="pg-toggle-knob"></div></div>
-                </div>
-              </div>
-
-              <div class="pg-ctrl-group">
-                <div class="pg-toggle-row">
-                  <label class="pg-toggle-label" for="pgCaptionToggle">Caption</label>
-                  <div class="pg-toggle" id="pgCaptionToggle" onclick="togglePg('caption',this)"><div class="pg-toggle-knob"></div></div>
-                </div>
-              </div>
-
-            </div>
-
-            <!-- 프리뷰 -->
+            <!-- 프리뷰 (왼쪽) -->
             <div class="modal-pg-preview">
               <div class="modal-pg-dim">
                 <div class="modal-pg-dialog" id="pgDialog"></div>
               </div>
+            </div>
+
+            <!-- 컨트롤 패널 (오른쪽) -->
+            <div class="modal-pg-controls">
+              <div class="pg-panel-title">Control</div>
+              <div class="pg-panel-divider"></div>
+
+              <div class="pg-ctrl-group">
+                <div class="pg-ctrl-label">아이콘</div>
+                <label class="pg-radio-row"><input type="radio" name="pgIcon" value="off" checked onchange="setPgRadio('icon','off')"><span>off</span></label>
+                <label class="pg-radio-row"><input type="radio" name="pgIcon" value="on" onchange="setPgRadio('icon','on')"><span>on</span></label>
+              </div>
+
+              <div class="pg-ctrl-group">
+                <div class="pg-ctrl-label">버튼 수</div>
+                <label class="pg-radio-row"><input type="radio" name="pgBtns" value="1" onchange="setPgRadio('btns','1')"><span>1개</span></label>
+                <label class="pg-radio-row"><input type="radio" name="pgBtns" value="2" checked onchange="setPgRadio('btns','2')"><span>2개</span></label>
+                <div class="pg-sub-group" id="pgBtnDir">
+                  <div class="pg-ctrl-label" style="font-size:10px; margin-bottom:2px;">배치</div>
+                  <label class="pg-radio-row"><input type="radio" name="pgBtnDir" value="row" checked onchange="setPgRadio('btnDir','row')"><span>가로형</span></label>
+                  <label class="pg-radio-row"><input type="radio" name="pgBtnDir" value="col" onchange="setPgRadio('btnDir','col')"><span>세로형</span></label>
+                </div>
+              </div>
+
+              <div class="pg-ctrl-group">
+                <div class="pg-ctrl-label">셀렉박스 버튼</div>
+                <label class="pg-radio-row"><input type="radio" name="pgSelect" value="off" checked onchange="setPgRadio('select','off')"><span>off</span></label>
+                <label class="pg-radio-row"><input type="radio" name="pgSelect" value="on" onchange="setPgRadio('select','on')"><span>on</span></label>
+              </div>
+
+              <div class="pg-ctrl-group">
+                <div class="pg-ctrl-label">카운트 박스</div>
+                <label class="pg-radio-row"><input type="radio" name="pgCount" value="off" checked onchange="setPgRadio('count','off')"><span>off</span></label>
+                <label class="pg-radio-row"><input type="radio" name="pgCount" value="on" onchange="setPgRadio('count','on')"><span>on</span></label>
+              </div>
+
+              <div class="pg-ctrl-group">
+                <div class="pg-ctrl-label">Caption</div>
+                <label class="pg-radio-row"><input type="radio" name="pgCaption" value="off" checked onchange="setPgRadio('caption','off')"><span>off</span></label>
+                <label class="pg-radio-row"><input type="radio" name="pgCaption" value="on" onchange="setPgRadio('caption','on')"><span>on</span></label>
+              </div>
+
             </div>
           </div>
 
@@ -1749,13 +1727,7 @@ const defaultLink = document.querySelector('.nav-link[href="#overview"]');
 if(defaultLink) defaultLink.classList.add('nav-active');
 
 // Modal Playground
-const pgState = { icon:false, btns:'2', btnDir:'row', select:false, count:false, caption:false };
-
-function togglePg(key, el) {
-  pgState[key] = !pgState[key];
-  el.classList.toggle('on', pgState[key]);
-  renderPgDialog();
-}
+const pgState = { icon:'off', btns:'2', btnDir:'row', select:'off', count:'off', caption:'off' };
 
 function setPgRadio(key, val) {
   pgState[key] = val;
@@ -1768,45 +1740,25 @@ function renderPgDialog() {
   const el = document.getElementById('pgDialog');
   if (!el) return;
   const { icon, btns, btnDir, select, count, caption } = pgState;
-
   let html = '';
 
-  if (icon) html += `<div class="pg-dialog-icon">
-    <svg viewBox="0 0 56 56" width="56" height="56" fill="none">
-      <circle cx="28" cy="28" r="28" fill="rgba(0,195,107,0.12)"/>
-      <path d="M28 18v12M28 34v4" stroke="#00C36B" stroke-width="3" stroke-linecap="round"/>
-    </svg></div>`;
+  if (icon === 'on') html += `<div class="pg-dialog-icon"><svg viewBox="0 0 56 56" width="56" height="56" fill="none"><circle cx="28" cy="28" r="28" fill="rgba(0,195,107,0.12)"/><path d="M28 18v12M28 34v4" stroke="#00C36B" stroke-width="3" stroke-linecap="round"/></svg></div>`;
 
   html += `<div class="pg-dialog-title">${btns === '1' ? 'Recount Required' : 'Delete Tray 1?'}</div>`;
-  html += `<div class="pg-dialog-body">${btns === '1'
-    ? 'A count mismatch was detected in Tray #. This usually happens if the camera view was blocked.'
-    : 'This will remove count of 30 from your current running total.'}</div>`;
+  html += `<div class="pg-dialog-body">${btns === '1' ? 'A count mismatch was detected in Tray #. This usually happens if the camera view was blocked.' : 'This will remove count of 30 from your current running total.'}</div>`;
 
-  if (count) html += `<div class="pg-dialog-count">60 → 30</div>`;
-
-  if (select) html += `<div class="pg-dialog-select">
-    <div class="pg-select-option"><div class="pg-select-dot"></div>Send Diagnostic Logs (Online)</div>
-    <div class="pg-select-option selected"><div class="pg-select-dot"></div>Export Diagnostic Logs (Local)</div>
-  </div>`;
+  if (count === 'on') html += `<div class="pg-dialog-count">60 → 30</div>`;
+  if (select === 'on') html += `<div class="pg-dialog-select"><div class="pg-select-option"><div class="pg-select-dot"></div>Send Diagnostic Logs (Online)</div><div class="pg-select-option selected"><div class="pg-select-dot"></div>Export Diagnostic Logs (Local)</div></div>`;
 
   if (btns === '1') {
     html += `<div class="pg-dialog-btns-row"><button class="pg-btn primary" style="width:100%;">Recount Now</button></div>`;
+  } else if (btnDir === 'row') {
+    html += `<div class="pg-dialog-btns-row"><button class="pg-btn secondary">Cancel</button><button class="pg-btn primary">Confirm</button></div>`;
   } else {
-    if (btnDir === 'row') {
-      html += `<div class="pg-dialog-btns-row">
-        <button class="pg-btn secondary">Cancel</button>
-        <button class="pg-btn primary">Confirm</button>
-      </div>`;
-    } else {
-      html += `<div class="pg-dialog-btns-col">
-        <button class="pg-btn primary" style="width:100%;">Confirm</button>
-        <button class="pg-btn secondary" style="width:100%;">Cancel</button>
-      </div>`;
-    }
+    html += `<div class="pg-dialog-btns-col"><button class="pg-btn primary" style="width:100%;">Confirm</button><button class="pg-btn secondary" style="width:100%;">Cancel</button></div>`;
   }
 
-  if (caption) html += `<div class="pg-dialog-caption">Deleting or retaking the image will not affect your count.</div>`;
-
+  if (caption === 'on') html += `<div class="pg-dialog-caption">Deleting or retaking the image will not affect your count.</div>`;
   el.innerHTML = html;
 }
 
