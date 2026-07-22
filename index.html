@@ -1748,7 +1748,7 @@ function renderPgDialog() {
   const { icon, btns, btnDir, select, count, caption } = pgState;
   let html = '';
 
-  if (icon === 'on') html += `<div class="pg-dialog-icon"><svg viewBox="0 0 56 56" width="56" height="56" fill="none"><circle cx="28" cy="28" r="28" fill="rgba(0,195,107,0.12)"/><path d="M28 18v12M28 34v4" stroke="#00C36B" stroke-width="3" stroke-linecap="round"/></svg></div>`;
+  if (icon === 'on') html += `<div class="pg-dialog-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none"><path d="M24 4L44 40H4L24 4Z" fill="#F8BA00"/><path d="M24 4L44 40H4L24 4Z" stroke="#AA8000" stroke-width="1.5" stroke-linejoin="round"/><rect x="22" y="18" width="4" height="12" rx="2" fill="#1E1E22"/><rect x="22" y="33" width="4" height="4" rx="2" fill="#1E1E22"/></svg></div>`;
 
   html += `<div class="pg-dialog-title">${btns === '1' ? 'Recount Required' : 'Delete Tray 1?'}</div>`;
   html += `<div class="pg-dialog-body">${btns === '1' ? 'A count mismatch was detected in Tray #. This usually happens if the camera view was blocked.' : 'This will remove count of 30 from your current running total.'}</div>`;
