@@ -165,6 +165,24 @@
 
   .tbd-box{ border:1px dashed var(--line-normal); border-radius:var(--radius-l); padding:48px; text-align:center; color:var(--label-assistive); font-size:14px; }
 
+  /* Dialog definition box */
+  .def-box{ background:var(--color-semantic-fill-01); border:1px solid var(--color-semantic-line-normal); border-radius:var(--radius-l); padding:28px 32px; margin:20px 0 32px; }
+  .def-quote{ font-size:15px; font-weight:600; color:var(--color-semantic-label-heavy); line-height:1.7; padding-bottom:24px; border-bottom:1px solid var(--color-semantic-line-normal); margin-bottom:24px; }
+  .def-criteria-title{ font-size:11px; font-weight:700; color:var(--color-semantic-label-assistive); letter-spacing:.08em; text-transform:uppercase; margin-bottom:14px; }
+  .def-criteria{ display:flex; gap:16px; margin-bottom:28px; }
+  .def-criterion{ display:flex; align-items:flex-start; gap:12px; flex:1; background:var(--color-semantic-fill-02); border-radius:var(--radius-m); padding:14px 16px; }
+  .def-num{ flex:0 0 24px; width:24px; height:24px; border-radius:50%; background:var(--color-semantic-btn-primary-default-bg); color:#04140c; font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  .def-criterion-title{ font-size:13px; font-weight:700; color:var(--color-semantic-label-strong); margin-bottom:4px; }
+  .def-criterion-desc{ font-size:12px; color:var(--color-semantic-label-neutral); line-height:1.5; }
+  .def-boundary-title{ font-size:11px; font-weight:700; color:var(--color-semantic-label-assistive); letter-spacing:.08em; text-transform:uppercase; margin-bottom:12px; }
+  .def-table{ border:1px solid var(--color-semantic-line-normal); border-radius:var(--radius-m); overflow:hidden; }
+  .def-table-row{ display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr; }
+  .def-table-row > div{ padding:10px 14px; font-size:12.5px; color:var(--color-semantic-label-neutral); border-bottom:1px solid var(--color-semantic-line-normal); display:flex; align-items:center; }
+  .def-table-row:last-child > div{ border-bottom:none; }
+  .def-table-head > div{ font-size:11px; font-weight:700; color:var(--color-semantic-label-assistive); background:var(--color-semantic-fill-02); text-transform:uppercase; letter-spacing:.06em; }
+  .def-check{ color:var(--color-semantic-positive-default); font-weight:700; }
+  .def-cross{ color:var(--color-semantic-negative-default); font-weight:700; }
+
   /* Component section */
   .comp-block{ margin-bottom:64px; }
   .comp-type-section{ margin-bottom:48px; padding-bottom:48px; border-bottom:1px solid var(--color-semantic-line-normal); }
@@ -689,6 +707,56 @@
       <div class="comp-block" id="dialog">
         <h2 class="cat-subtitle">Dialog</h2>
         <p class="cat-text">중요한 메시지나 결정을 안내하는 모달 형태의 컴포넌트입니다. 사용자의 흐름을 잠시 멈추고 확인, 선택, 취소 등의 행동을 유도할 때 사용합니다.</p>
+
+        <!-- Definition -->
+        <div class="def-box">
+          <div class="def-quote">사용자의 현재 흐름을 중단시키고, 명시적인 응답(확인·선택·입력)을 요구하는 일시적 UI 레이어. 응답 없이는 다음 단계로 진행되지 않는다.</div>
+          <div class="def-criteria-title">판별 기준 — 셋 모두 해당할 때 Dialog</div>
+          <div class="def-criteria">
+            <div class="def-criterion">
+              <div class="def-num">1</div>
+              <div>
+                <div class="def-criterion-title">흐름 중단</div>
+                <div class="def-criterion-desc">사용자가 하던 것을 멈춰야 한다</div>
+              </div>
+            </div>
+            <div class="def-criterion">
+              <div class="def-num">2</div>
+              <div>
+                <div class="def-criterion-title">응답 요구</div>
+                <div class="def-criterion-desc">버튼·선택·입력 중 하나가 반드시 필요하다</div>
+              </div>
+            </div>
+            <div class="def-criterion">
+              <div class="def-num">3</div>
+              <div>
+                <div class="def-criterion-title">임시 레이어</div>
+                <div class="def-criterion-desc">응답 후 사라진다</div>
+              </div>
+            </div>
+          </div>
+          <div class="def-boundary-title">경계 케이스</div>
+          <div class="def-table">
+            <div class="def-table-row def-table-head">
+              <div>케이스</div><div>흐름 중단</div><div>응답 요구</div><div>임시 레이어</div><div>Dialog</div>
+            </div>
+            <div class="def-table-row">
+              <div>Delete / Flagged / Unit of Use</div>
+              <div><span class="def-check">✓</span></div><div><span class="def-check">✓</span></div><div><span class="def-check">✓</span></div>
+              <div><span class="def-check">✓</span></div>
+            </div>
+            <div class="def-table-row">
+              <div>설정 Side Panel</div>
+              <div><span class="def-cross">✗</span></div><div><span class="def-cross">✗</span></div><div><span class="def-check">✓</span></div>
+              <div><span class="def-cross">✗</span></div>
+            </div>
+            <div class="def-table-row">
+              <div>QR Popover</div>
+              <div><span class="def-cross">✗</span></div><div><span class="def-cross">✗</span></div><div><span class="def-check">✓</span></div>
+              <div><span class="def-cross">✗</span></div>
+            </div>
+          </div>
+        </div>
 
         <!-- 공통 규칙 -->
         <div class="rule-box" style="margin-bottom:40px;">
