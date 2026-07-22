@@ -225,6 +225,37 @@
   .type-name{ font-size:15px; font-weight:800; color:var(--color-semantic-label-heavy); }
   .type-desc{ font-size:13px; color:var(--color-semantic-label-neutral); line-height:1.5; }
 
+  /* Modal playground */
+  .pg-label{ font-size:12px; font-weight:700; color:var(--color-semantic-label-assistive); text-transform:uppercase; letter-spacing:.07em; margin:20px 0 12px; }
+  .modal-pg{ display:flex; gap:24px; align-items:flex-start; }
+  .modal-pg-controls{ flex:0 0 220px; display:flex; flex-direction:column; gap:20px; background:var(--color-semantic-fill-01); border:1px solid var(--color-semantic-line-normal); border-radius:var(--radius-l); padding:20px; }
+  .pg-ctrl-group{ display:flex; flex-direction:column; gap:8px; }
+  .pg-ctrl-label{ font-size:11px; font-weight:700; color:var(--color-semantic-label-assistive); text-transform:uppercase; letter-spacing:.06em; }
+  .pg-ctrl-row{ display:flex; flex-wrap:wrap; gap:6px; }
+  .pg-chip{ font-family:'Pretendard',sans-serif; font-size:12px; font-weight:500; color:var(--color-semantic-label-neutral); background:var(--color-semantic-fill-02); border:1px solid var(--color-semantic-line-normal); border-radius:4px; padding:5px 10px; cursor:pointer; transition:all .15s; }
+  .pg-chip:hover{ border-color:var(--color-semantic-line-strong); color:var(--color-semantic-label-strong); }
+  .pg-chip.active{ background:var(--color-semantic-btn-primary-default-bg); border-color:var(--color-semantic-btn-primary-default-bg); color:#04140c; font-weight:700; }
+  .modal-pg-preview{ flex:1; }
+  .modal-pg-dim{ background:rgba(17,18,20,0.6); border-radius:var(--radius-l); padding:32px; display:flex; align-items:center; justify-content:center; min-height:240px; }
+  .modal-pg-dialog{ background:var(--fill-02); border:1px solid var(--line-normal); border-radius:12px; padding:32px; width:100%; max-width:440px; box-shadow:0 0 10px rgba(0,0,0,0.3); display:flex; flex-direction:column; gap:24px; position:relative; box-sizing:border-box; }
+  .pg-dialog-close{ position:absolute; top:10px; right:10px; width:32px; height:32px; border-radius:50%; border:none; background:transparent; color:var(--label-assistive); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:16px; }
+  .pg-dialog-icon{ display:flex; justify-content:center; }
+  .pg-dialog-title{ font-size:24px; font-weight:700; color:var(--label-heavy); text-align:center; line-height:1.35; }
+  .pg-dialog-body{ font-size:18px; font-weight:500; color:var(--label-strong); text-align:center; line-height:1.5; }
+  .pg-dialog-math{ text-align:center; font-size:20px; font-weight:700; color:var(--label-heavy); padding:14px 0; border-top:1px solid var(--line-normal); border-bottom:1px solid var(--line-normal); }
+  .pg-dialog-radio{ display:flex; flex-direction:column; gap:8px; }
+  .pg-radio-option{ border:1px solid var(--line-strong); border-radius:8px; padding:14px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--label-heavy); font-family:'Pretendard',sans-serif; }
+  .pg-radio-option.selected{ border-color:var(--status-positive-default); background:var(--status-positive-background); }
+  .pg-radio-dot{ width:18px; height:18px; border-radius:50%; border:2px solid var(--line-strong); flex-shrink:0; }
+  .pg-radio-option.selected .pg-radio-dot{ border:5px solid var(--status-positive-default); }
+  .pg-dialog-btns{ display:flex; gap:10px; }
+  .pg-btn{ font-family:'Pretendard',sans-serif; font-size:18px; font-weight:600; border:none; border-radius:6px; padding:14px 18px; cursor:default; flex:1; line-height:1; }
+  .pg-btn.primary{ background:var(--btn-primary-default-bg); color:#04140c; }
+  .pg-btn.secondary{ background:var(--btn-secondary-default-bg); color:var(--label-heavy); }
+  .pg-btn.danger{ background:var(--btn-warning-default-bg); color:var(--label-heavy); }
+  .pg-btn.full{ width:100%; }
+  .pg-btn-text-danger{ background:none; border:none; font-family:'Pretendard',sans-serif; font-size:16px; font-weight:600; color:var(--status-negative-default); cursor:default; padding:10px; text-align:center; width:100%; border-top:1px solid var(--line-normal); margin-top:-12px; }
+
   .pos-variants{ display:flex; gap:24px; margin:20px 0 8px; flex-wrap:wrap; }
   .pos-variant{ flex:1; min-width:260px; }
   .pos-variant-label{ font-size:12px; font-weight:700; color:var(--color-semantic-label-neutral); margin-bottom:12px; text-transform:uppercase; letter-spacing:.06em; }
@@ -803,41 +834,77 @@
         <!-- 유형 1: 정방향 -->
         <div class="comp-type-section">
           <div class="comp-type-header">
-            <div class="comp-type-title">정방향 <span class="status-key">Center Overlay</span></div>
+            <div class="comp-type-title">정방향 <span class="status-key">Modal</span></div>
             <p class="comp-type-desc">화면 정중앙에 위치하며 전체 Dim 처리 후 노출됩니다. 사용자의 즉각적인 주의가 필요한 모든 확인·경고·선택에 사용합니다.</p>
           </div>
 
-          <div class="pos-variants">
-            <!-- 텍스트형 -->
-            <div class="pos-variant">
-              <div class="pos-variant-label">텍스트형</div>
-              <div class="dialog-overlay-demo">
-                <div class="demo-dialog">
-                  <div class="demo-dialog-content">
-                    <div class="demo-dialog-title">Delete Tray 1?</div>
-                    <div class="demo-dialog-body">This will remove count of 30 from your current running total.</div>
-                    <div class="demo-math-row">60 → 30</div>
-                  </div>
-                  <div class="demo-dialog-buttons">
-                    <button class="demo-btn secondary">Cancel</button>
-                    <button class="demo-btn primary">Delete</button>
-                  </div>
+          <!-- 텍스트형 플레이그라운드 -->
+          <div class="pg-label">텍스트형 — Playground</div>
+          <div class="modal-pg" id="modalPg">
+            <!-- 컨트롤 패널 -->
+            <div class="modal-pg-controls">
+
+              <div class="pg-ctrl-group">
+                <div class="pg-ctrl-label">아이콘</div>
+                <div class="pg-ctrl-row">
+                  <button class="pg-chip active" onclick="setPg('icon','none',this)">없음</button>
+                  <button class="pg-chip" onclick="setPg('icon','info',this)"><span style="color:var(--status-positive-default);">●</span> 정보</button>
+                  <button class="pg-chip" onclick="setPg('icon','warn',this)"><span style="color:var(--status-cautionary-default);">●</span> 경고</button>
+                  <button class="pg-chip" onclick="setPg('icon','error',this)"><span style="color:var(--status-negative-default);">●</span> 에러</button>
                 </div>
               </div>
-              <ul class="ux-bullets" style="margin-top:14px;">
-                <li>위치: 화면 정중앙 고정</li>
-                <li>전체 화면 Dim 처리</li>
-                <li>배경 클릭 차단 (일부 케이스 예외)</li>
-                <li>버튼 1~3개 구성 가능</li>
-              </ul>
+
+              <div class="pg-ctrl-group">
+                <div class="pg-ctrl-label">버튼 수</div>
+                <div class="pg-ctrl-row">
+                  <button class="pg-chip" onclick="setPg('btns','1',this)">1개</button>
+                  <button class="pg-chip active" onclick="setPg('btns','2',this)">2개</button>
+                  <button class="pg-chip" onclick="setPg('btns','3',this)">3개</button>
+                </div>
+              </div>
+
+              <div class="pg-ctrl-group">
+                <div class="pg-ctrl-label">X 버튼</div>
+                <div class="pg-ctrl-row">
+                  <button class="pg-chip active" onclick="setPg('close','hide',this)">숨김</button>
+                  <button class="pg-chip" onclick="setPg('close','show',this)">표시</button>
+                </div>
+              </div>
+
+              <div class="pg-ctrl-group">
+                <div class="pg-ctrl-label">추가 요소</div>
+                <div class="pg-ctrl-row">
+                  <button class="pg-chip active" onclick="setPg('extra','none',this)">없음</button>
+                  <button class="pg-chip" onclick="setPg('extra','math',this)">수식 미리보기</button>
+                  <button class="pg-chip" onclick="setPg('extra','radio',this)">라디오 선택</button>
+                </div>
+              </div>
+
+              <div class="pg-ctrl-group">
+                <div class="pg-ctrl-label">버튼 스타일</div>
+                <div class="pg-ctrl-row">
+                  <button class="pg-chip active" onclick="setPg('danger','none',this)">기본</button>
+                  <button class="pg-chip" onclick="setPg('danger','yes',this)"><span style="color:var(--status-negative-default);">●</span> 위험</button>
+                </div>
+              </div>
+
             </div>
 
-            <!-- 이미지형 -->
-            <div class="pos-variant">
-              <div class="pos-variant-label">이미지형</div>
+            <!-- 프리뷰 -->
+            <div class="modal-pg-preview">
+              <div class="modal-pg-dim">
+                <div class="modal-pg-dialog" id="pgDialog"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 이미지형 -->
+          <div class="pg-label" style="margin-top:32px;">이미지형</div>
+          <div class="pos-variants" style="margin-top:12px;">
+            <div class="pos-variant" style="max-width:400px;">
               <div class="dialog-overlay-demo">
                 <div class="demo-dialog">
-                  <div style="width:100%;height:100px;background:var(--color-semantic-fill-03);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:4px;">
+                  <div style="width:100%;height:120px;background:var(--color-semantic-fill-03);border-radius:8px;display:flex;align-items:center;justify-content:center;">
                     <svg viewBox="0 0 48 48" width="40" height="40" fill="none"><rect x="6" y="6" width="36" height="36" rx="4" stroke="var(--color-semantic-line-heavy)" stroke-width="2"/><path d="M6 32l10-10 8 8 6-6 12 12" stroke="var(--color-semantic-line-heavy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18" cy="18" r="3" fill="var(--color-semantic-line-heavy)"/></svg>
                   </div>
                   <div class="demo-dialog-content">
@@ -851,9 +918,8 @@
                 </div>
               </div>
               <ul class="ux-bullets" style="margin-top:14px;">
-                <li>텍스트형과 동일한 위치·Dim 규칙 적용</li>
-                <li>이미지·캡처 미리보기 포함 시 사용</li>
-                <li>이미지 영역은 Dialog 상단에 배치</li>
+                <li>이미지·캡처 미리보기가 Dialog 상단에 배치</li>
+                <li>위치·Dim 규칙은 텍스트형과 동일</li>
               </ul>
             </div>
           </div>
@@ -1666,6 +1732,74 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 
 const defaultLink = document.querySelector('.nav-link[href="#overview"]');
 if(defaultLink) defaultLink.classList.add('nav-active');
+
+// Modal Playground
+const pgState = { icon:'none', btns:'2', close:'hide', extra:'none', danger:'none' };
+
+function setPg(key, val, btn) {
+  pgState[key] = val;
+  btn.closest('.pg-ctrl-row').querySelectorAll('.pg-chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  renderPgDialog();
+}
+
+function renderPgDialog() {
+  const el = document.getElementById('pgDialog');
+  if (!el) return;
+  const { icon, btns, close, extra, danger } = pgState;
+
+  const iconSvg = {
+    info: `<svg viewBox="0 0 56 56" width="56" height="56" fill="none"><circle cx="28" cy="28" r="28" fill="rgba(0,195,107,0.12)"/><path d="M28 18v14M28 36v4" stroke="#00C36B" stroke-width="3" stroke-linecap="round"/></svg>`,
+    warn: `<svg viewBox="0 0 56 56" width="56" height="56" fill="none"><circle cx="28" cy="28" r="28" fill="rgba(248,186,0,0.12)"/><path d="M28 18v14M28 36v4" stroke="#F8BA00" stroke-width="3" stroke-linecap="round"/></svg>`,
+    error: `<svg viewBox="0 0 56 56" width="56" height="56" fill="none"><circle cx="28" cy="28" r="28" fill="rgba(249,52,70,0.12)"/><path d="M28 18v14M28 36v4" stroke="#F93446" stroke-width="3" stroke-linecap="round"/></svg>`,
+  };
+
+  const titles = { '1':'Recount Required', '2':'Delete Tray 1?', '3':'Resume to Recount?' };
+  const bodies = {
+    '1': 'A count mismatch was detected in Tray #. This usually happens if the camera view was blocked.',
+    '2': 'This will remove count of 30 from your current running total.',
+    '3': 'Unsaved progress was found for Rx #1231232. This includes your count, tray data, and all images captured.'
+  };
+
+  let html = '';
+
+  if (close === 'show') html += `<button class="pg-dialog-close">✕</button>`;
+  if (icon !== 'none') html += `<div class="pg-dialog-icon">${iconSvg[icon]}</div>`;
+
+  html += `<div class="pg-dialog-title">${titles[btns]}</div>`;
+  html += `<div class="pg-dialog-body">${bodies[btns]}</div>`;
+
+  if (extra === 'math') html += `<div class="pg-dialog-math">60 → 30</div>`;
+  if (extra === 'radio') html += `
+    <div class="pg-dialog-radio">
+      <div class="pg-radio-option"><div class="pg-radio-dot"></div>Send Diagnostic Logs (Online)</div>
+      <div class="pg-radio-option selected"><div class="pg-radio-dot"></div>Export Diagnostic Logs (Local)</div>
+    </div>`;
+
+  if (btns === '1') {
+    html += `<div class="pg-dialog-btns"><button class="pg-btn primary full">Recount Now</button></div>`;
+  } else if (btns === '2') {
+    const confirmLabel = danger === 'yes' ? 'Delete' : 'Confirm';
+    const confirmClass = danger === 'yes' ? 'danger' : 'primary';
+    html += `<div class="pg-dialog-btns">
+      <button class="pg-btn secondary">Cancel</button>
+      <button class="pg-btn ${confirmClass}">${confirmLabel}</button>
+    </div>`;
+  } else if (btns === '3') {
+    html += `<div class="pg-dialog-btns">
+      <button class="pg-btn primary full">Resume</button>
+    </div>
+    <div class="pg-dialog-btns">
+      <button class="pg-btn secondary full">Cancel</button>
+    </div>
+    <div class="pg-btn-text-danger">Discard to Restart</div>`;
+  }
+
+  el.innerHTML = html;
+}
+
+document.addEventListener('DOMContentLoaded', () => { renderPgDialog(); });
+setTimeout(renderPgDialog, 100);
 </script>
 </body>
 </html>
