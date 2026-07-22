@@ -167,6 +167,8 @@
 
   /* Dialog definition box */
   .def-box{ background:var(--color-semantic-fill-01); border:1px solid var(--color-semantic-line-normal); border-radius:var(--radius-l); padding:28px 32px; margin:20px 0 32px; }
+  .def-label{ font-size:11px; font-weight:700; color:var(--color-semantic-label-assistive); letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px; }
+  .def-note{ font-size:12.5px; color:var(--color-semantic-label-neutral); margin-top:14px; line-height:1.6; }
   .def-quote{ font-size:15px; font-weight:600; color:var(--color-semantic-label-heavy); line-height:1.7; padding-bottom:24px; border-bottom:1px solid var(--color-semantic-line-normal); margin-bottom:24px; }
   .def-criteria-title{ font-size:11px; font-weight:700; color:var(--color-semantic-label-assistive); letter-spacing:.08em; text-transform:uppercase; margin-bottom:14px; }
   .def-criteria{ display:flex; gap:16px; margin-bottom:28px; }
@@ -710,6 +712,7 @@
 
         <!-- Definition -->
         <div class="def-box">
+          <div class="def-label">Dialog 정의</div>
           <div class="def-quote">사용자의 현재 흐름을 중단시키고, 명시적인 응답(확인·선택·입력)을 요구하는 일시적 UI 레이어. 응답 없이는 다음 단계로 진행되지 않는다.</div>
           <div class="def-criteria-title">판별 기준 — 셋 모두 해당할 때 Dialog</div>
           <div class="def-criteria">
@@ -735,7 +738,7 @@
               </div>
             </div>
           </div>
-          <div class="def-boundary-title">경계 케이스</div>
+          <div class="def-boundary-title">경계 케이스 예시</div>
           <div class="def-table">
             <div class="def-table-row def-table-head">
               <div>케이스</div><div>흐름 중단</div><div>응답 요구</div><div>임시 레이어</div><div>Dialog</div>
@@ -756,6 +759,7 @@
               <div><span class="def-cross">✗</span></div>
             </div>
           </div>
+          <p class="def-note">설정 사이드패널과 QR 팝오버는 세 가지 판별 기준에 해당하지 않으므로 개별 컴포넌트로 분류된다.</p>
         </div>
 
         <!-- 공통 규칙 -->
