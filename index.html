@@ -229,6 +229,14 @@
   .pg-label{ font-size:12px; font-weight:700; color:var(--color-semantic-label-assistive); text-transform:uppercase; letter-spacing:.07em; margin:20px 0 12px; }
   .modal-pg{ display:flex; border:1px solid var(--color-semantic-line-normal); border-radius:var(--radius-l); overflow:hidden; min-height:360px; }
   .modal-pg-preview{ flex:1; background:var(--fill-00); display:flex; align-items:center; justify-content:center; padding:40px; }
+  .pg-toggle-row{ display:flex; align-items:center; justify-content:space-between; padding:6px 0; }
+  .pg-toggle-label{ font-size:13.5px; color:var(--color-semantic-label-normal); font-family:'Pretendard',sans-serif; }
+  .pg-switch{ position:relative; display:inline-block; cursor:pointer; }
+  .pg-switch input{ opacity:0; width:0; height:0; position:absolute; }
+  .pg-switch-track{ display:block; width:44px; height:24px; border-radius:12px; background:var(--color-semantic-fill-03); transition:background .2s; position:relative; }
+  .pg-switch input:checked + .pg-switch-track{ background:var(--color-semantic-btn-primary-default-bg); }
+  .pg-switch-knob{ position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:#fff; transition:left .2s; box-shadow:0 1px 3px rgba(0,0,0,0.3); }
+  .pg-switch input:checked + .pg-switch-track .pg-switch-knob{ left:23px; }
   .modal-pg-dim{ display:flex; align-items:center; justify-content:center; width:100%; }
   .modal-pg-controls{ flex:0 0 260px; background:var(--color-semantic-fill-02); border-left:1px solid var(--color-semantic-line-normal); padding:24px; display:flex; flex-direction:column; gap:20px; overflow-y:auto; }
   .pg-panel-title{ font-size:15px; font-weight:700; color:var(--color-semantic-label-heavy); }
@@ -854,12 +862,6 @@
               <div class="pg-panel-divider"></div>
 
               <div class="pg-ctrl-group">
-                <div class="pg-ctrl-label">아이콘</div>
-                <label class="pg-radio-row"><input type="radio" name="pgIcon" value="off" checked onchange="setPgRadio('icon','off')"><span>off</span></label>
-                <label class="pg-radio-row"><input type="radio" name="pgIcon" value="on" onchange="setPgRadio('icon','on')"><span>on</span></label>
-              </div>
-
-              <div class="pg-ctrl-group">
                 <div class="pg-ctrl-label">버튼 수</div>
                 <label class="pg-radio-row"><input type="radio" name="pgBtns" value="1" onchange="setPgRadio('btns','1')"><span>1개</span></label>
                 <label class="pg-radio-row"><input type="radio" name="pgBtns" value="2" checked onchange="setPgRadio('btns','2')"><span>2개</span></label>
@@ -870,22 +872,25 @@
                 </div>
               </div>
 
-              <div class="pg-ctrl-group">
-                <div class="pg-ctrl-label">셀렉박스 버튼</div>
-                <label class="pg-radio-row"><input type="radio" name="pgSelect" value="off" checked onchange="setPgRadio('select','off')"><span>off</span></label>
-                <label class="pg-radio-row"><input type="radio" name="pgSelect" value="on" onchange="setPgRadio('select','on')"><span>on</span></label>
-              </div>
+              <div class="pg-panel-divider"></div>
 
               <div class="pg-ctrl-group">
-                <div class="pg-ctrl-label">카운트 박스</div>
-                <label class="pg-radio-row"><input type="radio" name="pgCount" value="off" checked onchange="setPgRadio('count','off')"><span>off</span></label>
-                <label class="pg-radio-row"><input type="radio" name="pgCount" value="on" onchange="setPgRadio('count','on')"><span>on</span></label>
-              </div>
-
-              <div class="pg-ctrl-group">
-                <div class="pg-ctrl-label">Caption</div>
-                <label class="pg-radio-row"><input type="radio" name="pgCaption" value="off" checked onchange="setPgRadio('caption','off')"><span>off</span></label>
-                <label class="pg-radio-row"><input type="radio" name="pgCaption" value="on" onchange="setPgRadio('caption','on')"><span>on</span></label>
+                <div class="pg-toggle-row">
+                  <span class="pg-toggle-label">아이콘</span>
+                  <label class="pg-switch"><input type="checkbox" onchange="setPgRadio('icon', this.checked ? 'on' : 'off')"><span class="pg-switch-track"><span class="pg-switch-knob"></span></span></label>
+                </div>
+                <div class="pg-toggle-row">
+                  <span class="pg-toggle-label">셀렉박스 버튼</span>
+                  <label class="pg-switch"><input type="checkbox" onchange="setPgRadio('select', this.checked ? 'on' : 'off')"><span class="pg-switch-track"><span class="pg-switch-knob"></span></span></label>
+                </div>
+                <div class="pg-toggle-row">
+                  <span class="pg-toggle-label">카운트 박스</span>
+                  <label class="pg-switch"><input type="checkbox" onchange="setPgRadio('count', this.checked ? 'on' : 'off')"><span class="pg-switch-track"><span class="pg-switch-knob"></span></span></label>
+                </div>
+                <div class="pg-toggle-row">
+                  <span class="pg-toggle-label">Caption</span>
+                  <label class="pg-switch"><input type="checkbox" onchange="setPgRadio('caption', this.checked ? 'on' : 'off')"><span class="pg-switch-track"><span class="pg-switch-knob"></span></span></label>
+                </div>
               </div>
 
             </div>
