@@ -217,6 +217,14 @@
   .action-dialog-caret{ width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent; border-top:8px solid var(--color-semantic-line-normal); }
   .action-dialog-button-demo{ background:var(--color-semantic-btn-secondary-default-bg); color:var(--color-semantic-label-heavy); font-size:14px; font-weight:600; padding:12px 20px; border-radius:6px; font-family:'Pretendard', sans-serif; }
 
+  .type-chart{ border:1px solid var(--color-semantic-line-normal); border-radius:var(--radius-l); overflow:hidden; margin:24px 0 32px; }
+  .type-chart-head{ display:grid; grid-template-columns:1fr 1fr 2fr; background:var(--color-semantic-fill-02); padding:10px 20px; }
+  .type-chart-head > div{ font-size:11px; font-weight:700; color:var(--color-semantic-label-assistive); text-transform:uppercase; letter-spacing:.07em; }
+  .type-chart-row{ display:grid; grid-template-columns:1fr 1fr 2fr; padding:16px 20px; border-top:1px solid var(--color-semantic-line-normal); align-items:center; gap:8px; }
+  .type-pos{ font-size:14px; font-weight:600; color:var(--color-semantic-label-normal); }
+  .type-name{ font-size:15px; font-weight:800; color:var(--color-semantic-label-heavy); }
+  .type-desc{ font-size:13px; color:var(--color-semantic-label-neutral); line-height:1.5; }
+
   .pos-variants{ display:flex; gap:24px; margin:20px 0 8px; flex-wrap:wrap; }
   .pos-variant{ flex:1; min-width:260px; }
   .pos-variant-label{ font-size:12px; font-weight:700; color:var(--color-semantic-label-neutral); margin-bottom:12px; text-transform:uppercase; letter-spacing:.06em; }
@@ -765,6 +773,30 @@
             </div>
           </div>
           <p class="def-note">설정 사이드패널과 QR 팝오버는 세 가지 판별 기준에 해당하지 않으므로 개별 컴포넌트로 분류된다.</p>
+        </div>
+
+        <!-- 유형 차트 -->
+        <div class="type-chart">
+          <div class="type-chart-head">
+            <div>위치</div>
+            <div>명칭</div>
+            <div>설명</div>
+          </div>
+          <div class="type-chart-row">
+            <div class="type-pos">정방향</div>
+            <div class="type-name">Modal</div>
+            <div class="type-desc">화면 정중앙 고정, 전체 Dim 처리</div>
+          </div>
+          <div class="type-chart-row">
+            <div class="type-pos">왼쪽 섹션</div>
+            <div class="type-name">Panel</div>
+            <div class="type-desc">카메라 프리뷰 영역 점유, Dim 없음</div>
+          </div>
+          <div class="type-chart-row">
+            <div class="type-pos">버튼에 근접</div>
+            <div class="type-name">Popover</div>
+            <div class="type-desc">트리거 버튼 인접 배치, 배경 탭 = Cancel</div>
+          </div>
         </div>
 
         <!-- 공통 규칙 -->
