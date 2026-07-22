@@ -1746,24 +1746,32 @@ function renderPgDialog() {
   const el = document.getElementById('pgDialog');
   if (!el) return;
   const { icon, btns, btnDir, select, count, caption } = pgState;
-  let html = '';
+  // 콘텐츠 섹션 (아이콘 + 텍스트) — gap:20px
+  let content = '';
+  if (icon === 'on') content += `<div class="pg-dialog-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none"><path d="M24 4L44 40H4L24 4Z" fill="#F8BA00"/><path d="M24 4L44 40H4L24 4Z" stroke="#AA8000" stroke-width="1.5" stroke-linejoin="round"/><rect x="22" y="18" width="4" height="12" rx="2" fill="#1E1E22"/><rect x="22" y="33" width="4" height="4" rx="2" fill="#1E1E22"/></svg></div>`;
 
-  if (icon === 'on') html += `<div class="pg-dialog-icon"><svg viewBox="0 0 48 48" width="48" height="48" fill="none"><path d="M24 4L44 40H4L24 4Z" fill="#F8BA00"/><path d="M24 4L44 40H4L24 4Z" stroke="#AA8000" stroke-width="1.5" stroke-linejoin="round"/><rect x="22" y="18" width="4" height="12" rx="2" fill="#1E1E22"/><rect x="22" y="33" width="4" height="4" rx="2" fill="#1E1E22"/></svg></div>`;
+  // 텍스트 섹션 — gap:12px, px:16px
+  const title = btns === '1' ? 'Recount Required' : 'Delete Tray 1?';
+  const body = btns === '1' ? 'A count mismatch was detected in Tray #. This usually happens if the camera view was blocked.' : 'This will remove count of 30 from your current running total.';
+  content += `<div style="display:flex;flex-direction:column;gap:12px;padding:0 16px;width:100%;box-sizing:border-box;">
+    <div class="pg-dialog-title">${title}</div>
+    <div class="pg-dialog-body">${body}</div>
+  </div>`;
 
-  html += `<div class="pg-dialog-title">${btns === '1' ? 'Recount Required' : 'Delete Tray 1?'}</div>`;
-  html += `<div class="pg-dialog-body">${btns === '1' ? 'A count mismatch was detected in Tray #. This usually happens if the camera view was blocked.' : 'This will remove count of 30 from your current running total.'}</div>`;
+  if (count === 'on') content += `<div class="pg-dialog-count">60 → 30</div>`;
+  if (select === 'on') content += `<div class="pg-dialog-select"><div class="pg-select-option"><div class="pg-select-dot"></div>Send Diagnostic Logs (Online)</div><div class="pg-select-option selected"><div class="pg-select-dot"></div>Export Diagnostic Logs (Local)</div></div>`;
 
-  if (count === 'on') html += `<div class="pg-dialog-count">60 → 30</div>`;
-  if (select === 'on') html += `<div class="pg-dialog-select"><div class="pg-select-option"><div class="pg-select-dot"></div>Send Diagnostic Logs (Online)</div><div class="pg-select-option selected"><div class="pg-select-dot"></div>Export Diagnostic Logs (Local)</div></div>`;
-
+  // 버튼 섹션 — gap:10px
+  let buttons = '';
   if (btns === '1') {
-    html += `<div class="pg-dialog-btns-row"><button class="pg-btn primary" style="width:100%;">Recount Now</button></div>`;
+    buttons = `<div class="pg-dialog-btns-row"><button class="pg-btn primary" style="width:100%;">Recount Now</button></div>`;
   } else if (btnDir === 'row') {
-    html += `<div class="pg-dialog-btns-row"><button class="pg-btn secondary">Cancel</button><button class="pg-btn primary">Confirm</button></div>`;
+    buttons = `<div class="pg-dialog-btns-row"><button class="pg-btn secondary">Cancel</button><button class="pg-btn primary">Confirm</button></div>`;
   } else {
-    html += `<div class="pg-dialog-btns-col"><button class="pg-btn primary" style="width:100%;">Confirm</button><button class="pg-btn secondary" style="width:100%;">Cancel</button></div>`;
+    buttons = `<div class="pg-dialog-btns-col"><button class="pg-btn primary" style="width:100%;">Confirm</button><button class="pg-btn secondary" style="width:100%;">Cancel</button></div>`;
   }
 
+  let html = `<div style="display:flex;flex-direction:column;gap:20px;align-items:center;width:100%;">${content}</div>${buttons}`;
   if (caption === 'on') html += `<div class="pg-dialog-caption">Deleting or retaking the image will not affect your count.</div>`;
   el.innerHTML = html;
 }
