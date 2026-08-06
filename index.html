@@ -276,6 +276,12 @@
   .pos-variant-label{ font-size:12px; font-weight:700; color:var(--color-semantic-label-neutral); margin-bottom:12px; text-transform:uppercase; letter-spacing:.06em; }
   .demo-math-row{ text-align:center; font-size:17px; font-weight:700; color:var(--color-semantic-label-heavy); padding:10px 0; border-top:1px solid var(--color-semantic-line-normal); border-bottom:1px solid var(--color-semantic-line-normal); margin:4px 0; }
 
+  .icon-rule-list{ display:flex; flex-direction:column; gap:8px; }
+  .icon-rule-item{ display:flex; align-items:flex-start; gap:8px; font-size:13px; color:var(--color-semantic-label-neutral); line-height:1.5; }
+  .icon-rule-dot{ flex-shrink:0; font-size:12px; font-weight:700; margin-top:1px; }
+  .icon-rule-dot.use{ color:var(--color-semantic-positive-default); }
+  .icon-rule-dot.nouse{ color:var(--color-semantic-negative-default); }
+
   /* Case blocks */
   .case-block{ border:1px solid var(--color-semantic-line-normal); border-radius:var(--radius-l); padding:24px; margin-bottom:20px; }
   .case-header{ margin-bottom:18px; }
@@ -901,6 +907,31 @@
                 </div>
               </div>
 
+            </div>
+          </div>
+
+          <!-- 아이콘 사용 규칙 -->
+          <div class="pg-label" style="margin-top:40px;">! 아이콘 사용 규칙</div>
+          <div class="rule-box" style="margin-bottom:0;">
+            <div style="font-size:13px; color:var(--label-neutral); line-height:1.8; margin-bottom:20px;">맥락만으로 심각도를 인지하기 어려운 경우에만 사용합니다. 색상·테두리·화면 구조로 이미 전달되는 경우 생략합니다.</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+              <div>
+                <div style="font-size:11px; font-weight:700; color:var(--color-semantic-positive-default); text-transform:uppercase; letter-spacing:.07em; margin-bottom:10px;">사용 O</div>
+                <div class="icon-rule-list">
+                  <div class="icon-rule-item"><span class="icon-rule-dot use">✓</span>Dialog (Warning/Error) — 팝업은 순간 인지 필요</div>
+                  <div class="icon-rule-item"><span class="icon-rule-dot use">✓</span>Toast 알림 — 짧게 노출되므로 즉각 인지 필요</div>
+                  <div class="icon-rule-item"><span class="icon-rule-dot use">✓</span>전체 에러 화면 — 빈 화면의 시각적 앵커 역할</div>
+                  <div class="icon-rule-item"><span class="icon-rule-dot use">✓</span>Flagged 알약 감지 — 주의 상태 강조</div>
+                </div>
+              </div>
+              <div>
+                <div style="font-size:11px; font-weight:700; color:var(--color-semantic-negative-default); text-transform:uppercase; letter-spacing:.07em; margin-bottom:10px;">사용 X</div>
+                <div class="icon-rule-list">
+                  <div class="icon-rule-item"><span class="icon-rule-dot nouse">✕</span>인풋 필드 에러 — 빨간 테두리가 이미 신호</div>
+                  <div class="icon-rule-item"><span class="icon-rule-dot nouse">✕</span>버튼 비활성화 — 색상으로 이미 구분됨</div>
+                  <div class="icon-rule-item"><span class="icon-rule-dot nouse">✕</span>성공·완료 상태 — 아이콘이 노이즈</div>
+                </div>
+              </div>
             </div>
           </div>
 
