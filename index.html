@@ -860,7 +860,7 @@
           </div>
 
           <!-- 텍스트형 플레이그라운드 -->
-          <div class="pg-label">텍스트형 — Playground</div>
+          <div class="pg-label">Modal — Playground</div>
           <div class="modal-pg" id="modalPg">
 
             <!-- 프리뷰 (왼쪽) -->
@@ -876,14 +876,13 @@
               <div class="pg-panel-divider"></div>
 
               <div class="pg-ctrl-group">
-                <div class="pg-ctrl-label">버튼 수</div>
-                <label class="pg-radio-row"><input type="radio" name="pgBtns" value="1" onchange="setPgRadio('btns','1')"><span>1개</span></label>
-                <label class="pg-radio-row"><input type="radio" name="pgBtns" value="2" checked onchange="setPgRadio('btns','2')"><span>2개</span></label>
-                <div class="pg-sub-group" id="pgBtnDir">
-                  <div class="pg-ctrl-label" style="font-size:10px; margin-bottom:2px;">배치</div>
-                  <label class="pg-radio-row"><input type="radio" name="pgBtnDir" value="row" checked onchange="setPgRadio('btnDir','row')"><span>가로형</span></label>
-                  <label class="pg-radio-row"><input type="radio" name="pgBtnDir" value="col" onchange="setPgRadio('btnDir','col')"><span>세로형</span></label>
-                </div>
+                <div class="pg-ctrl-label">타입</div>
+                <label class="pg-radio-row"><input type="radio" name="pgType" value="1btn" checked onchange="setPgType('1btn')"><span>1 btn</span></label>
+                <label class="pg-radio-row"><input type="radio" name="pgType" value="2btn" onchange="setPgType('2btn')"><span>2 btn</span></label>
+                <label class="pg-radio-row"><input type="radio" name="pgType" value="3btn" onchange="setPgType('3btn')"><span>3 btn</span></label>
+                <label class="pg-radio-row"><input type="radio" name="pgType" value="select" onchange="setPgType('select')"><span>Select + 2 btn</span></label>
+                <label class="pg-radio-row"><input type="radio" name="pgType" value="progress" onchange="setPgType('progress')"><span>Progress</span></label>
+                <label class="pg-radio-row"><input type="radio" name="pgType" value="resume" onchange="setPgType('resume')"><span>Resume to Recount</span></label>
               </div>
 
               <div class="pg-panel-divider"></div>
@@ -891,19 +890,7 @@
               <div class="pg-ctrl-group">
                 <div class="pg-toggle-row">
                   <span class="pg-toggle-label">아이콘</span>
-                  <label class="pg-switch"><input type="checkbox" onchange="setPgRadio('icon', this.checked ? 'on' : 'off')"><span class="pg-switch-track"><span class="pg-switch-knob"></span></span></label>
-                </div>
-                <div class="pg-toggle-row">
-                  <span class="pg-toggle-label">셀렉박스 버튼</span>
-                  <label class="pg-switch"><input type="checkbox" onchange="setPgRadio('select', this.checked ? 'on' : 'off')"><span class="pg-switch-track"><span class="pg-switch-knob"></span></span></label>
-                </div>
-                <div class="pg-toggle-row">
-                  <span class="pg-toggle-label">카운트 박스</span>
-                  <label class="pg-switch"><input type="checkbox" onchange="setPgRadio('count', this.checked ? 'on' : 'off')"><span class="pg-switch-track"><span class="pg-switch-knob"></span></span></label>
-                </div>
-                <div class="pg-toggle-row">
-                  <span class="pg-toggle-label">Caption</span>
-                  <label class="pg-switch"><input type="checkbox" onchange="setPgRadio('caption', this.checked ? 'on' : 'off')"><span class="pg-switch-track"><span class="pg-switch-knob"></span></span></label>
+                  <label class="pg-switch"><input type="checkbox" id="pgIconCheck" onchange="setPgIcon(this.checked)"><span class="pg-switch-track"><span class="pg-switch-knob"></span></span></label>
                 </div>
               </div>
 
@@ -1771,47 +1758,78 @@ const defaultLink = document.querySelector('.nav-link[href="#overview"]');
 if(defaultLink) defaultLink.classList.add('nav-active');
 
 // Modal Playground
-const pgState = { icon:'off', btns:'2', btnDir:'row', select:'off', count:'off', caption:'off' };
+const pgState = { type:'1btn', icon:false };
+const WARN_ICON = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAABRRJREFUeAHtnV1OHEcQx/+9CzY8hZwgwwmCb7D7YJy8OScIPgHcwPEJkpwg+AT2W+LFEtwgyQkyRyBKpF2+pl01HlnIhnX3THdXjVU/CWklBjT0v+ujq7obwDAMwzAMwzAMwzAMwzAMwzCMLx2HkbL8HdVkgr3GYWfice4c6gf7+AsjY3QCLBc4oJf+kT7O7vh27YEX2/s4xkgYjQDLU5rxV3hFA7wX8HjtNzHfnqOGckYhAA++u8IpfaxCf4b+sHP6mmt3SxOMgNjBZ8hSdhqQxZxiB4pRL8DqLQ4ROfi3qFaXOIJiVLugPq7nY9gVNZt4pDUeqLYACrrPMWDwGXZFJOJvUIpaC+hm/z9IhHeUFT3GGZSh1gJo8F8hIc631qQOlQLwYgth+X4Ms+73qkKlC1otWtdTIT31QwrIbo5zKEGdBVycDA+8a1CXlqqygNSB9y44LX2wiV0tVqDKArq0Myucll5e4WcoQY0FLE8wo0zlFIXQkpaqsQAa/KKLJS1pqQoBuvSwQllmbHUQRtwFhdZ7vMcLNGGNFuqOHdHUOgx4tN7axy4E2YAwHHh94Ozf/j6soLZ80/YCQqhWf+Bo6zv8AiFEXRDPfhr8A6SnCn3QTWgCCPYMRAVw1+HpILmVLIPEaank4kxMgDbwejwNfZ5cylfIBIn7nK0RAogJQAOaLQ2kAf0GkUj1DEQEyFzv6YtIWlpcgC7wRvtcX0AwicVZcQHaeo/PnnX0/f3FewZFBciYdn5Mb4E5NpVMS4sK0K14+1KhDEV7BsUEEKr39GLicFjKCooIwH9MzrTzDioMoGTPoIgAl9eDdreJwLGqRFqaXYA28Hr8hOFUKEyJtDS7ACXajLdJ7LuzL86yCnDxFk8LpZ0fWK3SBs/cnbqsAvgmbSDjY0koT9szQCayCSCVdk6n6dPHnD2DLAK0bUbINL1vMvQNcvYMsgiQYlu5NnL1DJILkLXesyErao6eQXIBpA9DTFzWEkLytDSpAF3gnUGQpslbw0m9OEsqQPbA61XElaQ9g2Qbs7jNmKjkcD8Or2lt8ffaRyb4NqbZ35Nk5wySCFBiW7k2eKfe9pPhEy6JCypd79FAqp7BYAH+X2CvdL1HA6l6BoMF2EDa04xjIkXPYJAA4m1GR0HQyR41GpqW9hZArN5DA84B0N9gd+sxvuYv/txuX4fIdQSDFme9s6DVCfk/X3xTa02DPb9vmzqXq9102N0SPel9zqCXBbRFKWWDz/D3+Bn6WNotVcs3/VLSXgJIpJ3tVWQBBzRaETx+RWH6pqXRAnDglUg7p4i4+aopf2dc355BdAzIeI3AWsjHRr0rvaeHAH4TuzF3E0VZwJh2t0kRW46PEkCqzcjEpHrCx09nMbEgWIDLRXt9TAUpmvBBnfj2XlExVlfh1dhgAfxEuB1IPdluEqyFZ790bcpF3HUULEDuTlPQO1DdaZ0I7X0TCmpTMQcKxQ9qR1KRCH9eLHDcOLzEdZdtbLRlkcMCjZggyAL/DX02XIAbnHEyrgF2MVQEO/jwPiIJ5/34iDVLsAvqVqE1jM9zE34NTlQaSkv8lzDWQq7wOPROi+75OKRWwqOAS+XXeBQjQHQtqKs21jA+wTV4FjP4TLQAt0q+NYz38MwHnj18gteIpFc5mkXgfTGCXSgduPZeouPW7fT8rx1p9gW9X33uOQWLtRJQVeB8yv+z5j+cuR/0XAJrGIZhGIZhGIZhGIbxGd4B4EO9kq17yVcAAAAASUVORK5CYII=';
 
-function setPgRadio(key, val) {
-  pgState[key] = val;
-  const subGroup = document.getElementById('pgBtnDir');
-  if (key === 'btns' && subGroup) subGroup.style.display = val === '2' ? 'flex' : 'none';
+function setPgType(val) {
+  pgState.type = val;
+  renderPgDialog();
+}
+
+function setPgIcon(checked) {
+  pgState.icon = checked;
   renderPgDialog();
 }
 
 function renderPgDialog() {
   const el = document.getElementById('pgDialog');
   if (!el) return;
-  const { icon, btns, btnDir, select, count, caption } = pgState;
-  // 콘텐츠 섹션 (아이콘 + 텍스트) — gap:20px
-  let content = '';
-  if (icon === 'on') content += `<div class="pg-dialog-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAABRRJREFUeAHtnV1OHEcQx/+9CzY8hZwgwwmCb7D7YJy8OScIPgHcwPEJkpwg+AT2W+LFEtwgyQkyRyBKpF2+pl01HlnIhnX3THdXjVU/CWklBjT0v+ujq7obwDAMwzAMwzAMwzAMwzAMwzCMLx2HkbL8HdVkgr3GYWfice4c6gf7+AsjY3QCLBc4oJf+kT7O7vh27YEX2/s4xkgYjQDLU5rxV3hFA7wX8HjtNzHfnqOGckYhAA++u8IpfaxCf4b+sHP6mmt3SxOMgNjBZ8hSdhqQxZxiB4pRL8DqLQ4ROfi3qFaXOIJiVLugPq7nY9gVNZt4pDUeqLYACrrPMWDwGXZFJOJvUIpaC+hm/z9IhHeUFT3GGZSh1gJo8F8hIc631qQOlQLwYgth+X4Ms+73qkKlC1otWtdTIT31QwrIbo5zKEGdBVycDA+8a1CXlqqygNSB9y44LX2wiV0tVqDKArq0Myucll5e4WcoQY0FLE8wo0zlFIXQkpaqsQAa/KKLJS1pqQoBuvSwQllmbHUQRtwFhdZ7vMcLNGGNFuqOHdHUOgx4tN7axy4E2YAwHHh94Ozf/j6soLZ80/YCQqhWf+Bo6zv8AiFEXRDPfhr8A6SnCn3QTWgCCPYMRAVw1+HpILmVLIPEaank4kxMgDbwejwNfZ5cylfIBIn7nK0RAogJQAOaLQ2kAf0GkUj1DEQEyFzv6YtIWlpcgC7wRvtcX0AwicVZcQHaeo/PnnX0/f3FewZFBciYdn5Mb4E5NpVMS4sK0K14+1KhDEV7BsUEEKr39GLicFjKCooIwH9MzrTzDioMoGTPoIgAl9eDdreJwLGqRFqaXYA28Hr8hOFUKEyJtDS7ACXajLdJ7LuzL86yCnDxFk8LpZ0fWK3SBs/cnbqsAvgmbSDjY0koT9szQCayCSCVdk6n6dPHnD2DLAK0bUbINL1vMvQNcvYMsgiQYlu5NnL1DJILkLXesyErao6eQXIBpA9DTFzWEkLytDSpAF3gnUGQpslbw0m9OEsqQPbA61XElaQ9g2Qbs7jNmKjkcD8Or2lt8ffaRyb4NqbZ35Nk5wySCFBiW7k2eKfe9pPhEy6JCypd79FAqp7BYAH+X2CvdL1HA6l6BoMF2EDa04xjIkXPYJAA4m1GR0HQyR41GpqW9hZArN5DA84B0N9gd+sxvuYv/txuX4fIdQSDFme9s6DVCfk/X3xTa02DPb9vmzqXq9102N0SPel9zqCXBbRFKWWDz/D3+Bn6WNotVcs3/VLSXgJIpJ3tVWQBBzRaETx+RWH6pqXRAnDglUg7p4i4+aopf2dc355BdAzIeI3AWsjHRr0rvaeHAH4TuzF3E0VZwJh2t0kRW46PEkCqzcjEpHrCx09nMbEgWIDLRXt9TAUpmvBBnfj2XlExVlfh1dhgAfxEuB1IPdluEqyFZ790bcpF3HUULEDuTlPQO1DdaZ0I7X0TCmpTMQcKxQ9qR1KRCH9eLHDcOLzEdZdtbLRlkcMCjZggyAL/DX02XIAbnHEyrgF2MVQEO/jwPiIJ5/34iDVLsAvqVqE1jM9zE34NTlQaSkv8lzDWQq7wOPROi+75OKRWwqOAS+XXeBQjQHQtqKs21jA+wTV4FjP4TLQAt0q+NYz38MwHnj18gteIpFc5mkXgfTGCXSgduPZeouPW7fT8rx1p9gW9X33uOQWLtRJQVeB8yv+z5j+cuR/0XAJrGIZhGIZhGIZhGIbxGd4B4EO9kq17yVcAAAAASUVORK5CYII=" width="48" height="48" alt="Warning" style="display:block;image-rendering:-webkit-optimize-contrast;"></div>`;
+  const { type, icon } = pgState;
 
-  // 텍스트 섹션 — gap:12px, px:16px
-  const title = btns === '1' ? 'Recount Required' : 'Delete Tray 1?';
-  const body = btns === '1' ? 'A count mismatch was detected in Tray #. This usually happens if the camera view was blocked.' : 'This will remove count of 30 from your current running total.';
-  content += `<div style="display:flex;flex-direction:column;gap:12px;padding:0 16px;width:100%;box-sizing:border-box;">
-    <div class="pg-dialog-title">${title}</div>
-    <div class="pg-dialog-body">${body}</div>
-  </div>`;
+  const iconHtml = icon ? `<div class="pg-dialog-icon"><img src="${WARN_ICON}" width="48" height="48" alt="Warning" style="display:block;"></div>` : '';
 
-  if (count === 'on') content += `<div class="pg-dialog-count">60 → 30</div>`;
-  if (select === 'on') content += `<div class="pg-dialog-select"><div class="pg-select-option"><div class="pg-select-dot"></div>Send Diagnostic Logs (Online)</div><div class="pg-select-option selected"><div class="pg-select-dot"></div>Export Diagnostic Logs (Local)</div></div>`;
+  const titleBody = (t, b) => `<div style="display:flex;flex-direction:column;gap:12px;padding:0 16px;width:100%;box-sizing:border-box;"><div class="pg-dialog-title">${t}</div><div class="pg-dialog-body">${b}</div></div>`;
 
-  // 버튼 섹션 — gap:10px
+  const btnP = (label, full='') => `<button class="pg-btn primary"${full?' style="width:100%;"':''}>${label}</button>`;
+  const btnS = (label, full='') => `<button class="pg-btn secondary"${full?' style="width:100%;"':''}>${label}</button>`;
+  const btnRow = (...btns) => `<div class="pg-dialog-btns-row">${btns.join('')}</div>`;
+  const btnCol = (...btns) => `<div class="pg-dialog-btns-col">${btns.join('')}</div>`;
+
+  let content = iconHtml;
   let buttons = '';
-  if (btns === '1') {
-    buttons = `<div class="pg-dialog-btns-row"><button class="pg-btn primary" style="width:100%;">Recount Now</button></div>`;
-  } else if (btnDir === 'row') {
-    buttons = `<div class="pg-dialog-btns-row"><button class="pg-btn secondary">Cancel</button><button class="pg-btn primary">Confirm</button></div>`;
-  } else {
-    buttons = `<div class="pg-dialog-btns-col"><button class="pg-btn primary" style="width:100%;">Confirm</button><button class="pg-btn secondary" style="width:100%;">Cancel</button></div>`;
+  let extra = '';
+
+  if (type === '1btn') {
+    content += titleBody('Title', 'Text Text Text Text Text Text Text Text Text Text Text');
+    buttons = btnRow(btnP('Yes', true));
+  } else if (type === '2btn') {
+    content += titleBody('Title', 'Text Text Text Text Text Text Text Text Text Text Text');
+    buttons = btnRow(btnS('Cancel'), btnP('Yes'));
+  } else if (type === '3btn') {
+    content += titleBody('Title', 'Text Text Text Text Text Text Text Text Text Text Text');
+    buttons = btnCol(btnP('Button', true), btnS('Button', true), btnS('Button', true));
+  } else if (type === 'select') {
+    content += titleBody('Title', 'Text Text Text Text Text Text Text Text Text Text Text');
+    content += `<div class="pg-dialog-select">
+      <div class="pg-select-option"><div class="pg-select-dot"></div>Select btn</div>
+      <div class="pg-select-option selected"><div class="pg-select-dot"></div>Select btn</div>
+    </div>`;
+    buttons = btnRow(btnS('Cancel'), btnP('OK'));
+  } else if (type === 'progress') {
+    content += `<div style="display:flex;flex-direction:column;gap:12px;padding:0 16px;width:100%;box-sizing:border-box;">
+      <div class="pg-dialog-title">Progress..</div>
+      <div class="pg-dialog-body">Please wait a moment while we securely transmit the data to our support team.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;padding:0 16px;width:100%;box-sizing:border-box;">
+      <div style="text-align:right;font-size:13px;color:var(--label-assistive);">300KB</div>
+      <div style="height:6px;background:var(--fill-03);border-radius:3px;overflow:hidden;">
+        <div style="width:55%;height:100%;background:var(--btn-primary-default-bg);border-radius:3px;"></div>
+      </div>
+    </div>`;
+    buttons = `<div class="pg-dialog-btns-row"><button class="pg-btn secondary" style="background:transparent;border:1px solid var(--line-normal);">Cancel</button></div>`;
+  } else if (type === 'resume') {
+    content += `<div style="display:flex;flex-direction:column;gap:12px;padding:0 16px;width:100%;box-sizing:border-box;">
+      <div class="pg-dialog-title">Resume to Recount?</div>
+      <div class="pg-dialog-body">Unsaved progress was found for <strong>Rx #1231232</strong>. This includes your count, tray data, and all images captured or modified during review.</div>
+    </div>`;
+    buttons = btnCol(btnP('Resume', true), btnS('Cancel', true));
+    extra = `<div style="border-top:1px solid var(--line-normal);padding-top:16px;display:flex;flex-direction:column;gap:10px;">
+      <div style="font-size:13px;color:var(--label-neutral);text-align:center;line-height:1.5;">Or, discard all count and image data for this Rx to start over.</div>
+      <div style="text-align:center;font-size:15px;font-weight:600;color:var(--status-negative-default);font-family:'Pretendard',sans-serif;">Discard to Restart</div>
+    </div>`;
   }
 
-  let html = `<div style="display:flex;flex-direction:column;gap:20px;align-items:center;width:100%;">${content}</div>${buttons}`;
-  if (caption === 'on') html += `<div class="pg-dialog-caption">Deleting or retaking the image will not affect your count.</div>`;
-  el.innerHTML = html;
+  el.innerHTML = `<div style="display:flex;flex-direction:column;gap:20px;align-items:center;width:100%;">${content}</div>${buttons}${extra}`;
 }
 
 document.addEventListener('DOMContentLoaded', () => { renderPgDialog(); });
