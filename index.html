@@ -12,21 +12,27 @@
     --gray-300:#B0B0B8; --gray-400:#8E8E98; --gray-500:#6B6B75; --gray-600:#4A4A54;
     --gray-700:#3B3B44; --gray-800:#2C2C31; --gray-900:#1E1E22; --gray-950:#111214;
     --green-500:#00C36B; --green-600:#00A85C; --yellow-500:#F8BA00; --red-500:#F93446; --blue-500:#0073FF;
-    --radius-xs:4px; --radius-s:6px; --radius-m:8px; --radius-l:12px; --radius-xl:16px; --radius-circle:9999px;
+    --gray-1000:#000000; --orange-50:#FFF1E0; --orange-200:#FFC07A; --orange-500:#FF8800; --orange-700:#D96D00; --orange-900:#4E2900;
+    --dot-blue:#0038AC; --dot-yellow:#F8BA00; --dot-green:#00C36B;
+    --radius-xs:4px; --radius-s:6px; --radius-m:8px; --radius-l:12px; --radius-xl:16px; --radius-2xl:24px; --radius-circle:9999px;
 
     /* ── Figma Variable — 피그마 원본 이름 그대로 매핑 (/ → -) ── */
     --background-base:#111214;
+    --background-base-v2:#000000;
     --fill-00:#111214;
     --fill-01:#1E1E22;
     --fill-02:#2C2C31;
     --fill-03:#3B3B44;
     --fill-04:#4A4A54;
     --overlay-normal:rgba(17,18,20,0.5);
+    --overlay-neutral:rgba(0,0,0,0.3);
     --overlay-assistive:rgba(59,59,68,0.5);
     --btn-primary-default-bg:#00C36B;
     --btn-primary-pressed-bg:#00A85C;
     --btn-secondary-default-bg:#4A4A54;
     --btn-secondary-pressed-bg:#3B3B44;
+    --btn-secondary-default-bg-v2:#3B3B44;
+    --btn-secondary-pressed-bg-v2:#2C2C31;
     --btn-tertiary-default-line:#4A4A54;
     --btn-tertiary-pressed-bg:#2C2C31;
     --btn-warning-default-bg:#F93446;
@@ -43,40 +49,51 @@
     --label-neutral:#B0B0B8;
     --label-assistive:#8E8E98;
     --line-heavy:#6B6B75;
+    --line-subtle:#6B6B7533;
     --line-strong:#4A4A54;
     --line-normal:#3B3B44;
     --line-neutral:#2C2C31;
     --line-assistive:#1E1E22;
     --status-positive-background:#002B18;
+    --status-positive-background-overlay:rgba(0,168,92,0.2);
     --status-positive-default:#00C36B;
-    --status-positive-strong:#008C4D;
+    --status-positive-strong:#00A85C;
     --status-cautionary-background:#3F3000;
     --status-cautionary-default:#F8BA00;
     --status-cautionary-strong:#AA8000;
     --status-negative-background:#380005;
+    --status-negative-background-overlay:rgba(249,52,70,0.2);
     --status-negative-default:#F93446;
     --status-negative-strong:#C2001B;
+    --status-warning-background:#4E2900;
+    --status-warning-background-overlay:rgba(255,136,0,0.2);
+    --status-warning-default:#FF8800;
+    --status-warning-strong:#D96D00;
     --status-info-background:#001E42;
     --status-info-default:#0073FF;
     --status-info-strong:#0052B6;
     /* ── Dot — 카운팅 전용 ── */
-    --dot-green:#009552;
-    --dot-blue:#0E53E4;
-    --dot-yellow:#E39B00;
+    --dot-option-01:var(--dot-blue);
+    --dot-option-02:var(--dot-yellow);
+    --dot-option-03:var(--dot-green);
 
     /* ── Semantic 별칭 — Figma Variable 참조 ── */
     --color-semantic-background-base:var(--background-base);
+    --color-semantic-background-base-v2:var(--background-base-v2);
     --color-semantic-fill-00:var(--fill-00);
     --color-semantic-fill-01:var(--fill-01);
     --color-semantic-fill-02:var(--fill-02);
     --color-semantic-fill-03:var(--fill-03);
     --color-semantic-fill-04:var(--fill-04);
     --color-semantic-overlay-normal:var(--overlay-normal);
+    --color-semantic-overlay-neutral:var(--overlay-neutral);
     --color-semantic-overlay-assistive:var(--overlay-assistive);
     --color-semantic-btn-primary-default-bg:var(--btn-primary-default-bg);
     --color-semantic-btn-primary-pressed-bg:var(--btn-primary-pressed-bg);
     --color-semantic-btn-secondary-default-bg:var(--btn-secondary-default-bg);
     --color-semantic-btn-secondary-pressed-bg:var(--btn-secondary-pressed-bg);
+    --color-semantic-btn-secondary-default-bg-v2:var(--btn-secondary-default-bg-v2);
+    --color-semantic-btn-secondary-pressed-bg-v2:var(--btn-secondary-pressed-bg-v2);
     --color-semantic-btn-tertiary-default-line:var(--btn-tertiary-default-line);
     --color-semantic-btn-tertiary-pressed-bg:var(--btn-tertiary-pressed-bg);
     --color-semantic-btn-warning-default-bg:var(--btn-warning-default-bg);
@@ -92,25 +109,32 @@
     --color-semantic-label-neutral:var(--label-neutral);
     --color-semantic-label-assistive:var(--label-assistive);
     --color-semantic-line-heavy:var(--line-heavy);
+    --color-semantic-line-subtle:var(--line-subtle);
     --color-semantic-line-strong:var(--line-strong);
     --color-semantic-line-normal:var(--line-normal);
     --color-semantic-line-neutral:var(--line-neutral);
     --color-semantic-line-assistive:var(--line-assistive);
     --color-semantic-positive-background:var(--status-positive-background);
+    --color-semantic-positive-background-overlay:var(--status-positive-background-overlay);
     --color-semantic-positive-default:var(--status-positive-default);
     --color-semantic-positive-strong:var(--status-positive-strong);
     --color-semantic-cautionary-background:var(--status-cautionary-background);
     --color-semantic-cautionary-default:var(--status-cautionary-default);
     --color-semantic-cautionary-strong:var(--status-cautionary-strong);
     --color-semantic-negative-background:var(--status-negative-background);
+    --color-semantic-negative-background-overlay:var(--status-negative-background-overlay);
     --color-semantic-negative-default:var(--status-negative-default);
     --color-semantic-negative-strong:var(--status-negative-strong);
+    --color-semantic-warning-background:var(--status-warning-background);
+    --color-semantic-warning-background-overlay:var(--status-warning-background-overlay);
+    --color-semantic-warning-default:var(--status-warning-default);
+    --color-semantic-warning-strong:var(--status-warning-strong);
     --color-semantic-info-background:var(--status-info-background);
     --color-semantic-info-default:var(--status-info-default);
     --color-semantic-info-strong:var(--status-info-strong);
-    --color-semantic-dot-green:var(--dot-green);
-    --color-semantic-dot-blue:var(--dot-blue);
-    --color-semantic-dot-yellow:var(--dot-yellow);
+    --color-semantic-dot-option-01:var(--dot-option-01);
+    --color-semantic-dot-option-02:var(--dot-option-02);
+    --color-semantic-dot-option-03:var(--dot-option-03);
 
     /* ── UI 별칭 ── */
     --bg:var(--background-base);
@@ -271,6 +295,28 @@
   .pg-btn.primary{ background:var(--btn-primary-default-bg); color:var(--label-heavy); }
   .pg-btn.secondary{ background:var(--btn-secondary-default-bg); color:var(--label-heavy); }
 
+  .popover-demo-stage{ background:var(--color-semantic-background-base); border:1px solid var(--color-semantic-line-neutral); border-radius:var(--radius-l); padding:40px; display:flex; justify-content:center; }
+  .popover{ position:relative; display:flex; flex-direction:column; align-items:flex-start; padding:24px 32px 32px; border:1px solid var(--color-semantic-line-subtle); border-radius:var(--radius-2xl); overflow:hidden; }
+  .popover::before{ content:""; position:absolute; inset:-1px; background:var(--color-semantic-fill-01); box-shadow:inset 0 40px 10px 0 #282828, inset 0 -40px 10px 0 #282828; opacity:.5; pointer-events:none; }
+  .popover-con{ position:relative; width:331px; display:flex; flex-direction:column; align-items:center; gap:24px; }
+  .popover-title{ margin:0; width:100%; font-family:'Pretendard', sans-serif; font-weight:500; font-size:30px; line-height:1.2; color:var(--color-semantic-label-heavy); text-align:center; word-break:break-word; }
+  .popover-btn{ position:relative; width:100%; padding:24px 40px; border:none; border-radius:var(--radius-l); background:var(--color-semantic-positive-default); font-family:'Pretendard', sans-serif; font-weight:600; font-size:24px; line-height:1.35; color:var(--color-semantic-label-heavy); white-space:nowrap; cursor:default; }
+  .pop-screen{ position:relative; background:var(--color-semantic-background-base); border:1px solid var(--color-semantic-line-neutral); border-radius:var(--radius-xl); padding:16px 20px 24px; display:flex; flex-direction:column; gap:20px; min-height:420px; }
+  .pop-topbar{ display:flex; align-items:center; justify-content:space-between; }
+  .pop-topbar-title{ font-size:16px; font-weight:700; color:var(--color-semantic-label-heavy); }
+  .pop-icon-btn{ width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; border:none; border-radius:var(--radius-m); background:transparent; color:var(--color-semantic-label-assistive); cursor:pointer; }
+  .pop-trays{ display:grid; grid-template-columns:1fr 1fr; gap:12px; flex:1; }
+  .pop-tray{ background:var(--color-semantic-fill-01); border:1px solid var(--color-semantic-line-neutral); border-radius:var(--radius-l); padding:16px; display:flex; flex-direction:column; justify-content:space-between; min-height:140px; color:var(--color-semantic-label-neutral); font-size:13px; }
+  .pop-tray strong{ font-size:40px; color:var(--color-semantic-label-heavy); }
+  .pop-actions{ display:flex; gap:12px; justify-content:flex-end; }
+  .pop-action{ font-family:'Pretendard', sans-serif; font-size:16px; font-weight:600; padding:14px 24px; border:none; border-radius:var(--radius-s); cursor:pointer; color:var(--color-semantic-label-heavy); }
+  .pop-action.primary{ background:var(--color-semantic-positive-default); }
+  .pop-action.secondary{ background:var(--color-semantic-btn-secondary-default-bg); }
+  .pop-anchor{ position:relative; }
+  .pop-floating{ position:absolute; right:0; bottom:calc(100% + 12px); z-index:2; background:var(--color-semantic-background-base); }
+  .pop-floating[hidden]{ display:none; }
+  .pop-screen.is-open .pop-icon-btn{ color:var(--color-semantic-btn-all-disabled-label); pointer-events:none; }
+  .pop-screen.is-open .pop-action{ background:var(--color-semantic-btn-all-disabled-onfill-01-bg); color:var(--color-semantic-btn-all-disabled-label); pointer-events:none; }
   .pos-variants{ display:flex; gap:24px; margin:20px 0 8px; flex-wrap:wrap; }
   .pos-variant{ flex:1; min-width:260px; }
   .pos-variant-label{ font-size:12px; font-weight:700; color:var(--color-semantic-label-neutral); margin-bottom:12px; text-transform:uppercase; letter-spacing:.06em; }
@@ -340,6 +386,9 @@
   .ramp-labels .lbl{ flex:1; padding-left:2px; }
   .ramp-labels .lbl .step{ font-size:13px; font-weight:700; color:var(--label-heavy); }
   .ramp-labels .lbl .hex{ font-size:11px; color:var(--label-assistive); font-family:'SF Mono', monospace; margin-top:2px; }
+  .ramp-deprecated{ opacity:.35; }
+  .ramp-dot .ramp-bar{ max-width:360px; }
+  .ramp-dot .ramp-labels{ max-width:360px; }
   .ramp-title{ font-size:14px; font-weight:600; color:var(--label-normal); margin-bottom:16px; display:flex; align-items:center; gap:8px;}
   .ramp-title .dot{ width:10px; height:10px; border-radius:50%; }
   .token-rows{ width:100%; margin-bottom:40px; }
@@ -371,6 +420,10 @@
   .disabled-card .dc-chip{ background:var(--surface-2); border-radius:6px; padding:6px 10px; font-family:'SF Mono', monospace; font-size:10.5px; color:var(--label-normal); margin-bottom:16px; display:inline-block; width:fit-content; }
   .disabled-card .dc-arrow{ text-align:center; color:var(--label-assistive); font-size:14px; margin:-4px 0 12px; }
   .disabled-card .dc-btn{ width:100%; text-align:center; padding:14px; border-radius:8px; color:var(--label-assistive); font-weight:600; font-size:13px; margin-bottom:16px; }
+  .token-badge{ flex-shrink:0; font-size:10.5px; font-weight:700; padding:2px 6px; border-radius:var(--radius-xs); line-height:1.4; }
+  .token-badge.del{ background:var(--status-negative-background); color:var(--status-negative-default); }
+  .token-badge.new{ background:var(--status-positive-background); color:var(--status-positive-default); }
+  .token-badge.mod{ background:var(--status-cautionary-background); color:var(--status-cautionary-default); }
   .token-name{ font-family:'SF Mono', monospace; color:var(--label-heavy); font-size:12.5px;}
   .token-swatch{ display:inline-flex; align-items:center; gap:10px; }
   .token-swatch .dot{ width:22px; height:22px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); flex-shrink:0;}
@@ -597,12 +650,18 @@
       <div id="ramp-gray"></div>
       <div class="ramp-title"><span class="dot" style="background:var(--green-500)"></span>Green (Primary)</div>
       <div id="ramp-green"></div>
-      <div class="ramp-title"><span class="dot" style="background:var(--yellow-500)"></span>Yellow (Warning)</div>
+      <div class="ramp-deprecated">
+      <div class="ramp-title"><span class="dot" style="background:var(--yellow-500)"></span>Yellow <span class="token-badge del">삭제예정</span></div>
       <div id="ramp-yellow"></div>
+      </div>
       <div class="ramp-title"><span class="dot" style="background:var(--red-500)"></span>Red (Error)</div>
       <div id="ramp-red"></div>
+      <div class="ramp-title"><span class="dot" style="background:var(--orange-500)"></span>Orange (Warning) <span class="token-badge new">NEW</span></div>
+      <div id="ramp-orange"></div>
       <div class="ramp-title"><span class="dot" style="background:var(--blue-500)"></span>Blue (Info)</div>
       <div id="ramp-blue"></div>
+      <div class="ramp-title"><span class="dot" style="background:var(--dot-blue)"></span>Dot (카운팅 전용)</div>
+      <div id="ramp-dot" class="ramp-dot"></div>
     </section>
 
     <section class="section" id="semantic">
@@ -842,9 +901,9 @@
           </div>
           </div>
           <div class="type-chart-row">
-            <div class="type-pos">버튼에 근접</div>
+            <div class="type-pos">트리거 버튼 상단</div>
             <div class="type-name">Popover</div>
-            <div class="type-desc">트리거 버튼 인접 배치, 배경 탭 = Cancel, 카운팅 및 카메라 프리징, 전체 Dim 없음</div>
+            <div class="type-desc">단일 액션 확인. 노출 중 외부 버튼(햄버거·도움말·설정 포함) 전부 disabled, 외부 영역 탭 시 닫힘, Filled 버튼만 사용</div>
           </div>
         </div>
 
@@ -920,75 +979,74 @@
 
         </div>
 
-        <!-- 유형 3: 버튼 위치 근접형 -->
+        <!-- 유형 2: Popover -->
         <div class="comp-type-section">
           <div class="comp-type-header">
-            <div class="comp-type-title">버튼 위치 근접형 <span class="status-key">Button Adjacent</span></div>
-            <p class="comp-type-desc">특정 버튼을 누른 직후, 해당 버튼 인접 위치에 노출됩니다. Dim 없이 배경이 유지되며, 배경 탭 시 Cancel로 처리됩니다.</p>
+            <div class="comp-type-title">Popover <span class="status-key">Popover</span></div>
+            <p class="comp-type-desc">한 줄 메시지와 하나의 실행 버튼으로 단일 액션을 확인받는 팝업입니다. 태블릿처럼 화면이 큰 환경에서는 팝오버에 집중하기 어렵기 때문에, 노출되는 동안 외부 버튼을 모두 비활성화합니다.</p>
           </div>
-          <div class="pos-variants" style="justify-content:flex-start;">
-            <div class="pos-variant" style="max-width:360px;">
-              <div class="pos-variant-label">Flagged Action</div>
-              <div class="dialog-overlay-demo" style="background:transparent; padding:0;">
-                <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
-                  <div class="demo-dialog" style="width:240px; gap:12px; border-radius:8px; padding:18px 20px;">
-                    <div class="demo-dialog-body" style="text-align:center; font-size:13px;">Flagged pills are included.<br>Add to running total?</div>
-                    <div class="demo-dialog-buttons" style="gap:8px;">
-                      <button class="demo-btn secondary" style="font-size:13px;">No</button>
-                      <button class="demo-btn primary" style="font-size:13px;">Yes</button>
-                    </div>
-                  </div>
-                  <div style="width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid var(--color-semantic-line-normal);"></div>
-                  <div style="background:var(--color-semantic-btn-primary-default-bg);color:#04140c;font-size:13px;font-weight:700;padding:10px 20px;border-radius:6px;font-family:'Pretendard',sans-serif;">+ Add Tray 2 to Total</div>
-                </div>
+
+          <div class="pg-label">Popover — Default</div>
+          <div class="popover-demo-stage">
+            <div class="popover">
+              <div class="popover-con">
+                <p class="popover-title">2 trays will be zero-out</p>
+                <button class="popover-btn">Zero-Out</button>
               </div>
-              <ul class="ux-bullets" style="margin-top:14px;">
-                <li>위치: 트리거 버튼 상단 또는 하단 인접</li>
-                <li><strong>Dim 없음</strong> — 배경 화면 유지</li>
-                <li>배경 탭 = Cancel과 동일 처리</li>
-                <li>카운팅·카메라 프리징 유지</li>
-              </ul>
             </div>
           </div>
+
+          <div class="pg-label" style="margin-top:32px;">Popover — 동작 예시 <span style="text-transform:none; letter-spacing:0; font-weight:500;">(Zero-Out 버튼을 눌러보세요)</span></div>
+          <div class="pop-screen" id="popScreen">
+            <div class="pop-topbar">
+              <button class="pop-icon-btn" aria-label="메뉴"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+              <div class="pop-topbar-title">Quick Count</div>
+              <div style="display:flex; gap:8px;">
+                <button class="pop-icon-btn" aria-label="도움말"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.4"/><path d="M12 17h.01"/></svg></button>
+                <button class="pop-icon-btn" aria-label="설정"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+              </div>
+            </div>
+            <div class="pop-trays">
+              <div class="pop-tray"><span>Tray 1</span><strong>120</strong></div>
+              <div class="pop-tray"><span>Tray 2</span><strong>84</strong></div>
+            </div>
+            <div class="pop-actions">
+              <button class="pop-action secondary">Add Tray</button>
+              <button class="pop-action secondary">Recount</button>
+              <div class="pop-anchor">
+                <div class="popover pop-floating" id="popFloating" hidden onclick="event.stopPropagation()">
+                  <div class="popover-con">
+                    <p class="popover-title">2 trays will be zero-out</p>
+                    <button class="popover-btn" onclick="closePopDemo()">Zero-Out</button>
+                  </div>
+                </div>
+                <button class="pop-action primary" id="popTrigger" onclick="openPopDemo(event)">Zero-Out</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rule-box" style="margin-top:20px;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+              <div>
+                <div style="font-size:12px; font-weight:700; color:var(--color-semantic-label-heavy); margin-bottom:10px;">팝오버가 뜨면 외부 버튼 모두 비활성화</div>
+                <ul class="ux-bullets">
+                  <li>태블릿처럼 화면이 큰 곳에서는 팝오버에 집중하기 어려워 다른 버튼을 모두 <strong>disabled</strong> 처리합니다.</li>
+                  <li>햄버거 메뉴, 도움말, 설정 버튼도 모두 포함합니다.</li>
+                  <li>외부 영역을 탭하면 닫힙니다.</li>
+                </ul>
+              </div>
+              <div>
+                <div style="font-size:12px; font-weight:700; color:var(--color-semantic-label-heavy); margin-bottom:10px;">버튼 스타일</div>
+                <ul class="ux-bullets">
+                  <li>팝오버에서는 최상위 버튼 UI Style인 <strong>Filled</strong>만 사용합니다.</li>
+                  <li>Secondary·Tertiary 등 하위 스타일은 쓰지 않습니다.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <!-- Anatomy -->
-        <div class="anatomy-grid">
-          <div class="anatomy-item">
-            <div class="anatomy-token">fill/02</div>
-            <div class="anatomy-label">배경색 (#2C2C31)</div>
-          </div>
-          <div class="anatomy-item">
-            <div class="anatomy-token">line/normal</div>
-            <div class="anatomy-label">테두리 (#3B3B44)</div>
-          </div>
-          <div class="anatomy-item">
-            <div class="anatomy-token">corner-radius-L</div>
-            <div class="anatomy-label">Border radius (12px)</div>
-          </div>
-          <div class="anatomy-item">
-            <div class="anatomy-token">Width: 440px</div>
-            <div class="anatomy-label">Overlay Dialog 고정 너비</div>
-          </div>
-          <div class="anatomy-item">
-            <div class="anatomy-token">padding: 32px</div>
-            <div class="anatomy-label">내부 여백</div>
-          </div>
-          <div class="anatomy-item">
-            <div class="anatomy-token">shadow: 0 0 10px rgba(0,0,0,0.3)</div>
-            <div class="anatomy-label">Drop shadow</div>
-          </div>
-        </div>
-
-        <!-- 타이포 스펙 -->
-        <table class="ux-table" style="margin-top:20px;">
-          <tr><th>요소</th><th>폰트</th><th>크기</th><th>색상 토큰</th></tr>
-          <tr><td>Title</td><td>Pretendard Bold</td><td>24px</td><td>label/strong (#FAFAFA)</td></tr>
-          <tr><td>Body</td><td>Pretendard Medium</td><td>20px</td><td>label/normal (#F5F5F6)</td></tr>
-          <tr><td>Primary Button</td><td>Pretendard SemiBold</td><td>20px</td><td>label/strong / btn/primary (#00C36B)</td></tr>
-          <tr><td>Secondary Button</td><td>Pretendard SemiBold</td><td>20px</td><td>label/strong / btn/secondary (#4A4A54)</td></tr>
-          <tr><td>Danger Text</td><td>Pretendard SemiBold</td><td>20px</td><td>status/negative/default (#F93446)</td></tr>
-        </table>
       </div>
     </section>
 
@@ -1319,78 +1377,98 @@ const NODE_IDS = {
 
 const DEFAULT_DATA = {
   ramps: {
-    gray:   [["0","#FAFAFA"],["50","#F5F5F6"],["100","#E8E8EA"],["200","#D4D4D8"],["300","#B0B0B8"],["400","#8E8E98"],["500","#6B6B75"],["600","#4A4A54"],["700","#3B3B44"],["800","#2C2C31"],["900","#1E1E22"],["950","#111214"]],
+    gray:   [["0","#FAFAFA"],["50","#F5F5F6"],["100","#E8E8EA"],["200","#D4D4D8"],["300","#B0B0B8"],["400","#8E8E98"],["500","#6B6B75"],["600","#4A4A54"],["700","#3B3B44"],["800","#2C2C31"],["900","#1E1E22"],["950","#111214"],["1000","#000000"]],
     green:  [["50","#E6FAF1"],["100","#BFF2D9"],["200","#8FE8BD"],["300","#5FDFA1"],["400","#2ED586"],["500","#00C36B"],["600","#00A85C"],["700","#008C4D"],["800","#00703E"],["900","#00532E"],["950","#002B18"]],
     yellow: [["50","#FFF8D7"],["200","#FFE28A"],["500","#F8BA00"],["700","#AA8000"],["900","#3F3000"]],
     red:    [["50","#FFEAEC"],["200","#FF979E"],["500","#F93446"],["700","#C2001B"],["900","#380005"]],
-    blue:   [["50","#DBEBFF"],["200","#68ACFF"],["500","#0073FF"],["700","#0052B6"],["900","#001E42"]]
+    orange: [["50","#FFF1E0"],["200","#FFC07A"],["500","#FF8800"],["700","#D96D00"],["900","#4E2900"]],
+    blue:   [["50","#DBEBFF"],["200","#68ACFF"],["500","#0073FF"],["700","#0052B6"],["900","#001E42"]],
+    dot:    [["blue","#0038AC"],["yellow","#F8BA00"],["green","#00C36B"]]
   },
   semantic: {
     background: [
-      ["color-semantic-background-base","#111214","gray/950","제일 기본이 되는 프레임 배경 색상"]
+      ["color-semantic-background-base", "#111214", "gray/950", "제일 기본이 되는 프레임 배경 색상", "삭제예정"],
+      ["color-semantic-background-base-v2", "#000000", "gray/1000", "v2로 배경 색상 교체", "NEW"]
     ],
     fill: [
-      ["color-semantic-fill-00","#111214","gray/950","UI surface (최하단 계층)"],
-      ["color-semantic-fill-01","#1E1E22","gray/900","UI surface"],
-      ["color-semantic-fill-02","#2C2C31","gray/800","UI surface"],
-      ["color-semantic-fill-03","#3B3B44","gray/700","dialog 배경"],
-      ["color-semantic-fill-04","#4A4A54","gray/600","UI surface (최상단 계층), dialog/tooltip 배경"]
+      ["color-semantic-fill-00", "#111214", "gray/950", "ui surface(최하단 계층)"],
+      ["color-semantic-fill-01", "#1E1E22", "gray/900", "ui surface"],
+      ["color-semantic-fill-02", "#2C2C31", "gray/800", "ui surface"],
+      ["color-semantic-fill-03", "#3B3B44", "gray/700", "dialog 배경"],
+      ["color-semantic-fill-04", "#4A4A54", "gray/600", "ui surface(최상단 계층), dialog/tooltip 배경"]
     ],
     overlay: [
-      ["color-semantic-overlay-normal","#111214","gray/950, opacity 50%"],
-      ["color-semantic-overlay-assistive","#3B3B44","gray/700, opacity 50%"]
+      ["color-semantic-overlay-normal", "#111214", "gray/950, opacity 50%", "dialog 노출 시 뒷 배경"],
+      ["color-semantic-overlay-neutral", "#000000", "gray/1000, opacity 30%", "카메라뷰에서 뒷배경으로 사용", "NEW"],
+      ["color-semantic-overlay-assistive", "#3B3B44", "gray/700, opacity 50%", "simple/multi Toggle 배경, dialog 배경"]
     ],
     btn: [
-      ["color-semantic-btn-primary-default-bg","#00C36B","green/500","primary button - 배경"],
-      ["color-semantic-btn-primary-pressed-bg","#00A85C","green/600","primary button - pressed 배경"],
-      ["color-semantic-btn-secondary-default-bg","#4A4A54","gray/600","secondary button - 배경"],
-      ["color-semantic-btn-secondary-pressed-bg","#3B3B44","gray/700","secondary button - pressed 배경"],
-      ["color-semantic-btn-tertiary-default-line","#4A4A54","gray/600","tertiary button - 라인 처리"],
-      ["color-semantic-btn-tertiary-pressed-bg","#2C2C31","gray/800","tertiary button - pressed 배경"],
-      ["color-semantic-btn-warning-default-bg","#F93446","red/500","warning button - 배경"],
-      ["color-semantic-btn-warning-pressed-bg","#C2001B","red/700","warning button - pressed 배경"]
+      ["color-semantic-btn-primary-default-bg", "#00C36B", "green/500", "primary button - 배경"],
+      ["color-semantic-btn-primary-pressed-bg", "#00A85C", "green/600", "primary button - pressed 배경"],
+      ["color-semantic-btn-secondary-default-bg", "#4A4A54", "gray/600", "-", "삭제예정"],
+      ["color-semantic-btn-secondary-pressed-bg", "#3B3B44", "gray/700", "-", "삭제예정"],
+      ["color-semantic-btn-secondary-default-bg-v2", "#3B3B44", "gray/700", "secondary button - 배경", "NEW"],
+      ["color-semantic-btn-secondary-pressed-bg-v2", "#2C2C31", "gray/800", "secondary button - pressed 배경", "NEW"],
+      ["color-semantic-btn-tertiary-default-line", "#4A4A54", "gray/600", "tertiary button - 라인 처리"],
+      ["color-semantic-btn-tertiary-pressed-bg", "#2C2C31", "gray/800", "tertiary button - pressed 배경"],
+      ["color-semantic-btn-warning-default-bg", "#F93446", "red/500", "warning button - 배경"],
+      ["color-semantic-btn-warning-pressed-bg", "#C2001B", "red/700", "warning button - pressed 배경"]
     ],
     btnDisabled: [
-      ["color-semantic-btn-all-disabled-onfill-00-bg","#1E1E22","gray/900","비활성화 버튼 배경 - 배경이 00 토큰일 때"],
-      ["color-semantic-btn-all-disabled-onfill-01-bg","#2C2C31","gray/800","비활성화 버튼 배경 - 배경이 01 토큰일 때"],
-      ["color-semantic-btn-all-disabled-onfill-02-bg","#3B3B44","gray/700","비활성화 버튼 배경 - 배경이 02 토큰일 때"],
-      ["color-semantic-btn-all-disabled-onfill-03-bg","#4A4A54","gray/600","비활성화 버튼 배경 - 배경이 03 토큰일 때"],
-      ["color-semantic-btn-all-disabled-onfill-label","#E8E8EA","gray/100, opacity 20%"],
-      ["color-semantic-btn-all-disabled-onfill-line","#3B3B44","gray/700","비활성화 tertiary button - 라인 색상"]
+      ["color-semantic-btn-all-disabled-onfill-00-bg", "#1E1E22", "gray/900", "-"],
+      ["color-semantic-btn-all-disabled-onfill-01-bg", "#2C2C31", "gray/800", "-", "삭제예정"],
+      ["color-semantic-btn-all-disabled-onfill-02-bg", "#3B3B44", "gray/700", "-", "삭제예정"],
+      ["color-semantic-btn-all-disabled-onfill-03-bg", "#4A4A54", "gray/600", "-", "삭제예정"],
+      ["color-semantic-btn-all-disabled-onfill-label", "#E8E8EA", "gray/100, opacity 20%", "-", "삭제예정"],
+      ["color-semantic-btn-all-disabled-onfill-line", "#3B3B44", "gray/700", "-", "삭제예정"]
     ],
     label: [
-      ["color-semantic-label-heavy","#FAFAFA","gray/0","Title, Header, Button text"],
-      ["color-semantic-label-strong","#F5F5F6","gray/50","Dialog_body text, sub text"],
-      ["color-semantic-label-normal","#F5F5F6","gray/100","text"],
-      ["color-semantic-label-neutral","#B0B0B8","gray/300","icon, text"],
-      ["color-semantic-label-assistive","#8E8E98","gray/400","Header icon, caption text"]
+      ["color-semantic-label-heavy", "#FAFAFA", "gray/0", "Title, Header, Button text"],
+      ["color-semantic-label-strong", "#F5F5F6", "gray/50", "Dialog_body text, sub text"],
+      ["color-semantic-label-normal", "#F5F5F6", "gray/100", "text"],
+      ["color-semantic-label-neutral", "#B0B0B8", "gray/300", "icon, text"],
+      ["color-semantic-label-assistive", "#8E8E98", "gray/400", "Header icon, caption text"]
     ],
     line: [
-      ["color-semantic-line-heavy","#6B6B75","gray/500","dialog 테두리"],
-      ["color-semantic-line-strong","#4A4A54","gray/600","강조 구분선, dialog 테두리"],
-      ["color-semantic-line-normal","#3B3B44","gray/700","섹션 경계, dialog 테두리"],
-      ["color-semantic-line-neutral","#3B3B44","gray/800","은은한 구분선, 레이아웃 내부 경계"],
-      ["color-semantic-line-assistive","#1E1E22","gray/900","가장 약한 구분선, 배경과 거의 유사"]
+      ["color-semantic-line-heavy", "#6B6B75", "gray/500", "-"],
+      ["color-semantic-line-strong", "#4A4A54", "gray/600", "강조 구분선, dialog 테두리"],
+      ["color-semantic-line-normal", "#3B3B44", "gray/700", "섹션 경계, dialog 테두리"],
+      ["color-semantic-line-neutral", "#2C2C31", "gray/800", "은은한 구분선, 레이아웃 내부 경계"],
+      ["color-semantic-line-assistive", "#1E1E22", "gray/900", "가장 약한 구분선, 배경과 거의 유사"],
+      ["color-semantic-line-subtle", "#6B6B75", "gray/500, opacity 20%", "글라스모피즘 형태의 dialog 테두리", "NEW"]
     ],
     statusPositive: [
-      ["color-semantic-positive-background","#002B18","green/950","green default의 배경이 필요할 때"],
-      ["color-semantic-positive-default","#00C36B","green/500","특정 정보를 강조하거나 유도해야 할 때, 수행 완료 상태를 표시할 때 텍스트/UI에 사용"],
-      ["color-semantic-positive-strong","#008C4D","green/700",""]
-    ],
-    statusCautionary: [
-      ["color-semantic-cautionary-background","#3F3000","yellow/900","배경"],
-      ["color-semantic-cautionary-default","#F8BA00","yellow/500","텍스트, UI에 사용"],
-      ["color-semantic-cautionary-strong","#AA8000","yellow/700",""]
+      ["color-semantic-positive-background", "#002B18", "green/950", "green default의 배경이 필요할 때"],
+      ["color-semantic-positive-background-overlay", "#00A85C", "green/600, opacity 20%", "카메라뷰 배경에 사용", "NEW"],
+      ["color-semantic-positive-default", "#00C36B", "green/500", "특정 정보를 강조하거나 유도해야 할 때, 수행 완료 상태를 표시할 때 텍스트/UI에 사용"],
+      ["color-semantic-positive-strong", "#00A85C", "green/700 → 600으로 수정", "-", "수정"]
     ],
     statusNegative: [
-      ["color-semantic-negative-background","#380005","red/900","배경"],
-      ["color-semantic-negative-default","#F93446","red/500","텍스트/UI에 사용"],
-      ["color-semantic-negative-strong","#C2001B","red/700",""]
+      ["color-semantic-negative-background", "#380005", "red/900", "배경"],
+      ["color-semantic-negative-background-overlay", "#F93446", "red/500, opacity 20%", "카메라뷰에 사용", "NEW"],
+      ["color-semantic-negative-default", "#F93446", "red/500", "텍스트/UI에 사용"],
+      ["color-semantic-negative-strong", "#C2001B", "red/700", "-"]
+    ],
+    statusCautionary: [
+      ["color-semantic-cautionary-background", "#3F3000", "yellow/900", "배경", "삭제예정"],
+      ["color-semantic-cautionary-default", "#F8BA00", "yellow/500", "텍스트, UI에 사용", "삭제예정"],
+      ["color-semantic-cautionary-strong", "#AA8000", "yellow/700", "-", "삭제예정"]
+    ],
+    statusWarning: [
+      ["color-semantic-warning-background", "#4E2900", "orange/900", "배경", "NEW"],
+      ["color-semantic-warning-background-overlay", "#FF8800", "orange/500, opacity 20%", "텍스트, UI에 사용", "NEW"],
+      ["color-semantic-warning-default", "#FF8800", "orange/500", "텍스트, UI에 사용", "NEW"],
+      ["color-semantic-warning-strong", "#D96D00", "orange/700", "-", "NEW"]
     ],
     statusInfo: [
-      ["color-semantic-info-background","#001E42","blue/900","배경"],
-      ["color-semantic-info-default","#0073FF","blue/500","추가적인 정보를 표시해야 할 때 텍스트/UI에 사용"],
-      ["color-semantic-info-strong","#0052B6","blue/700",""]
+      ["color-semantic-info-background", "#001E42", "blue/900", "배경"],
+      ["color-semantic-info-default", "#0073FF", "blue/500", "추가적인 정보를 표시해야 할 때 텍스트/UI에 사용"],
+      ["color-semantic-info-strong", "#0052B6", "blue/700", "-"]
+    ],
+    dot: [
+      ["color-semantic-dot-option-01", "#0038AC", "dot/blue", "-"],
+      ["color-semantic-dot-option-02", "#F8BA00", "dot/yellow", "-"],
+      ["color-semantic-dot-option-03", "#00C36B", "dot/green", "-"]
     ],
   },
     typography: {
@@ -1405,6 +1483,7 @@ const DEFAULT_DATA = {
     ["corner-radius-M",8,"button 에 사용합니다."],
     ["corner-radius-L",12,"다이얼로그처럼 화면 앞에 오버레이 된 박스에 사용합니다."],
     ["corner-radius-XL",16,"화면 비중의 50% 이상을 차지하는 박스나 대형 배경 요소에 사용합니다."],
+    ["corner-radius-2XL",24,"Popover처럼 단일 액션을 담는 플로팅 레이어에 사용합니다."],
     ["corner-radius-circle",9999,"원형 표현이 필요한 경우에 사용합니다."]
   ]
 };
@@ -1447,9 +1526,11 @@ function copyText(el, text){
   }).catch(()=>{});
 }
 
-function tokenRow(name, hex, ref, usage){
+const BADGE_CLASS = {'삭제예정':'del','NEW':'new','수정':'mod'};
+function tokenRow(name, hex, ref, usage, badge){
+  const b = badge ? `<span class="token-badge ${BADGE_CLASS[badge]||''}">${badge}</span>` : '';
   return `<div class="trow">
-    <div class="tcell-name"><span class="dot" style="background:${hex}"></span><span class="token-name" onclick="copyText(this,'${name}')">${name}</span></div>
+    <div class="tcell-name"><span class="dot" style="background:${hex}"></span><span class="token-name" onclick="copyText(this,'${name}')">${name}</span>${b}</div>
     <div class="tcell-ref token-hex">${ref}</div>
     <div class="tcell-hex token-hex copy-token" onclick="copyText(this,'${hex}')">${hex}</div>
     <div class="tcell-usage token-hex">${usage||''}</div>
@@ -1474,9 +1555,11 @@ const SEMANTIC_GROUPS = [
   {key:'label', title:'label', desc:'아이콘, 텍스트 등 일반적인 경우에서 사용합니다. heavy → strong → normal → neutral → assistive 순으로 계층을 표현합니다.'},
   {key:'line', title:'line', desc:'구분선 및 테두리에 사용되는 토큰입니다. Assistive가 가장 미묘하고 Heavy가 가장 강조됩니다.'},
   {key:'statusPositive', title:'status-positive', desc:'성공, 완료, 진행중인 상태를 나타내는 토큰입니다.'},
-  {key:'statusCautionary', title:'status-cautionary', desc:''},
   {key:'statusNegative', title:'status-negative', desc:'에러, 위험, 부정적인 상태를 나타내는 토큰입니다.'},
+  {key:'statusCautionary', title:'status-cautionary', desc:''},
+  {key:'statusWarning', title:'status-warning', desc:''},
   {key:'statusInfo', title:'status-info', desc:'정보 알림, 안내 상태를 나타내는 토큰입니다.'},
+  {key:'dot', title:'dot', desc:''},
 ];
 
 function renderDisabledVisual(){
@@ -1605,7 +1688,9 @@ function renderAll(data){
   renderRamp('ramp-green', data.ramps.green);
   renderRamp('ramp-yellow', data.ramps.yellow);
   renderRamp('ramp-red', data.ramps.red);
+  renderRamp('ramp-orange', data.ramps.orange);
   renderRamp('ramp-blue', data.ramps.blue);
+  renderRamp('ramp-dot', data.ramps.dot);
 
   renderSemanticGroups(data);
 
@@ -1744,4 +1829,8 @@ function renderPgDialog() {
 
 document.addEventListener('DOMContentLoaded', () => { renderPgDialog(); });
 setTimeout(renderPgDialog, 100);
+
+  function openPopDemo(e){ e.stopPropagation(); var sc=document.getElementById('popScreen'); sc.classList.add('is-open'); document.getElementById('popFloating').hidden=false; sc.querySelectorAll('.pop-icon-btn,.pop-action').forEach(function(b){ b.disabled=true; }); }
+  function closePopDemo(){ var sc=document.getElementById('popScreen'); if(!sc||!sc.classList.contains('is-open')) return; sc.classList.remove('is-open'); document.getElementById('popFloating').hidden=true; sc.querySelectorAll('.pop-icon-btn,.pop-action').forEach(function(b){ b.disabled=false; }); }
+  document.addEventListener('click', closePopDemo);
 </script>
